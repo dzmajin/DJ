@@ -1,0 +1,820 @@
+@charset "UTF-8";
+/*************************************************
+스포츠월드 - 메인
+**************************************************/
+.container {
+    padding-top: 5rem;
+}
+.main-sec .tit-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+.main-sec .tit-wrap .link {
+    font-size: 1rem;
+    color: var(--black2);
+    text-decoration: underline;
+}
+.main-sec .inner-con {
+    max-width: var(--conwidth);
+    margin: var(--margin--auto);
+    padding: 3rem 0;
+}
+.main-sec .more {
+    position: relative;
+    padding-right: 1.2rem;
+    font-size: 0.9rem;
+    color: var(--black2);
+}
+.main-sec .more::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 0.6rem;
+    height: 0.6rem;
+    background: url(../images/main/ico_more.svg) no-repeat 0 0 / 100%;
+    transform: var(--y50);
+}
+.main-sec.main-banner {
+    position: relative;
+}
+/* 나에게 맞는 운동 */
+.main-sec.main-banner .my-sports {
+    position: absolute;
+    top: 5rem;
+    left: 50%;
+    z-index: 30;
+    width: 20rem;
+    margin-left: 17.5rem;
+    padding: 1.2rem;
+    border-radius: 1rem;
+    backdrop-filter: blur(16px);
+    box-shadow: var(--boxshadow1);
+    transform: var(--x50);
+}
+.main-sec.main-banner .my-sports .tit {
+    font-size: 1.2rem;
+    color: var(--white);
+}
+.main-sec.main-banner .my-sports .tit.type1 {
+    font-size: 1rem;
+}
+.main-sec.main-banner .my-sports .form-area {
+    margin: 1.2rem 0;
+    gap: 1rem;
+}
+.main-sec.main-banner .my-sports .radio-con input[type="radio"] + .txt {
+    font-size: 1rem;
+    color: var(--white);
+}
+.main-sec.main-banner .my-sports .form-area .radio-con + .radio-con {
+    margin-left: 0;
+}
+.main-sec.main-banner .my-sports .form-area .select {
+    height: 2.4rem;
+    border-color: var(--white);
+    background-image: url(../images/common/ico_select_arrow_wh.svg);
+    background-color: transparent;
+    font-size: 0.9rem;
+    color: var(--white);
+}
+.main-sec.main-banner .my-sports .form-area .select option {
+    color: var(--gray1);
+}
+.main-sec.main-banner .my-sports .check-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+}
+.main-sec.main-banner .my-sports .check-area .check-con {
+    margin: 0;
+    display: none;
+}
+.main-sec.main-banner .my-sports.open .check-area .check-con,
+.main-sec.main-banner .my-sports .check-area .check-con:nth-child(-n+5) {
+    display: block;
+}
+.main-sec.main-banner .my-sports .check-con input[type="checkbox"] + .txt {
+    display: flex;
+    align-items: center;
+    height: 2.4rem;
+    padding-left: 2rem;
+    padding-right: 0.8rem;
+    font-size: 0.9rem;
+    color: var(--white);
+}
+.main-sec.main-banner .my-sports .check-con input[type="checkbox"] + .txt::before {
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    border-color: var(--white);
+    background-color: transparent;
+}
+.main-sec.main-banner .my-sports .check-con input[type="checkbox"] + .txt::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 1rem;
+    left: 1.1rem;
+    width: 0.55rem;
+    height: 0.35rem;
+    border-bottom: 0.15rem solid var(--gray9);
+    border-left: 0.15rem solid var(--gray9);
+    border-radius: 0.075rem;
+    transform: rotate(-45deg) var(--y50);
+}
+.main-sec.main-banner .my-sports .check-con input[type="checkbox"]:checked + .txt::before {
+    border-color: var(--white);
+    background-color: var(--white);
+}
+.main-sec.main-banner .my-sports .check-con input[type="checkbox"]:checked + .txt {
+    color: var(--blue2);
+}
+.main-sec.main-banner .my-sports .check-con input[type="checkbox"]:checked + .txt::after {
+    border-color: var(--blue2);
+}
+.main-sec.main-banner .my-sports .btn {
+    width: 100%;
+    margin-top: 20px;
+    height: 2.4rem;
+}
+.main-sec.main-banner .my-sports .chk-more {
+    display: block;
+    position: relative;
+    width: 100%;
+    margin-top: 1rem;
+}
+.main-sec.main-banner .my-sports .chk-more::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: -1;
+    width: 36%;
+    height: 1px;
+    background-color: var(--white);
+}
+.main-sec.main-banner .my-sports .chk-more::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    z-index: -1;
+    width: 36%;
+    height: 1px;
+    background-color: var(--white);
+}
+.main-sec.main-banner .my-sports .chk-more .txt {
+    display: inline-block;
+    position: relative;
+    padding: 0 2.4rem 0 1rem;
+    font-weight: 700;
+    color: var(--white);
+}
+.main-sec.main-banner .my-sports .chk-more .txt::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0.25rem;
+    right: 1rem;
+    width: 0.4rem;
+    height: 0.4rem;
+    border-bottom: 0.15rem solid var(--white);
+    border-left: 0.15rem solid var(--white);
+    transform: rotate(-45deg);
+    transition: var(--transition);
+}
+.main-sec.main-banner .my-sports .chk-more.close .txt::after {
+    top: 0.35rem;
+    transform: rotate(135deg);
+}
+/* 빅배너 */
+.swiper.sports-main-banner .img {
+    overflow: hidden;
+    position: relative;
+    height: 33rem;
+}
+.swiper.sports-main-banner .img img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    max-width: none;
+    height: 100%;
+    transform: var(--x50);
+}
+.swiper.sports-main-banner .img .mo {
+    display: none;
+ }
+.swiper.sports-main-banner .inner-con {
+    display: flex;
+    position: absolute;
+    top: 9.2rem;
+    left: 50%;
+    width: 100%;
+    padding: 0 4rem;
+    transform: var(--x50);
+
+}
+.swiper.sports-main-banner .detail {
+    max-width: 28rem;
+}
+.swiper.sports-main-banner .tit {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    max-width: 100%;
+    min-height: 5.75rem;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    opacity: 0;
+}
+.swiper.sports-main-banner .con {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    max-width: 100%;
+    margin: 0.8rem 0;
+    font-size: 1.2rem;
+    color: var(--white);
+    text-overflow: ellipsis;
+    opacity: 0;
+}
+.swiper.sports-main-banner .btn {
+    font-weight: 400;
+    opacity: 0;
+}
+.swiper.sports-main-banner .swiper-slide.swiper-slide-active .tit {
+    animation: slideTxtMove 1s .2s both;
+}
+.swiper.sports-main-banner .swiper-slide.swiper-slide-active .con {
+    animation: slideTxtMove 1s .2s both;
+    animation-delay: .2s;
+}
+.swiper.sports-main-banner .swiper-slide.swiper-slide-active .btn {
+    animation: slideTxtMove 1s .2s both;
+    animation-delay: .4s;
+}
+.swiper.sports-main-banner .slide-bottom {
+    position: absolute;
+    bottom: 9rem;
+    left: 50%;
+    z-index: 20;
+    width: 100%;
+    padding: 0 4rem;
+    max-width: var(--conwidth);
+    transform: var(--x50);
+}
+.swiper.sports-main-banner .slide-bottom .swiper-pagination {
+    white-space: nowrap;
+}
+.swiper.sports-main-banner .swiper-button-next, 
+.swiper.sports-main-banner .swiper-button-prev {
+    top: -153px;
+    width: 30px;
+    height: 60px;
+    margin-top: 0;
+}
+.swiper.sports-main-banner .swiper-button-next {
+    right: 0;
+}
+.swiper.sports-main-banner .swiper-button-prev {
+    left: 0;
+}
+.swiper.sports-main-banner .swiper-button-next::after, 
+.swiper.sports-main-banner .swiper-button-prev::after {
+    display: none;
+}
+.swiper.sports-main-banner .swiper-button-next::before, 
+.swiper.sports-main-banner .swiper-button-prev::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url(../images/main/banner_arrow.svg) no-repeat 0 0 / 100%;
+}
+.swiper.sports-main-banner .swiper-button-prev::before {
+    transform: rotate(-180deg);
+}
+/* 일일티켓구매, 수강신청, 사물함신청 */
+.main-sec.app-content {
+    background-color: var(--gray8);
+}
+.main-sec.app-content .inner-con {
+    position: relative;
+    padding: 2rem 0;
+}
+.main-sec.app-content .app-list {
+    width: 9rem;
+}
+.main-sec.app-content .app-list > li + li {
+    border-top: 1px solid var(--gray5);
+}
+.main-sec.app-content .app-list .menu {
+    display: block;
+    padding: 0.9rem 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gray1);
+}
+.main-sec.app-content .app-list > li.on .menu,
+.main-sec.app-content .app-list .menu:hover {
+    color: var(--blue2);
+}
+.main-sec.app-content .app-con {
+    display: none;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 12rem;
+    z-index: 10;
+    transform: var(--y50);
+}
+.main-sec.app-content .app-con.open {
+    display: block;
+}
+.main-sec.app-content .tit-wrap {
+    margin-bottom: 1.2rem;
+}
+.main-sec.app-content .tit-wrap .tit-type1 {
+    margin-bottom: 0;
+}
+.main-sec.app-content .tit-type1 {
+    margin-bottom: 1.2rem;
+    font-size: 1.3rem;
+    color: var(--black3);
+}
+.main-sec.app-content .date {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--black3);
+    text-align: right;
+}
+.main-sec.app-content .form-area .radio-con {
+    flex: 1;
+    margin-left: 0;
+}
+.main-sec.app-content .form-area .radio-con input[type="radio"] + .txt {
+    display: flex;
+    align-items: center;
+    height: 2.8rem;
+    padding-left: 2.5rem;
+}
+.main-sec.app-content .form-area .radio-con input[type="radio"] + .txt::before {
+    z-index: -1;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-color: var(--gray4);
+    border-radius: 0.4rem;
+    background-color: transparent;
+}
+.main-sec.app-content .form-area .radio-con input[type="radio"] + .txt::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 1.1rem;
+    left: 1.3rem;
+    width: 0.55rem;
+    height: 0.35rem;
+    border-bottom: 0.15rem solid var(--gray9);
+    border-left: 0.15rem solid var(--gray9);
+    border-radius: 0.075rem;
+    transform: rotate(-45deg) var(--y50);
+}
+.main-sec.app-content .form-area .radio-con input[type="radio"]:checked + .txt {
+    color: var(--blue2);
+}
+.main-sec.app-content .form-area .radio-con input[type="radio"]:checked + .txt::before {
+    border-color: var(--blue2);
+    background-color: var(--white);
+}
+.main-sec.app-content .form-area .radio-con input[type="radio"]:checked + .txt::after {
+    border-color: var(--blue2);
+    background-color: transparent;
+    box-sizing: content-box;
+}
+.main-sec.app-content .form-area .radio-con input[type="radio"]:disabled + .txt {
+    color: var(--gray3);
+}
+.main-sec.app-content .form-area .radio-con input[type="radio"]:disabled + .txt::before {
+    background-color: var(--gray6);
+}
+
+.main-sec.app-content .form-area .select {
+    height: 2.8rem;
+}
+.main-sec.app-content .form-area .btn {
+    flex-basis: 6rem;
+    height: 2.8rem;
+    font-size: 1rem;
+}
+.main-sec.app-content .form-area .btn.info {
+    flex-basis: 7rem;
+}
+/* 강좌종목안내 */
+.main-sec.course-intro .sports-list {
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 12rem));
+    column-gap: 4rem;
+}
+.main-sec.course-intro .sports-list .img {
+    text-align: right;
+}
+.main-sec.course-intro .sports-list .img img {
+    max-width: 12rem;
+}
+.main-sec.course-intro .sports-list > li {
+    display: none;
+}
+.main-sec.course-intro .sports-list > li:nth-child(-n+4) {
+    display: block;
+}
+.main-sec.course-intro .sports-list.open > li {
+    display: block;
+}
+.main-sec.course-intro .list-more {
+    display: block;
+    position: relative;
+    width: 100%;
+    margin-top: 1rem;
+}
+.main-sec.course-intro .list-more::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 1px;
+    background-color: #d9d9d9;
+}
+.main-sec.course-intro .list-more .txt {
+    display: inline-block;
+    position: relative;
+    background-color: var(--white);
+    padding: 0 4rem 0 2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--black2);
+}
+.main-sec.course-intro .list-more .txt::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0.25rem;
+    right: 2rem;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-bottom: 0.2rem solid var(--black2);
+    border-left: 0.2rem solid var(--black2);
+    transform: rotate(-45deg);
+    transition: var(--transition);
+}
+.main-sec.course-intro .list-more.close .txt::after {
+    top: 0.7rem;
+    transform: rotate(135deg);
+}
+/* 추천종목 */
+.main-sec.good-sports {
+    background-color: var(--gray7);
+}
+.main-sec.good-sports .good-con {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    gap: 7%;
+}
+.main-sec.good-sports .good-list {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 8rem);
+    column-gap: 0.5rem;
+    row-gap: 2rem;
+}
+.main-sec.good-sports .good-list .link {
+    display: block;
+    font-size: 1.5rem;
+    color: var(--gray2);
+    text-align: center;
+}
+.main-sec.good-sports .good-list .img {
+    width: 8rem;
+    height: 8rem;
+}
+.main-sec.good-sports .good-list .link:hover .img img,
+.main-sec.good-sports .good-list > li.on > .link .img img {
+    filter: var(--dropshadow1);
+}
+.main-sec.good-sports .good-list > li.on > .link,
+.main-sec.good-sports .good-list .link:hover {
+    font-weight: 700;
+    color: var(--blue1);
+}
+.main-sec.good-sports .good-list .link.swimming::before {
+    background-image: url(../images/main/ico_sports_swimming.png);
+}
+.main-sec.good-sports .good-list .link.squash::before {
+    background-image: url(../images/main/ico_sports_squash.png);
+}
+.main-sec.good-sports .good-list .link.snpe::before {
+    background-image: url(../images/main/ico_sports_snpe.png);
+}
+.main-sec.good-sports .good-list .link.spinning::before {
+    background-image: url(../images/main/ico_sports_spinning.png);
+}
+.main-sec.good-sports .good-list .link.health::before {
+    background-image: url(../images/main/ico_sports_health.png);
+}
+.main-sec.good-sports .good-list .link.bowling::before {
+    background-image: url(../images/main/ico_sports_bowling.png);
+}
+.main-sec.good-sports .good-list .link.pilates::before {
+    background-image: url(../images/main/ico_sports_pilates.png);
+}
+.main-sec.good-sports .good-list .link.kendo::before {
+    background-image: url(../images/main/ico_sports_kendo.png);
+}
+.main-sec.good-sports .good-list .link.golf::before {
+    background-image: url(../images/main/ico_sports_golf.png);
+}
+.main-sec.good-sports .good-list .link.dancerobics::before {
+    background-image: url(../images/main/ico_sports_dancerobics.png);
+}
+.main-sec.good-sports .good-list .link.aquarobics::before {
+    background-image: url(../images/main/ico_sports_aquarobics.png);
+}
+.main-sec.good-sports .good-list .link.climbing::before {
+    background-image: url(../images/main/ico_sports_climbing.png);
+}
+.main-sec.good-sports .good-list .link.yoga::before {
+    background-image: url(../images/main/ico_sports_yoga.png);
+}
+.main-sec.good-sports .good-list .link.racketball::before {
+    background-image: url(../images/main/ico_sports_racketball.png);
+}
+
+
+
+
+
+
+.main-sec.good-sports .big-img {
+    display: none;
+    position: relative;
+    width: 27.35rem;
+    height: 27rem;
+    
+}
+.main-sec.good-sports .big-img.show {
+    display: block;
+}
+.main-sec.good-sports .big-img .img {
+    width: 24rem;
+    opacity: 0;
+}
+.main-sec.good-sports .big-img.show .img {
+    animation: bigImgShow 1s .2s both;
+}
+.main-sec.good-sports .big-img .detail {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    max-width: 23.35rem;
+    padding: 1.2rem;
+    background-color: var(--white);
+}
+.main-sec.good-sports .big-img .detail .tit {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--black2);
+}
+.main-sec.good-sports .big-img .detail .link {
+    position: relative;
+    padding-right: 1.2rem;
+    font-weight: 700;
+    color: var(--gray1);
+    text-align: right;
+}
+.main-sec.good-sports .big-img .detail .link::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0.25rem;
+    right: 0.35rem;
+    width: 0.4rem;
+    height: 0.4rem;
+    border-bottom: 0.15rem solid var(--gray2);
+    border-left: 0.15rem solid var(--gray2);
+    transform: rotate(-135deg);
+    transition: var(--transition);
+}
+.main-sec.good-sports .big-img .detail .con {
+    grid-column: auto / span 2;
+    margin-top: 0.5rem;
+}
+@keyframes bigImgShow {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+/* 공지사항, 제휴할인업체 */
+.main-sec.notice-partner .inner-con {
+    display: flex;
+    justify-content: space-between;
+    gap: 5%;
+}
+.main-sec.notice-partner .tit-wrap {
+    margin-bottom: 1.6rem !important;
+}
+.main-sec.notice-partner .notice-con {
+    flex: 1;
+    max-width: 28.8rem;
+}
+.main-sec.notice-partner .notice-list .link {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+.main-sec.notice-partner .notice-list .img {
+    flex: 0 0 8rem;
+}
+.main-sec.notice-partner .notice-list .detail {
+    display: grid;
+    align-items: center;
+    grid-template-columns: minmax(0, 14.8rem) auto;
+    column-gap: 2rem;
+}
+.main-sec.notice-partner .notice-list .tit {
+    grid-column: auto / span 2;
+    margin-bottom: 0.4rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--black2);
+    line-height: 1.2;
+}
+.main-sec.notice-partner .notice-list .con {
+    overflow: hidden;
+    display: -webkit-box;
+    max-width: 100%;
+    font-size: 0.9rem;
+    color: var(--gray2);
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.main-sec.notice-partner .notice-list .date {
+    font-size: 0.9rem;
+    color: var(--gray2);
+}
+.main-sec.notice-partner .notice-list > li:first-child {
+    padding-bottom: 0.9rem;
+}
+.main-sec.notice-partner .notice-list > li + li {
+    padding: 0.9rem 0;
+    border-top: 1px solid var(--gray5);
+}
+.main-sec.notice-partner .partner-con {
+    width: 19.2rem;
+}
+.main-sec.notice-partner .partner-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1.2rem;
+    row-gap: 1.2rem;
+}
+.main-sec.notice-partner .partner-list .link {
+    overflow: hidden;
+    display: block;
+    border-radius: 1rem;
+    box-shadow: var(--boxshadow3);
+}
+.main-sec.notice-partner .partner-list .img {
+    overflow: hidden;
+    position: relative;
+    width: 9rem;
+    height: 9rem;
+}
+.main-sec.notice-partner .partner-list .img img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: var(--xy50);
+}
+.main-sec.notice-partner .partner-list .detail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3.6rem;
+    padding: 0 0.8rem;
+}
+.main-sec.notice-partner .partner-list .tit {
+    overflow: hidden;
+    display: -webkit-box;
+    max-width: 100%;
+    font-size: 1rem;
+    color: var(--black3);
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+/* 배너 */
+.main-sec.sports-banner {
+    background-color: var(--gray7);
+    text-align: center;
+}
+.main-sec.sports-banner .banner {
+    display: block;
+    position: relative;
+    height: 10rem;
+}
+.main-sec.sports-banner .banner img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    max-width: none;
+    transform: var(--x50);
+}
+.main-sec.sports-banner .mo {
+    display: none;
+}
+@media (max-width:1024px) {
+    .main-sec .inner-con {
+        padding: 3rem 20px;
+    }
+    .main-sec.course-intro .sports-list {
+        grid-template-columns: repeat(auto-fill, minmax(11rem, 11rem));
+        column-gap: 1.4rem;
+    }
+
+    .swiper.sports-main-banner .inner-con {
+        padding: 0 6.67%;
+    }
+    .swiper.sports-main-banner .detail {
+        max-width: 23rem;
+    }
+    .main-sec.good-sports .good-con {
+        gap: 0;
+    }
+    .main-sec.main-banner .my-sports {
+        margin-left: 12.6rem;
+    }
+
+    .main-sec.app-content .inner-con {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+    .main-sec.app-content .app-con {
+        right: 20px;
+    }
+}
+
+@media (max-width:820px) { 
+    .kbs-sports .container {
+        padding-top: 2.8rem;
+    }
+    .main-sec.course-intro .sports-list {
+        grid-template-columns: repeat(auto-fill, minmax(7.5rem, 7.5rem));
+        column-gap: 0.5rem;
+        row-gap: 0;
+        padding-top: 0.4rem;
+    }
+    .main-sec.course-intro .sports-list .img img {
+        max-width: 100%;
+    }
+    .main-sec.good-sports .good-con {
+        align-items: center;
+    }
+    .main-sec.good-sports .good-list {
+        grid-template-columns: repeat(3, 6rem);
+    }
+    .main-sec.good-sports .good-list .img {
+        width: 100%;
+        height: 100%;
+    }
+    .main-sec.good-sports .big-img {
+        width: 100%;
+    }
+    .main-sec.good-sports .big-img .img {
+        width: 100%;
+    }
+}
