@@ -68,33 +68,56 @@ function moveTopClick(e) {
     }, 500);
 }
 /* Gnb hover */
-function  gnbAction(){
-    var $topWrap =  $(".header .top-wrap");
-    var $gnbBg =  $(".gnb-bg");
-    var $gnbSubList =  $('.gnb-menu .sub-list');
-    $(".gnb-menu .depth1").on("mouseenter focusin", function(){
+function gnbAction() {
+    var $topWrap = $(".header .top-wrap");
+    var $gnbBg = $(".gnb-bg");
+    var $gnbSubList = $('.gnb-menu .sub-list');
+    var $utilMenu = $('.top-wrap .util-menu');
+
+    // depth1 메뉴 항목에 마우스를 올리거나 포커스를 맞췄을 때
+    $(".gnb-menu .depth1").on("mouseenter focusin", function () {
         $gnbBg.show();
         $gnbSubList.show();
         $(this).addClass("hover").parent("li").siblings().find(".depth1").removeClass("hover");
-        $(document).on('keydown', function(e){
-            if(e.keyCode === 27){
+        $(document).on('keydown', function (e) {
+            if (e.keyCode === 27) { // ESC 키를 눌렀을 때 메뉴 숨기기
                 $gnbBg.hide();
                 $gnbSubList.hide();
             }
         });
         $topWrap.addClass("hover");
     });
-    $topWrap.mouseleave(function(){
+
+    // 메뉴 영역에서 마우스를 떠났을 때
+    $topWrap.mouseleave(function () {
         $gnbBg.hide();
         $gnbSubList.hide();
         $(this).removeClass("hover");
     });
-    $(".home-logo, .top-wrap .util-menu").on("mouseenter focusin", function(){
+
+    // util-menu에 마우스를 올렸을 때 서브메뉴 보여주기
+    $utilMenu.on("mouseenter", function () {
+        $gnbBg.show();      // 서브 메뉴 배경 보여주기
+        $gnbSubList.show(); // 서브 메뉴 보여주기
+        $topWrap.addClass("hover"); // 탑 랩 활성화 효과 추가
+    });
+
+    // util-menu에서 마우스가 떠났을 때 서브메뉴 숨기기
+    $utilMenu.on("mouseleave", function () {
+        $gnbBg.hide();      // 서브 메뉴 배경 숨기기
+        $gnbSubList.hide(); // 서브 메뉴 숨기기
+        $topWrap.removeClass("hover"); // 탑 랩 비활성화 효과 제거
+    });
+
+    // home-logo에 마우스 포커스를 맞췄을 때 서브메뉴 숨기기
+    $(".home-logo").on("mouseenter focusin", function () {
         $gnbBg.hide();
         $gnbSubList.hide();
         $topWrap.removeClass("hover");
     });
 }
+
+
 /* 파일첨부 버튼이미지 */
 function fileUpload() { 
 	$fileBox = $('.form-area.file'); 

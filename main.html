@@ -5,27 +5,86 @@
     <link rel="icon" type="image/svg+xml" href="">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="format-detection" content="telephone=no">
     <title>지식on대진</title>
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/main_DJ.css">
     <link rel="stylesheet" type="text/css" href="css/sub.css">
-    <link rel="stylesheet" type="text/css" href="css/swiper-bundle.min.css">
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/siwper-bundle.min.css">
+	<link rel="stylesheet" type="text/css" href="css/slick.css">
+    <!-- <script type="text/javascript" src="js/jquery.min.js"></script> -->
+	<script type="text/javascript" src="js/jquery.min.js"></script>	
     <script type="text/javascript" src="js/common.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/swiper-bundle.min.js"></script>
+	<script type="text/javascript" src="js/slick.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+
 </head>
-<body class="kbs-sports footer-visible vsc-initialized">
+
+<body class="kbs-sports vsc-initialized">
 	<div class="wrap">
 	<!--==============================headerstart===========================-->
-	
 
+		<aside id="following-content" class="following" style="top: 150px;">
+			<ul>
+				<li style="list-style: none;">
+					<a href="#" style="width: 100px;">연계사이트</a>
+				</li>   
+				<li style="list-style: none;">
+					<a id="a1" href="https://www.daejin.ac.kr/daejin/index.do" target="_blank" style="width: 100px;">
+						대진대학교
+					</a>
+				</li>
+				<li style="list-style: none;">
+					<a id="a2" href="https://library.daejin.ac.kr/main_main.mir" target="_blank" style="width: 100px;">
+						중앙도서관
+					</a>
+				</li>
+				<li style="list-style: none;">
+					<a id="a3" href="https://job.daejin.ac.kr/clientMain/a/t/main.do" target="_blank" style="width: 100px;">
+						취업지원센터
+					</a>
+				</li>
+				<li style="list-style: none;">
+					<a id="a4" href="https://together.daejin.ac.kr/clientMain/a/t/main.do" target="_blank" style="width: 100px;">
+						트윈
+					</a>
+				</li>
+				<li style="list-style: none;">
+					<a id="a5" href="https://www.work24.go.kr/cm/main.do" target="_blank" style="width: 100px;">
+						고용 24
+					</a>
+				</li>
+				<li style="list-style: none;">
+					<a id="a6" href="https://lms.jobaba.net/gjf/home.do?callback=empty" target="_blank" style="width: 100px;">
+						잡아바 러닝센터
+					</a>
+				</li>
+			<li class="close">
+			<a id="toggle-button" href="javascript:void(0);" onclick="toggleContent();" style="width: 100px;">닫힘</a>
+			</li>
+			</ul>
+		</aside>
 
+		<script>
+            function toggleContent() {
+             var items = document.querySelectorAll("#following-content ul li:not(.close)");
+             var button = document.getElementById("toggle-button");
 
+             if (items[0].style.display === "none") {
+               items.forEach(function(item) {
+                  item.style.display = "list-item";
+               });
+               button.textContent = "닫힘";
+            } else {
+               items.forEach(function(item) {
+                  item.style.display = "none";
+               });
+               button.textContent = "열림";
+            }
+         }
 
-
+        </script>
 
 <script>
 	function getCookie(cname) {
@@ -141,6 +200,7 @@
 
     <header id="header" class="header">
         <!-- <div id="skip_nav"><a href="#content">본문 바로가기</a></div> -->
+
         <div class="top-wrap">
             <div class="flex-fs">
                 <button type="button" class="all-menu"><span class="hidden">전체메뉴</span></button>
@@ -161,7 +221,10 @@
 											<li>
 												<a href="/spwd/intro/spwdIntroView.do#training" class="depth2"> 취업로드맵</a>
 											</li>
-										
+
+											<li>
+												<a href="/smokp/noticeList.do" class="depth2"> 취업지원 </a>
+											</li>
 									</ul>
 								</li>
 				
@@ -179,60 +242,46 @@
 											</li>
 										
 											<li>
-												<a href="/spwd/CourseInfo/courseRegistrationView.do" class="depth2"> 주제공유 </a>
+												<a href="/spwd/CourseInfo/courseRegistrationView.do" class="depth2"> 학술사이트 </a>
 											</li>
-										
 									</ul>
 								</li>
 				
-							
 								<li>
-									<a href="/smokp/CourseInfo/courseInfoView.do?fclt_code=SPWM&amp;cnts_clss=CNTS&amp;cnts_type=USED" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">커뮤니티</strong></strong></a>
+									<a href="qna/qna.html" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">커뮤니티</strong></strong></a>
 									<ul class="sub-list" style="display: none;">
-										
-											<li>
-												<a href="/smokp/CourseInfo/courseInfoView.do?fclt_code=SPWM&amp;cnts_clss=CNTS&amp;cnts_type=USED" class="depth2"> Q&A </a>
-											</li>
-										
-											<li>
-												<a href="/smokp/CourseInfo/itemInfoView.do" class="depth2"> 공지사항 </a>
-											</li>
-										
-											<li>
-												<a href="/smokp/noticeList.do" class="depth2"> 자료실 </a>
-											</li>
-						
+									   
+										  <li>
+											 <a href="qna/qna.html" class="depth2"> Q&A </a>
+										  </li>
+									   
+										  <li>
+											 <a href="qna/notice.html" class="depth2"> 공지사항 </a>
+										  </li>
+									   
+										  <li>
+											 <a href="qna/data.html" class="depth2"> 자료실 </a>
+										  </li>
+		 
+													 <li>
+											 <a href="qna/share.html" class="depth2"> 주제공유 </a>
+										  </li>
 									</ul>
 								</li>
-				
-							
-								<!-- <li>
-									<a href="/notice/noticeList.do" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">마이페이지</strong></strong></a>
-									<ul class="sub-list" style="display: none;">
-										
-											<li>
-												<a href="/notice/noticeList.do" class="depth2"> 로그인 </a>
-											</li>
-										
-											<li>
-												<a href="/notice/faq.do" class="depth2"> 목표 리스트 </a>
-											</li>
-
-                                            <li>
-												<a href="/notice/faq.do" class="depth2"> 이력서 작성 </a>
-											</li>
-					
-									</ul>
-								</li> -->
 
                                 <li>
 									<a href="/notice/noticeList.do" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">상담</strong></strong></a>
-									<ul class="sub-list" style="display: none;"></ul>
-					
+									<ul class="sub-list" style="display: none;">
+
+									<li>
+										<a href="counsel/counsel.html" class="depth2"> 신청 </a>
+									</li>
+
+									<li>
+										<a href="counsel/list.html" class="depth2"> 내역 </a>
+									</li>
 									</ul>
 								</li>
-				
-							
                         </ul>
                     </div>
                 </nav>
@@ -245,7 +294,6 @@
                                 <ul class="">
                                     <li><a href="/util/myPage/myInfoEdit.do" class="depth2">내정보 수정 </a></li>
                                     <li><a href="/util/myPage/currentSituation.do" class="depth2">목표리스트</a></li>
-                                    <li><a href="/util/shopBasket/shopBasket.do" class="depth2">이력서 작성</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -254,343 +302,127 @@
                 <ul class="util-menu">
                     <li class="mypage"><a href="/util/myPage/currentSituation.do" class="ico"><span class="hidden">마이페이지</span></a></li>
                     <li class="search"><a href="search.html" class="ico"><span class="hidden">검색</span></a></li>
-                    
-                    
                     		<li class="login"><a href="login.html" class="btn sm">로그인</a></li>
-                    
-
-
-
-
- 
                 </ul>
             </div>
         </div>
     </header>
 	<!--==============================headerend=============================-->
 	    
-	    
-    <!--============================mobile-lnb start=========================-->
-	
-
-
-
-
-
-
-<script >
-    $(document).ready(()=>{
-        $(".depth2").on("click", moLnbAction);// 모바일 전체메뉴 닫기
-    })
-</script>
-
-<!-- mobile-lnb -->
-<aside id="aside" class="mo-lnb">
-    <div class="top-area">
-        <a href="/auth/loginUsr.do" class="link">로그인</a>
-        <button type="button" class="close link"></button>
-    </div>
-    <nav class="list-area">
-        <ul class="lnb-list">
-            
-                <li>
-                    <a href="/spwd/intro/spwdIntroView.do" class="depth1">스포츠월드소개</a>
-                    <ul class="sub-list">
-                        
-                            <li>
-                                <a href="/spwd/intro/spwdIntroView.do" class="depth2">스포츠월드소개</a>
-                            </li>
-                        
-                            <li>
-                                <a href="/spwd/intro/spwdIntroView.do#training" class="depth2">강습종목</a>
-                            </li>
-                        
-                            <li>
-                                <a href="/spwd/intro/spwdIntroView.do#history" class="depth2">연혁</a>
-                            </li>
-                        
-                            <li>
-                                <a href="/spwd/intro/spwdIntroView.do#biz" class="depth2">사업장</a>
-                            </li>
-                        
-                    </ul>
-                </li>
-            
-                <li>
-                    <a href="/spwd/CourseInfo/getCntrCnts.do?fclt_code=SPWD&amp;cnts_clss=CNTS&amp;cnts_type=USED" class="depth1">KBS스포츠월드</a>
-                    <ul class="sub-list">
-                        
-                            <li>
-                                <a href="/spwd/CourseInfo/getCntrCnts.do?fclt_code=SPWD&amp;cnts_clss=CNTS&amp;cnts_type=USED" class="depth2">수강안내</a>
-                            </li>
-                        
-                            <li>
-                                <a href="/notice/noticeList.do" class="depth2">공지사항</a>
-                            </li>
-                        
-                            <li>
-                                <a href="/spwd/CourseInfo/courseRegistrationView.do" class="depth2">수강신청</a>
-                            </li>
-                        
-                            <li>
-                                <a href="/spwd/request/specialtraining.do" class="depth2">특별강습신청</a>
-                            </li>
-                        
-                            <li>
-                                <a href="/spwd/CourseInfo/itemInfoView.do" class="depth2">종목안내</a>
-                            </li>
-                        
-                            <li>
-                                <a href="/spwd/request/LaneRental.do" class="depth2">레인임대신청</a>
-                            </li>
-                        
-                            <li>
-                                <a href="/spwd/intro/locations.do" class="depth2">오시는길</a>
-                            </li>
-                        
-                    </ul>
-                </li>
-            
-                <li>
-                    <a href="/smokp/CourseInfo/courseInfoView.do?fclt_code=SPWM&amp;cnts_clss=CNTS&amp;cnts_type=USED" class="depth1">목포스포츠월드</a>
-                    <ul class="sub-list">
-                        
-                            <li>
-                                <a href="/smokp/CourseInfo/courseInfoView.do?fclt_code=SPWM&amp;cnts_clss=CNTS&amp;cnts_type=USED" class="depth2">수강안내</a>
-                            </li>
-                        
-                            <li>
-                                <a href="/smokp/CourseInfo/itemInfoView.do" class="depth2">종목안내</a>
-                            </li>
-                        
-                            <li>
-                                <a href="/smokp/noticeList.do" class="depth2">공지사항</a>
-                            </li>
-                        
-                            <li>
-                                <a href="/smokp/locations.do" class="depth2">오시는길</a>
-                            </li>
-                        
-                    </ul>
-                </li>
-            
-                <li>
-                    <a href="/notice/noticeList.do" class="depth1">알림마당</a>
-                    <ul class="sub-list">
-                        
-                            <li>
-                                <a href="/notice/noticeList.do" class="depth2">알림마당</a>
-                            </li>
-                        
-                            <li>
-                                <a href="/notice/faq.do" class="depth2">FAQ</a>
-                            </li>
-                        
-                    </ul>
-                </li>
-            
-            <li>
-                <a href="/util/myPage/currentSituation.do" class="depth1">마이페이지</a>
-                <ul class="sub-list">
-                    <li><a href="/util/myPage/myInfoEdit.do" class="depth2">내정보수정</a></li>
-                    <li><a href="/util/myPage/currentSituation.do" class="depth2">신청내역(수강신청/사물함등)</a></li>
-                    <li><a href="/util/shopBasket/shopBasket.do" class="depth2">장바구니</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-</aside>
-<!-- //mobile-lnb -->
-	<!--============================mobile-lnb end===========================-->	
-
-
     <!-- content -->
     <main id="container" class="container">
-        <section class="main-sec main-banner">
-            <h2 class="hidden">비즈니스 배너</h2>
-            <!-- Swiper -->
-            <div class="swiper sports-main-banner swiper-initialized swiper-horizontal swiper-backface-hidden">
-                <div class="swiper-wrapper" id="swiper-wrapper-b42a93dd5af10c10c0" aria-live="polite">
-                    
-                        
-                            <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 1" style="width:;">
-                                <figure class="img">
-                                    <img src="image/main1_image.jpg" alt="">
-                                </figure>
-                                <div class="inner-con">
-                                    <div class="detail">
-                                        <h2 class="tit">KBS 스포츠월드 수영장에서 무더위를 싹 날리세요! KBS 스포츠월드 수영장에서 무더위를 싹 날리세요! KBS 스포츠월드 수영장에서 무더위를 싹 날리세요!</h2>
-                                        <p class="con">여름 6~9월 일일 자유수영 안내</p>
-                                        
-                                            <!-- <a href="https://kbssw.co.kr/spwd/CourseInfo/getCntrCnts.do?fclt_code=SPWD&cnts_clss=CNTS&cnts_type=USED" class="btn" target="_blank">자세히보기</a> -->
-                                            <a href="https://kbssw.co.kr/spwd/CourseInfo/getCntrCnts.do?fclt_code=SPWD&amp;cnts_clss=CNTS&amp;cnts_type=USED" class="btn" target="_blank">자세히보기</a>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        
-                    
-                </div>
-                <div class="slide-bottom">
-                    <div class="btn-wrap">
-                        <button type="button" class="slide-pause">
-                            <span class="hidden">일시정지</span>
-                        </button>
-                        <button type="button" class="slide-play">
-                            <span class="hidden">재생</span>
-                        </button>
-                    </div>
-                    <div class="swiper-button-next swiper-button-disabled swiper-button-lock" tabindex="-1" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-b42a93dd5af10c10c0" aria-disabled="true"></div>
-                    <div class="swiper-button-prev swiper-button-disabled swiper-button-lock" tabindex="-1" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-b42a93dd5af10c10c0" aria-disabled="true"></div>
-                    <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal swiper-pagination-lock"><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></span></div>
-                    <div class="swiper-pagination2 swiper-pagination-fraction swiper-pagination-horizontal swiper-pagination-lock"><span class="swiper-pagination-current">1</span> / <span class="swiper-pagination-total">1</span></div>
-                </div>
-                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span> <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+        <div class="mm con01">
+			<div class="banner_wrap">
+				<div class="banner slick-initialized slick-slider slick-dotted"><button class="slick-prev slick-arrow" aria-label="Previous" type="button" style="display: inline-block;">Previous</button><div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 740px;"><div class="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" role="tabpanel" id="slick-slide00" aria-describedby="slick-slide-control00" style="width: 370px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;"><div><div class="ban" style="width: 100%; display: inline-block;">
+							<a href="https://kdata.or.kr/mydata/www/contents/introduction/view.do" tabindex="0">
+								<!-- pc배너 권장사이즈 470 * 470 -->
+								<img src="image/img_1.jpg" class="pc" style="background:url('/mydata/upload/banner/2023111411504832799.jpg') no-repeat 50% 50% / cover;" alt="마이데이터로 만드는 새로운 가치! 데이터를 만드는 사람은 바로 나! 개인데이터활용 체계의 새로운 패러다임 ">
+							</a> 
+						</div></div></div><div class="slick-slide" data-slick-index="1" aria-hidden="true" role="tabpanel" id="slick-slide01" aria-describedby="slick-slide-control01" tabindex="-1" style="width: 370px; position: relative; left: -370px; top: 0px; z-index: 998; opacity: 0; transition: opacity 500ms;"><div><div class="ban" style="width: 100%; display: inline-block;">
+							<a href="https://www.kdata.or.kr/mydata/www/contents/mydata_itr/view.do" tabindex="-1">
+								<!-- pc배너 권장사이즈 470 * 470 -->
+								<img src="image/img_2.jpg" class="pc" style="background:url('/mydata/upload/banner/20231114121008493724.jpg') no-repeat 50% 50% / cover;" alt="마이데이터가 무엇일까요? 내 데이터의 주인은 바로 나! 더 알아보기 ">
+							</a> 
+						</div></div></div></div></div><button class="slick-next slick-arrow" aria-label="Next" type="button" style="display: inline-block;">Next</button><ul class="slick-dots" style="" role="tablist"><li class="slick-active" role="presentation"><button type="button" role="tab" id="slick-slide-control00" aria-controls="slick-slide00" aria-label="1 of 2" tabindex="0" aria-selected="true">1</button></li><li role="presentation" class=""><button type="button" role="tab" id="slick-slide-control01" aria-controls="slick-slide01" aria-label="2 of 2" tabindex="-1">2</button></li></ul></div>
+				<a href="#none" class="banner-play-button">일시정지</a>
+			</div>
+				<div class="search_area">
+					<p>
+						<span>SEARCH</span>
+						<input type="text" placeholder="검색어를 입력하세요" id="searchKeyword" onkeyup="fnKeyUp();">
+						<label for="searchKeyword">통합검색</label>
+						<a href="javascript:search();" class="search_btn">검색</a>
+					</p>
+					<ul class="search_ul">
+						<li><a href="javascript:keywordSearch('데이터');">#데이터</a></li>
+						<li><a href="javascript:keywordSearch('API소재 정보');">#API소재 정보</a></li>
+						<li><a href="javascript:keywordSearch('마이데이터');">#마이데이터</a></li>
+						<li><a href="javascript:keywordSearch('활용제도');">#활용제도</a></li>
+					</ul>
+				</div><!-- //search_area -->
+				
+				<ul class="quick">
+					<li>
+						<a href="/mydata/www/board/guide_01/boardList.do">
+							<span>
+								<span class="tt">가이드북</span>
+								<span class="text">마이데이터 활용법</span>
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="/mydata/www/board/counsel/boardList.do">
+							<span>
+								<span class="tt">상시자문</span>
+								<span class="text">전문가 답변을 제공</span>
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="/mydata/www/api_01/boardList.do">
+							<span>
+								<span class="tt">API 소재정보</span>
+								<span class="text">다양한 서비스 데이터</span>
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="/mydata/www/service/service_map.do">
+							<span>
+								<span class="tt">서비스맵</span>
+								<span class="text">쉽고 편한 마이데이터</span>
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="/mydata/www/service/service_reco.do">
+							<span>
+								<span class="tt">서비스 추천</span>
+								<span class="text">나에게 맞는 서비스</span>
+							</span>
+						</a>
+					</li>
+					<li>
+						 <a href="/mydata/www/service/service_exp.do"> 
+							<span>
+								<span class="tt">서비스 체험</span>
+								<span class="text">미리 체험하는 서비스</span>
+							</span>
+						</a>
+					</li>
+				</ul>
+		</div>
 
-            <fieldset class="my-sports">
-                <form name="form_chk" id="form_chk" method="post">
-                    <input type="hidden" name="gender"> <input type="hidden" name="age"> <input type="hidden" name="purpose">
-                </form>
-                <h3 class="tit">
-                    나에게 맞는<br>운동을 찾아볼까요?
-                </h3>
-                <div class="form-area">
-                    <span class="radio-con"> <input type="radio" name="typeGender" id="typeGender1" value="M"> <label for="typeGender1" class="txt">남자</label>
-                    </span> <span class="radio-con"> <input type="radio" name="typeGender" id="typeGender2" value="F"> <label for="typeGender2" class="txt">여자</label>
-                    </span> <select class="select" id="ageRange" name="ageRange">
-                        <option value="0">연령대 선택</option>
-                        
-                            <option value="10">10~20</option>
-                        
-                            <option value="20">20~30</option>
-                        
-                            <option value="30">30~40</option>
-                        
-                            <option value="40">40~50</option>
-                        
-                            <option value="50">50~60</option>
-                        
-                            <option value="60">60~70</option>
-                        
-                            <option value="70">70~80</option>
-                        
-                            <option value="80">80대</option>
-                        
-                    </select>
-                </div>
-                <h4 class="tit type1">운동의 목적이 무엇인가요?</h4>
-                <div class="check-area">
-                    
-                        <span class="check-con"> <input type="checkbox" name="typepurpose" id="typepurpose1" value="1"> <label for="typepurpose1" class="txt">유산소</label>
-                        </span>
-                    
-                        <span class="check-con"> <input type="checkbox" name="typepurpose" id="typepurpose2" value="2"> <label for="typepurpose2" class="txt">재활</label>
-                        </span>
-                    
-                        <span class="check-con"> <input type="checkbox" name="typepurpose" id="typepurpose3" value="3"> <label for="typepurpose3" class="txt">여가활동</label>
-                        </span>
-                    
-                        <span class="check-con"> <input type="checkbox" name="typepurpose" id="typepurpose4" value="4"> <label for="typepurpose4" class="txt">다이어트</label>
-                        </span>
-                    
-                        <span class="check-con"> <input type="checkbox" name="typepurpose" id="typepurpose5" value="5"> <label for="typepurpose5" class="txt">체력증진</label>
-                        </span>
-                    
-                        <span class="check-con"> <input type="checkbox" name="typepurpose" id="typepurpose6" value="6"> <label for="typepurpose6" class="txt">단기다이어트</label>
-                        </span>
-                    
-                        <span class="check-con"> <input type="checkbox" name="typepurpose" id="typepurpose7" value="7"> <label for="typepurpose7" class="txt">구기종목</label>
-                        </span>
-                    
-                        <span class="check-con"> <input type="checkbox" name="typepurpose" id="typepurpose8" value="8"> <label for="typepurpose8" class="txt">유연성</label>
-                        </span>
-                    
-                        <span class="check-con"> <input type="checkbox" name="typepurpose" id="typepurpose9" value="9"> <label for="typepurpose9" class="txt">자세교정</label>
-                        </span>
-                    
-                        <span class="check-con"> <input type="checkbox" name="typepurpose" id="typepurpose10" value="10"> <label for="typepurpose10" class="txt">지구력</label>
-                        </span>
-                    
-                        <span class="check-con"> <input type="checkbox" name="typepurpose" id="typepurpose11" value="11"> <label for="typepurpose11" class="txt">근력운동</label>
-                        </span>
-                    
-                </div>
-                <button type="button" class="chk-more">
-                    <span class="txt">더보기</span>
-                </button>
-                <a href="#" class="btn mid" id="searchPrgm" onclick="fn_esc_search();">찾기</a>
-            </fieldset>
-
-        </section>
-        
-    </main>
     <!-- //content -->
 	    
-	    
 	<!--===================================bottom=start==========================-->
-	
 
-
-
-
-<script>
-	function fn_alert(){
-		alert("개발예정")
-	}
-	function fn_chatbot(){
-		alert('현재 개발 중 입니다.');
-		return;
-	}
-</script>
-    <footer id="footer" class="footer">
-        <div class="bottom-wrap">
-            <ul class="util-menu">
-                <li><a href="/util/infoUse/infoUseList.do?bbs_numb=B0000000000000000003&amp;ctgr_numb=1000">개인정보취급방침</a></li>
-                <li><a href="https://new.kbsbiz.co.kr/footer/viewVoc.do">고객의 소리</a></li>
-                <li><a href="/util/infoUse/infoUseList.do?bbs_numb=B0000000000000000003&amp;ctgr_numb=2000">이용규정</a></li>
-            </ul>
-            <div class="family-menu">
-                <a href="javascript:void(0);" class="txt">연관사이트 바로가기</a>
-                <ul class="menu-sub">
-                	
-	                    <li><a href="https://kbsbiz.co.kr">KBS비즈니스</a></li>
-                	
-	                    <li><a href="https://kbsarena.com">KBS아레나</a></li>
-                	
-	                    <li><a href="https://pay.kbssa.sc.kr">KBS예술과학원</a></li>
-                	
-<!--                     <li><a href="/kbsa">KBS아레나</a></li> -->
-<!--                     <li><a href="/kbsc">KBS예술과학원</a></li> -->
-                </ul>
-            </div>
-        </div>
+	<footer id="footer" class="footer">
         <div class="util-wrap">
             <div class="info-menu">
-                <span class="txt">서울시 강서구 공항대로 376(화곡동)</span>
-                <span class="txt ceo">대표자: 박승규</span><span class="txt number">사업자등록번호: 109-81-20807 </span>
-                <span class="txt">통신판매업신고 제 2004-16-1329호</span>
-                <span class="txt">대표번호: 02-2600-8808</span>
-                <span class="txt">팩스번호: 02-2600-8719 </span>
-            </div>
-            <div class="sns-menu">
-                <a href="https://www.facebook.com/KBSBUSINESS" class="facebook" target="_blank"><span class="hidden">새창 페이스북</span></a>
-                <a href="https://www.youtube.com/channel/UCLP_8-Ozc6k8qfNzp8x4hxA" class="youtube" target="_blank"><span class="hidden">새창 유튜브</span></a>
-                <a href="https://blog.naver.com/kbsbiz88" class="instagram" target="_blank"><span class="hidden">새창 인스타그램</span></a>
-                <a href="https://www.instagram.com/kbsbiz_official/" class="blog" target="_blank"><span class="hidden">새창 네이버블로그</span></a>
+                <span class="txt">대한민국</span>
+                <span class="txt">만든이: 김명진 이가은 최소현 최재원</span>
             </div>
         </div>
         <p class="copyright">
-            <a href="javascript:void(0);" class="logo"><span class="hidden">KBS BUSINESS</span></a>
-            COPYRIGHTS 2024 KBSSPORTS ALL RIGHTS RESERVED.
+            COPYRIGHTS 2024 K.L.C.C ALL RIGHTS RESERVED.
         </p>
-        <div class="topmove-area">
-            <button type="button" class="chatbot" onclick="fn_chatbot();"><span class="hidden">챗봇</span></button>
-            <button type="button" class="top"><span class="hidden">상단으로</span></button>
-        </div>
     </footer>
+
 	<!--===================================bottom=end============================-->
 	</div>
-    <script type="text/javascript" src="common.js"></script>
+	<script>
+		$(document).ready(function(){
+		  $('.banner').slick({
+			dots: true,  // 슬라이드 하단에 점 형태의 네비게이션 추가
+			infinite: true,  // 무한 루프 슬라이드
+			speed: 500,  // 슬라이드 전환 속도 (밀리초 단위)
+			slidesToShow: 1,  // 한 번에 보여줄 슬라이드 개수
+			slidesToScroll: 1,  // 한 번에 넘길 슬라이드 개수
+			prevArrow: '.slick-prev',  // 이전 버튼 요소 선택자
+			nextArrow: '.slick-next',  // 다음 버튼 요소 선택자
+		  });
+		});
+	  </script>
 </body>
 </html>

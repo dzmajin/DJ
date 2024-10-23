@@ -2,7 +2,8 @@
 
 $(function () {
     var $body = $("body");
-    swiperNoticePop();+
+    slickSlider();
+    swiperNoticePop();
     if ( $body.find(".swiper.sports-main-banner").length > 0 ) { swiperSportsMainBnn(); }// 스포츠월드 메인배너 슬라이드
     if ( $body.find(".main-sec.main-banner .my-sports").length > 0 ) { sportsMainMore(); }// 나에게맞는운동 더보기
     $(".main-sec.app-content .app-list > li > a").on("click", appTabClick);// 스포츠월드 수강신청 탭
@@ -24,72 +25,114 @@ $(function () {
         }
     });
     if ( $body.find(".swiper.art-main-banner").length > 0 ) { swiperArtMainBnn(); }// 예술과학원 메인배너 슬라이드
+
+    function slickSlider() {
+        var $banner = $('.banner'); // 슬라이더 선택자
+    
+        if ($banner.length > 0) {
+            // 슬라이더 초기화
+            $banner.slick({
+                arrows: false,
+                infinite: true,
+                autoplay: true,
+                fade: true,
+                speed: 500,
+                dots: true,
+                pauseOnHover: false
+            });
+    
+            // 재생/일시정지 버튼
+            var isPaused = false;
+            $('.banner-play-button').on('click', function () {
+                if (isPaused) {
+                    $banner.slick('slickPlay');
+                } else {
+                    $banner.slick('slickPause');
+                }
+                isPaused = !isPaused;
+                $(this).text(isPaused ? '재생' : '일시정지').toggleClass('play');
+            });
+    
+            // 슬라이드 변경 이벤트
+            $banner.on('afterChange', function (event, slick, currentSlide) {
+                console.log("현재 슬라이드:", currentSlide);
+            });
+        } else {
+            console.warn("'.banner' 요소를 찾을 수 없습니다.");
+        }
+    }
+    
+    // DOM이 완전히 로드된 후 실행
+    $(document).ready(function () {
+        slickSlider();
+    });
+    
 });
-/* 스포츠월드 메인배너 슬라이드 */
-function swiperNoticePop() {
-    var noticePop = new Swiper(".pop-wrap .swiper.notice-slide", {
-        // autoplay: {
-        //     delay: 4000,
-        //     disableOnInteraction: false,
-        // },
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-        pagination: {
-            el: ".swiper-pagination",
-            clickable : true,
-        },
-    });
-    $('.swiper.notice-slide .slide-play').on('click', function() {
-        noticePop.autoplay.start();
-        return false;
-    });
-    $('.swiper.notice-slide .slide-pause').on('click', function() {
-        noticePop.autoplay.stop();
-        return false;
-    });
-    var noticePopPaging = new Swiper(".swiper.notice-slide", {
-        pagination: {
-            el: ".swiper-pagination2",
-            type: "fraction",
-        },
-    });
-    noticePop.controller.control = noticePopPaging;
-}
-function swiperSportsMainBnn() {
-    var sportsaMainBnn = new Swiper(".kbs-sports .swiper.sports-main-banner", {
-        autoplay: {
-            delay: 4000,
-            disableOnInteraction: false,
-        },
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-        pagination: {
-            el: ".swiper-pagination",
-            clickable : true,
-        },
-    });
+// /* 스포츠월드 메인배너 슬라이드 */
+// function swiperNoticePop() {
+//     var noticePop = new Swiper(".pop-wrap .swiper.notice-slide", {
+//         // autoplay: {
+//         //     delay: 4000,
+//         //     disableOnInteraction: false,
+//         // },
+//         navigation: {
+//             nextEl: ".swiper-button-next",
+//             prevEl: ".swiper-button-prev",
+//         },
+//         pagination: {
+//             el: ".swiper-pagination",
+//             clickable : true,
+//         },
+//     });
+//     $('.swiper.notice-slide .slide-play').on('click', function() {
+//         noticePop.autoplay.start();
+//         return false;
+//     });
+//     $('.swiper.notice-slide .slide-pause').on('click', function() {
+//         noticePop.autoplay.stop();
+//         return false;
+//     });
+//     var noticePopPaging = new Swiper(".swiper.notice-slide", {
+//         pagination: {
+//             el: ".swiper-pagination2",
+//             type: "fraction",
+//         },
+//     });
+//     noticePop.controller.control = noticePopPaging;
+// }
+// function swiperSportsMainBnn() {
+//     var sportsaMainBnn = new Swiper(".kbs-sports .swiper.sports-main-banner", {
+//         autoplay: {
+//             delay: 4000,
+//             disableOnInteraction: false,
+//         },
+//         navigation: {
+//             nextEl: ".swiper-button-next",
+//             prevEl: ".swiper-button-prev",
+//         },
+//         pagination: {
+//             el: ".swiper-pagination",
+//             clickable : true,
+//         },
+//     });
 
-    $('.swiper.sports-main-banner .slide-play').on('click', function() {
-        sportsaMainBnn.autoplay.start();
-        return false;
-    });
-    $('.swiper.sports-main-banner .slide-pause').on('click', function() {
-        sportsaMainBnn.autoplay.stop();
-        return false;
-    });
+//     $('.swiper.sports-main-banner .slide-play').on('click', function() {
+//         sportsaMainBnn.autoplay.start();
+//         return false;
+//     });
+//     $('.swiper.sports-main-banner .slide-pause').on('click', function() {
+//         sportsaMainBnn.autoplay.stop();
+//         return false;
+//     });
 
-    var sportsaMainPaging = new Swiper(".kbs-sports .swiper.sports-main-banner", {
-        pagination: {
-            el: ".swiper-pagination2",
-            type: "fraction",
-        },
-    });
-    sportsaMainBnn.controller.control = sportsaMainPaging;
-}
+//     var sportsaMainPaging = new Swiper(".kbs-sports .swiper.sports-main-banner", {
+//         pagination: {
+//             el: ".swiper-pagination2",
+//             type: "fraction",
+//         },
+//     });
+//     sportsaMainBnn.controller.control = sportsaMainPaging;
+// }
 /* 나에게맞는운동 더보기 */
 function sportsMainMore() {
     var $spList = $(".main-sec.course-intro .sports-list");
