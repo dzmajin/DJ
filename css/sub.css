@@ -868,109 +868,169 @@ Common - Swiper
 .photo-modify .form-area.file .btn {
     flex-basis: 100%;
 }
-.locker-list {
-    border-top: 2px solid var(--gray1);
-}
-.locker-list > li {
+/* 회원가입 폼  */
+.form-area {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 2rem;
-    padding: 0.9rem 0.5rem;
-    border-bottom: 1px solid var(--gray5);
+    gap: 0.4rem;
+    position: relative;
+    width: 100%;
 }
-.locker-list .tit {
-    min-width: 9rem;
-    font-size: 1rem;
-    font-weight: 700;
+.form-area.gap1 {
+    gap: 1.5rem;
+}
+.form-area .input {
+    flex: 1;
+    width: 100%;
+    height: 2.5rem;
+    padding: 0 0.6rem 0 0.8rem;
+    border: 1px solid var(--gray4);
+    border-radius: 0.5rem;
+    font-size: 0.8rem;
     color: var(--black3);
 }
-.locker-list .info {
-    display: flex;
-    gap: 1rem;
+.form-area .input::placeholder,
+.form-area .input::-webkit-input-placeholder {
+    font-size: 0.8rem;
+    color: var(--gray3);
+    letter-spacing: -0.04em;
+}
+.form-area .input:focus {
+    border: 1px solid var(--blue2); 
+    outline: 1px solid var(--blue2);
+    box-shadow: var(--boxshadow1);
+}
+.form-area .input.focused {
+    border-color: var(--black3);
+    color: var(--black3);
+}
+.form-area .input:read-only {
+    border-color: var(--gray5);
+    background-color: var(--gray7);
+    color: var(--gray3);
+}
+.form-area .input:read-only:focus {
+    border-color: var(--gray5);
+    outline: 0;
+    box-shadow: none;
+}
+.form-area .input.calendar {
+    background: url(../images/common/ico_calendar.svg) no-repeat right 0.25rem top 50% / 1.6rem;
+    background-color: var(--white);
+}
+.form-area .textarea {
+    flex: 1;
+    width: 100%;
+    min-height: 6rem;
+    padding: 1rem;
+    border: 1px solid var(--gray4);
+    border-radius: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--black3);
+    resize: none;
+}
+.form-area .textarea::placeholder,
+.form-area .textarea::-webkit-input-placeholder {
+    font-size: 0.8rem;
+    color: var(--gray3);
+    letter-spacing: -0.04em;
+}
+.form-area .textarea:focus {
+    border: 1px solid var(--blue2); 
+    outline: 1px solid var(--blue2);
+    box-shadow: var(--boxshadow1);
+}
+.form-area .textarea.focused {
+    border-color: var(--black3);
+    color: var(--black3);
+}
+.form-area .textarea:read-only {
+    border-color: var(--gray5);
+    background-color: var(--gray7);
+    color: var(--gray3);
+}
+.form-area .textarea:read-only:focus {
+    border-color: var(--gray5);
+    outline: 0;
+    box-shadow: none;
+}
+.form-area .textarea::-webkit-scrollbar {
+    width: 0.65rem;
+}
+.form-area .textarea::-webkit-scrollbar-thumb {
+    background-color: var(--gray4);
+    border-radius: 0.65rem;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+}
+.form-area .textarea::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+.form-area .delete {
+    display: none;
+    position: absolute;
+    top: 50%;
+    right: 0.8rem;
+    width: 1rem;
+    height: 1rem;
+    background: url(../images/common/btn_input_delete.png) no-repeat 50% 50%;
+    background-size: var(--w100);
+    transform: var(--y50);
+}
+.form-area .select {
+    flex: 1;
+    padding: 0 0.6rem 0 0.8rem;
+}
+.form-area .select:focus {
+    outline: 0;
+    border-color: var(--gray1);
+}
+.form-area .error {
+    margin-bottom: 0.2rem;
+    font-size: 0.7rem;
+    color: var(--red1);
+    line-height: 1.35;
+}
+.form-area .unit {
+    width: 100%;
+    font-size: 0.7rem;
+    color: var(--gray1);
+    line-height: 1.35;
+}
+.form-area .btn {
+    flex-basis: 5.8rem;
+    min-width: 5.8rem;
+    height: 2.5rem;
+    font-size: 0.8rem;
+}
+.form-area.email {
+    flex-wrap: wrap;
+}
+.form-area.address {
+    flex-wrap: wrap;
+}
+.form-area.address .detail {
+    flex: 0 0 100%;
+}
+.form-area.file .input:read-only {
+    border-color: var(--gray4);
+    background-color: var(--white);
+    color: var(--black3);
+}
+.form-area.file input[type="file"]{
+    position:absolute;
+    width:1px;
+    height:1px;
+    margin:-1px;
+    padding:0;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    border:0
+}
+.form-area .calender-area {
     flex: 1;
     position: relative;
-}
-.locker-list .info + .info {
-    padding-right: 3.4rem;
-    padding-left: 3.4rem;
-    flex: 0 0 10rem;
-    word-break: keep-all;
-    white-space: nowrap;
-}
-.locker-list .info + .info::before {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 1px;
-    height: 1.2rem;
-    background-color: var(--gray5);
-    transform: var(--y50);
-}
-.locker-list .info + .info::after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 50%;
-    right: 0;
-    width: 1px;
-    height: 1.2rem;
-    background-color: var(--gray5);
-    transform: var(--y50);
-}
-.locker-list .info dd {
-    font-weight: 700;
-    color: var(--black2);
-}
-.locker-list .txt-info {
-    position: relative;
-    min-width: 7.5rem;
-    text-align: center;
-}
-.locker-list > li.cancel * {
-    color: var(--gray4);
-}
-
-
-.locker-list .no-app {
-    padding: 2.5rem 0;
-    justify-content: center;
-}
-.locker-list .no-app::before {
-    content: "";
-    display: inline-block;
-    width: 1.5rem;
-    height: 1.5rem;
-    /* background: url(../images/common/ico_none_apply.svg) no-repeat 0 0 / 100%; */
-}
-
-.payment-wrap {
-    display: grid;
-    align-items: center;
-    column-gap: 0.8rem;
-    grid-template-columns: minmax(0, 7.5rem) minmax(0, 7.5rem)  minmax(0, 15rem)  minmax(0, auto);
-}
-.payment-wrap .check-con input[type="checkbox"] + .txt {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--black2);
-}
-.payment-wrap.type1 {
-    grid-template-columns: minmax(0, 7.5rem) minmax(0, auto);
-}
-.payment-wrap.type1 .inner-list > li {
-    display: grid;
-    align-items: center;
-    column-gap: 0.8rem;
-    grid-template-columns: minmax(0, 7.5rem) minmax(0, 15rem)  minmax(0, auto);
-}
-.payment-wrap.type1 .inner-list > li + li {
-    margin-top: 0.8rem;
-}
-.payment-wrap.type1 .inner-list > li.deadline * {
-    color: var(--gray4);
 }
 .swiper.sports-slide.qr {
     flex: 1;
