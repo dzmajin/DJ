@@ -99,10 +99,10 @@ caption, legend{
 p{
     line-height: 1.3
 }
-img{
+/*img{
     max-width:100%;
     vertical-align:top
-}
+}*/
 input,select,textarea{
     font-family:inherit;
     appearance:none;

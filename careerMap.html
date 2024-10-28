@@ -14,8 +14,10 @@
     <link rel="stylesheet" type="text/css" href="css/swiper-bundle.min.css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="js/d3.v6.min.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/careerMap.js"></script>
+
 </head>
 <body class="kbs-sports footer-visible vsc-initialized">
 	<div class="wrap">
@@ -292,155 +294,16 @@
                     </header>
                     <div class="swiper tab type1 swiper-initialized swiper-horizontal swiper-free-mode swiper-backface-hidden">
                         <div class="swiper-wrapper">
-                          <a href="employment_info.html" class="swiper-slide current swiper-slide-active"><span class="txt">취업사이트</span></a>
-                          <a href="careerMap.html" class="swiper-slide"><span class="txt">취업로드맵</span></a>
+                          <a href="employment_info.html" class="swiper-slide"><span class="txt">취업사이트</span></a>
+                          <a href="careerMap.html" class="swiper-slide current swiper-slide-active"><span class="txt">취업로드맵</span></a>
                         </div>
                         <div class="swiper-button-next swiper-button-disabled swiper-button-lock"></div>
                     </div>
                     
-                    <h3 class="tit-type2">취업사이트 안내</h3>
-                    <table class="tbl-view">
-                        <caption>국내 리스트</caption>
-                        <colgroup class="hidden-xs">
-                                <col style="width: 110px;">
-                                 <col style="width:200px;">
-                                 <col style="width: ;">
-                             </colgroup>
-                             <!-- <colgroup class="visible-xs-block">
-                                 <col style="width:40px;">
-                                 <col style="width:200px;">
-                                 <col style="width:;">
-                             </colgroup> -->
-                        <thead>
-                             <tr>
-                                 <th>번호</th>
-                                 <th>사이트</th>
-                                 <th>내용</th>
-                             </tr>
-                         </thead>
-                         <tbody> 
-                             <tr class="banner_list">
-                                     <th><img src="image/cleaneyejob.jpg" alt="클린아이잡"></th>
-                                     <th>
-                                        <a href="https://job.cleaneye.go.kr/" target="_blank">
-                                        <span class="banner_title">클린아이잡</span>
-                                        </a>	
-                                    </th>
-                                     <td>	
-                                         <div><span style="font-size: 10pt;"><span style="font-family: '맑은 고딕', 'Malgun Gothic';">1. 주제 : 전 주제&nbsp;</span></span></div>
-<div><span style="font-size: 10pt;"><span style="font-family: '맑은 고딕', 'Malgun Gothic';">2. 내용 : 국내학회 및 학술단체에서 발행하는 저널의 원문 제공&nbsp;</span></span></div>
-<div><span style="font-size: 10pt;"><span style="font-family: '맑은 고딕', 'Malgun Gothic';"><span style="font-family: '맑은 고딕', 'Malgun Gothic';"><span style="font-size: 10pt;">3. 제공사 : 누리미디어</span></span><br><span style="font-family: '맑은 고딕', 'Malgun Gothic';"><span style="font-size: 13.3333px;">※&nbsp; 리포트(레포트) 작성 시 필수 아이템!</span></span><br></span></span></div><!-- 배너 컨텐츠 -->
-                                     </td>
-
-                                 </tr>	
-                             <tr class="banner_list">
-                                     <th><img src="image/mediajob.png" alt="미디어잡"></th>
-                                     <th>
-                                         <a href="https://www.mediajob.co.kr/" target="_blank">
-                                                             <span class="banner_title">미디어잡</span>
-                                                        </a>	
-                                                    </th>
-                                     <td>	
-                                         <div style="box-sizing: border-box; margin: 0px; padding: 0px; vertical-align: baseline; color: #2b2b2b; font-family: 'Nanum Barun Gothic', sans-serif; font-size: 13px;"><span style="box-sizing: border-box; margin: 0px; padding: 0px; vertical-align: baseline; font-family: '맑은 고딕', 'Malgun Gothic'; font-size: 10pt;">1. </span><span style="box-sizing: border-box; margin: 0px; padding: 0px; vertical-align: baseline; font-family: '맑은 고딕', 'Malgun Gothic'; font-size: 10pt;">내용 <br>&nbsp; - 대진대학교 학위논문 원문 제공<br>&nbsp; - 대진대학교 학위논문 제출방법 안내&nbsp;&nbsp;</span></div><!-- 배너 컨텐츠 -->
-                                     </td>
-                                 </tr>	
-                             <tr class="banner_list">
-                                     <th><img src="image/RnDjob.png" alt="이공계인력중개센터"></th>
-                                     <th>
-                                         <a href="https://www.rndjob.or.kr/" target="_blank">
-                                                             <span class="banner_title">이공계인력중개센터</span>
-                                                        </a>	
-                                                    </th>
-                                     <td>	
-                                         <div><span style="font-size: 10pt;"><span style="font-family: '맑은 고딕', 'Malgun Gothic';">1. 주제 : 전 주제&nbsp;</span></span></div>
-<div><span style="font-size: 10pt;"><span style="font-family: '맑은 고딕', 'Malgun Gothic';">2. 내용 : 국내 650여 학회 및 학술단체에서 발행되고 있는 전 주제분야 980여종의 학술저널 원문제공</span></span></div>
-<div><span style="font-size: 10pt;"><span style="font-family: '맑은 고딕', 'Malgun Gothic';"><span style="font-size: 10pt;">3. 제공사 : 학술교육원&nbsp;&nbsp;</span></span><br></span></div><!-- 배너 컨텐츠 -->
-                                     </td>
-                                 </tr>	
-                             <tr class="banner_list">
-                                     <th><img src="image/jobkorea.png" alt="잡코리아"></th>
-                                     <th>
-                                         <a href="https://www.jobkorea.co.kr/" target="_blank">
-                                                             <span class="banner_title">잡코리아</span>
-                                                        </a>	
-                                                    </th>
-                                     <td>	
-                                         <strong style="font-size: 13.3333px;"><span>1. 주제 : 전주제</span><br><span>2. 내용 : 구글에서 제공하는 학술정보 검색 서비스</span><br><span>3. 제공사 : Google</span><!-- 배너 컨텐츠 -->
-                                     </td>
-                                 </tr>	
-                             <tr class="banner_list">
-                                     <th><img src="image/saramin.png" alt="사람인"></th>
-                                     <th>
-                                         <a href="https://www.saramin.co.kr/zf_user/" target="_blank">
-                                                             <span class="banner_title">사람인</span>
-                                                        </a>	
-                                                    </th>
-                                     <td>	
-                                         <span style="font-size: 10pt;"><strong><span style="font-family: '맑은 고딕', 'Malgun Gothic';">[Open Access]</span></strong></span><br><span style="font-family: '맑은 고딕', 'Malgun Gothic'; font-size: 10pt;">1. 주제 : 전주제</span><br><span style="font-family: '맑은 고딕', 'Malgun Gothic'; font-size: 10pt;">2. 내용 : 한국연구재단에서 구축한 한국 학술지 인용색인(KCI : Korea Citation Index)로 국내 학술지 정보, 논문정보(원문) 및 참고문헌을 DB화 하여 논문간 인용관계를 분석하는 시스템</span><br><span style="font-family: '맑은 고딕', 'Malgun Gothic'; font-size: 10pt;">3. 제공사 : 한국연구재단(NRF)</span><!-- 배너 컨텐츠 -->
-                                     </td>
-                                 </tr>	
-                             <tr class="banner_list">
-                                     <th><img src="image/jobplanet.png" alt="잡플래닛"></th>
-                                     <th>
-                                         <a href="https://www.jobplanet.co.kr/welcome/index" target="_blank">
-                                                             <span class="banner_title">잡플래닛</span>
-                                                        </a>	
-                                                    </th>
-                                     <td>	
-                                         <div><span style="font-family: '맑은 고딕', 'Malgun Gothic'; font-size: 10pt;">1. 주제 : 전 주제&nbsp;</span></div>
-<div><span style="font-family: '맑은 고딕', 'Malgun Gothic'; font-size: 10pt;">2. 내용 : 국내 학회 및 연구기관 1,436기관에서 발간하는 e-Journal 2,060종, Proceeding 543건, eBook 877권의 학술자료 제공&nbsp; &nbsp;</span></div>
-<div><span style="font-family: '맑은 고딕', 'Malgun Gothic'; font-size: 10pt;">3. 제공사 : (주)한국학술정보<br>※&nbsp;</span><span style="font-family: '맑은 고딕', 'Malgun Gothic'; font-size: 13.3333px;">리포트(레포트)</span><span style="font-family: '맑은 고딕', 'Malgun Gothic'; font-size: 10pt;">&nbsp;작성 시 필수 아이템!</span></div><!-- 배너 컨텐츠 -->
-                                     </td>  
-                                 </tr>	
-                             <tr class="banner_list">
-                                     <th><img src="image/nara.png" alt="나라일터"></th>
-                                     <th>
-                                         <a href="https://www.gojobs.go.kr/mainIndex.do" target="_blank">
-                                                             <span class="banner_title">나리일터</span>
-                                                        </a>	
-                                                    </th>
-                                     <td>	
-                                         <span style="font-size: 10pt;"><span style="font-size: 10pt;"><strong style="font-size: 10pt;"><span style="font-family: '맑은 고딕', 'Malgun Gothic';">[이러닝][Open Access]<br></span></strong></span></span>
-<div><span style="font-family: '맑은 고딕', 'Malgun Gothic';"><span style="font-size: 13.3333px;">1. 내용</span></span></div>
-<div><span style="font-family: '맑은 고딕', 'Malgun Gothic';"><span style="font-size: 13.3333px;">&nbsp; - 교육부와 국가평생교육진흥원이 운영하는 한국형 온라인 공개강좌 서비스</span></span></div>
-<div><span style="font-family: '맑은 고딕', 'Malgun Gothic';"><span style="font-size: 13.3333px;">&nbsp; - 서울대, 연세대, 고려대, KAIST 등 국내 주요 대학 및 기관의 강좌 무료 이용 가능<br>2. 제공사 : 교육부, 국가평생교육진흥원&nbsp;</span></span></div><!-- 배너 컨텐츠 --> 
-                                     </td>
-                                </tr>	
-                             <tr class="banner_list">
-                                     <th><img src="image/worknet.png" alt="청년워크넷"></th>
-                                     <th>
-                                         <a href="https://www.work.go.kr/jobyoung/main.do" target="_blank">
-                                                             <span class="banner_title">청년워크넷</span>
-                                                        </a>
-                                                    </th>
-                                     <td>	
-                                         <span style="font-size: 10pt;"><strong><span style="font-family: '맑은 고딕', 'Malgun Gothic';">[이러닝][Open Access]<br></span></strong><span style="font-family: '맑은 고딕', 'Malgun Gothic';">1. 내용 : 국내 고등교육 교수학습자료 공동활용 서비스, 국내 대학 강의, 노벨상 수상자 및 석학 특강 제공</span><strong><span style="font-family: '맑은 고딕', 'Malgun Gothic';"><br></span></strong><span style="font-family: '맑은 고딕', 'Malgun Gothic';">2. 제공사 : 교육부, 한국교육학술정보원&nbsp;</span></span><!-- 배너 컨텐츠 -->
-                                     </td> 
-                                 </tr>	
-                             <tr class="banner_list">
-                                     <th><img src="image/HRD-net.png" alt="HRD-Net"></th>
-                                     <th>
-                                         <a href="https://www.hrd.go.kr/hrdp/ma/pmmao/newIndexRenewal.do" target="_blank">
-                                                             <span class="banner_title">HRD-Net</span>
-                                                        </a>
-                                                    </th>
-                                     <td>	
-                                         <p class="0" style="mso-pagination: none; text-autospace: none; mso-padding-alt: 0pt 0pt 0pt 0pt; font-size: 9.0pt;"><span style="font-family: '맑은 고딕', 'Malgun Gothic'; font-size: 10pt;"><strong>[Open Access]</strong><br>1. 주제 : 의학<br>2. 내용 :&nbsp;국내 임상의학분야 저널의 서지 및 초록정보 무료제공<br>3. 제공사 :&nbsp;대한의학학술지편집인협의회 (KAMJE)</span></p><!-- 배너 컨텐츠 -->
-                                    </td>
-                                 </tr>	
-                             <tr class="banner_list">
-                                     <th><img src="image/Qnet.png" alt="큐넷"></th>
-                                     <th>
-                                         <a href="https://www.q-net.or.kr/man001.do?gSite=Q" target="_blank">
-                                                             <span class="banner_title">큐넷</span>
-                                                        </a>	
-                                                    </th>
-                                     <td>	
-                                         <span style="font-size: 10pt;"><strong style="font-size: 13.3333px;"><span style="font-family: '맑은 고딕', 'Malgun Gothic';">[Open Access]</span></strong><strong><span style="font-family: '맑은 고딕', 'Malgun Gothic';">]</span></strong></span><br><span style="font-family: '맑은 고딕', 'Malgun Gothic'; font-size: 10pt;">1. 주제 : 의학</span><br><span style="font-family: '맑은 고딕', 'Malgun Gothic'; font-size: 10pt;">2. 내용 : 대한의학학술지편집인협의회에서 제공하는 임상의학분야 190여종 저널 원문 제공</span><br><span style="font-family: '맑은 고딕', 'Malgun Gothic'; font-size: 10pt;">3. 제공사 : 대한의학학술지편집인협의회(KAMJE)</span><!-- 배너 컨텐츠 -->
-                                     </td> 
-                                 </tr>		
-                             </tbody>
-                     </table>
+                    <h3 class="tit-type2">Career Map</h3>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <div id="careerMap"></div><!-- 시각화 자료가 들어갈 부분 -->
                     
                 </section>
             </main>

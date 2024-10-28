@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <link rel="icon" type="image/x-icon" href="">
-    <link rel="icon" type="image/svg+xml" href="">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>지식on대진</title>
@@ -10,15 +8,11 @@
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/main_DJ.css">
     <link rel="stylesheet" type="text/css" href="css/sub.css">
-    <link rel="stylesheet" type="text/css" href="css/siwper-bundle.min.css">
-	<link rel="stylesheet" type="text/css" href="css/slick.css">
-    <!-- <script type="text/javascript" src="js/jquery.min.js"></script> -->
-	<script type="text/javascript" src="js/jquery.min.js"></script>	
+    <link rel="stylesheet" type="text/css" href="css/swiper-bundle.min.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/swiper-bundle.min.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
-	<script type="text/javascript" src="js/swiper-bundle.min.js"></script>
-	<script type="text/javascript" src="js/slick.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
-
+    <script type="text/javascript" src="js/main.js"></script>
 </head>
 
 <body class="kbs-sports vsc-initialized">
@@ -215,11 +209,11 @@
 									<ul class="sub-list" style="display: none;">
 										
 											<li>
-												<a href="/spwd/intro/spwdIntroView.do" class="depth2"> 취업사이트</a>
+												<a href="employment_info.html" class="depth2"> 취업사이트</a>
 											</li>
 										
 											<li>
-												<a href="/spwd/intro/spwdIntroView.do#training" class="depth2"> 취업로드맵</a>
+												<a href="careerMap.html" class="depth2"> 취업로드맵</a>
 											</li>
 
 											<li>
@@ -287,7 +281,7 @@
                 </nav>
                 <div class="gnb-bg" style="display: none;">
                     <div class="flex-sb">
-                        <p class="txt-info"><strong class="stress2"> </p>
+                        <p class="txt-info"><strong class="stress2"></strong></p>
                         <ul class="mypage-menu">
                             <li>
                                 <a href="/util/myPage/currentSituation.do" class="depth1">마이페이지</a>
@@ -313,19 +307,24 @@
     <main id="container" class="container">
         <div class="mm con01">
 			<div class="banner_wrap">
-				<div class="banner slick-initialized slick-slider slick-dotted"><button class="slick-prev slick-arrow" aria-label="Previous" type="button" style="display: inline-block;">Previous</button><div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 740px;"><div class="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" role="tabpanel" id="slick-slide00" aria-describedby="slick-slide-control00" style="width: 370px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;"><div><div class="ban" style="width: 100%; display: inline-block;">
-							<a href="https://kdata.or.kr/mydata/www/contents/introduction/view.do" tabindex="0">
-								<!-- pc배너 권장사이즈 470 * 470 -->
-								<img src="image/img_1.jpg" class="pc" style="background:url('/mydata/upload/banner/2023111411504832799.jpg') no-repeat 50% 50% / cover;" alt="마이데이터로 만드는 새로운 가치! 데이터를 만드는 사람은 바로 나! 개인데이터활용 체계의 새로운 패러다임 ">
-							</a> 
-						</div></div></div><div class="slick-slide" data-slick-index="1" aria-hidden="true" role="tabpanel" id="slick-slide01" aria-describedby="slick-slide-control01" tabindex="-1" style="width: 370px; position: relative; left: -370px; top: 0px; z-index: 998; opacity: 0; transition: opacity 500ms;"><div><div class="ban" style="width: 100%; display: inline-block;">
-							<a href="https://www.kdata.or.kr/mydata/www/contents/mydata_itr/view.do" tabindex="-1">
-								<!-- pc배너 권장사이즈 470 * 470 -->
-								<img src="image/img_2.jpg" class="pc" style="background:url('/mydata/upload/banner/20231114121008493724.jpg') no-repeat 50% 50% / cover;" alt="마이데이터가 무엇일까요? 내 데이터의 주인은 바로 나! 더 알아보기 ">
-							</a> 
-						</div></div></div></div></div><button class="slick-next slick-arrow" aria-label="Next" type="button" style="display: inline-block;">Next</button><ul class="slick-dots" style="" role="tablist"><li class="slick-active" role="presentation"><button type="button" role="tab" id="slick-slide-control00" aria-controls="slick-slide00" aria-label="1 of 2" tabindex="0" aria-selected="true">1</button></li><li role="presentation" class=""><button type="button" role="tab" id="slick-slide-control01" aria-controls="slick-slide01" aria-label="2 of 2" tabindex="-1">2</button></li></ul></div>
-				<a href="#none" class="banner-play-button">일시정지</a>
+				<div class="swiper mySwiper">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<a href="https://kdata.or.kr/mydata/www/contents/introduction/view.do">
+								<img src="image/img_1.jpg" alt="슬라이드 1" />
+							</a>
+						</div>
+						<div class="swiper-slide">
+							<a href="https://www.kdata.or.kr/mydata/www/contents/mydata_itr/view.do">
+								<img src="image/img_2.jpg" alt="슬라이드 2" />
+							</a>
+						</div>
+					</div>
+					<!-- 페이지네이션 -->
+					<div class="swiper-pagination"></div>
+				</div>
 			</div>
+			
 				<div class="search_area">
 					<p>
 						<span>SEARCH</span>
@@ -343,56 +342,56 @@
 				
 				<ul class="quick">
 					<li>
-						<a href="/mydata/www/board/guide_01/boardList.do">
+						<a href="">
 							<span>
 								<span class="tt">가이드북</span>
-								<span class="text">마이데이터 활용법</span>
+								<span class="text">대진On지식 활용법</span>
 							</span>
 						</a>
 					</li>
 					<li>
-						<a href="/mydata/www/board/counsel/boardList.do">
+						<a href="careerMap.html">
 							<span>
-								<span class="tt">상시자문</span>
-								<span class="text">전문가 답변을 제공</span>
+								<span class="tt">CareeMap</span>
+								<span class="text">취업 로드맵 제공</span>
 							</span>
 						</a>
 					</li>
 					<li>
-						<a href="/mydata/www/api_01/boardList.do">
+						<a href="">
 							<span>
-								<span class="tt">API 소재정보</span>
-								<span class="text">다양한 서비스 데이터</span>
+								<span class="tt">AI 학습플래너</span>
+								<span class="text">AI가 도와주는 학습계획</span>
 							</span>
 						</a>
 					</li>
 					<li>
-						<a href="/mydata/www/service/service_map.do">
+						<a href="employment_info.html">
 							<span>
-								<span class="tt">서비스맵</span>
-								<span class="text">쉽고 편한 마이데이터</span>
+								<span class="tt">취업사이트</span>
+								<span class="text">취업 관련 사이트</span>
 							</span>
 						</a>
 					</li>
 					<li>
-						<a href="/mydata/www/service/service_reco.do">
+						<a href="">
 							<span>
-								<span class="tt">서비스 추천</span>
-								<span class="text">나에게 맞는 서비스</span>
+								<span class="tt">주제공유</span>
+								<span class="text">학우들의 지식 공유</span>
 							</span>
 						</a>
 					</li>
 					<li>
-						 <a href="/mydata/www/service/service_exp.do"> 
+						 <a href=""> 
 							<span>
-								<span class="tt">서비스 체험</span>
-								<span class="text">미리 체험하는 서비스</span>
+								<span class="tt">일정</span>
+								<span class="text">학회,공모전 일정</span>
 							</span>
 						</a>
 					</li>
 				</ul>
 		</div>
-
+	</main>
     <!-- //content -->
 	    
 	<!--===================================bottom=start==========================-->
@@ -411,18 +410,5 @@
 
 	<!--===================================bottom=end============================-->
 	</div>
-	<script>
-		$(document).ready(function(){
-		  $('.banner').slick({
-			dots: true,  // 슬라이드 하단에 점 형태의 네비게이션 추가
-			infinite: true,  // 무한 루프 슬라이드
-			speed: 500,  // 슬라이드 전환 속도 (밀리초 단위)
-			slidesToShow: 1,  // 한 번에 보여줄 슬라이드 개수
-			slidesToScroll: 1,  // 한 번에 넘길 슬라이드 개수
-			prevArrow: '.slick-prev',  // 이전 버튼 요소 선택자
-			nextArrow: '.slick-next',  // 다음 버튼 요소 선택자
-		  });
-		});
-	  </script>
 </body>
 </html>
