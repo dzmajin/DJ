@@ -476,6 +476,61 @@ Common - 회원가입
 .join-form .form-area.email + .check-area {
     margin-top: 0.6rem;
 }
+/* 상담페이지 상담리스트 */
+.sports-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 12rem));
+    align-items: start;
+    justify-content: center;
+    column-gap: 1rem;
+    row-gap: 1rem;
+    transition: var(--transition);
+}
+.sports-list > li {
+    position: relative;
+}
+.sports-list > li::before {
+    
+}
+.sports-list .link {
+    display: block;
+    position: relative;
+}
+.sports-list .img {
+    position: relative;
+    z-index: 5;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+.sports-list .con {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    right: 1.5rem;
+    z-index: 5;
+}
+.sports-list .tit {
+    margin-bottom: 0.4rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+}
+.sports-list .txt {
+    font-size: 0.8rem;
+    color: var(--white);
+}
+.sports-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    padding-top: 1.7rem;
+    border-top: 2px solid var(--black3);
+    transition: var(--transition);
+}
+
 /* 
 Common - Swiper
 */
@@ -639,6 +694,35 @@ Common - Swiper
     opacity: .35;
     cursor: auto;
     pointer-events: none;
+}
+/*주제공유tab*/
+.tab-sports {
+    display: flex;
+    width: 100%;
+    max-width: 24rem;
+    height: 3rem;
+    margin: var(--margin--auto) 2rem;
+    border-radius: 1.5rem;
+    background-color: var(--gray7);
+}
+.tab-sports > li {
+    flex: 1;
+}
+.tab-sports > li > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gray2);
+    transition: font-size .3s;
+}
+.tab-sports > li.on > a {
+    background-color: var(--white);
+    border-radius: 1.5rem;
+    border: 2px solid var(--blue2);
+    color: var(--blue2);
 }
 
 
@@ -868,7 +952,180 @@ Common - Swiper
 .photo-modify .form-area.file .btn {
     flex-basis: 100%;
 }
-/* 회원가입 폼  */
+
+/* 회원가입 Form */
+.select {
+    height: 2.5rem;
+    padding: 0 2.2rem 0 0.8rem;
+    border: 1px solid var(--gray4);
+    border-radius: 0.4rem;
+    background: url(../image/select-arrow.svg) no-repeat right 0.6rem top 50% var(--white);
+    font-size: 0.8rem;
+    color: var(--gray3);
+    line-height: 2rem;
+}
+.select.selected {
+    border-color: var(--black3);
+    color: var(--black3);
+}
+.select.readonly {
+    border-color: var(--gray4);
+    background-color: var(--gray7);
+    pointer-events: none;
+}
+.check-area .check-con {
+    margin-top: 0.7rem;
+}
+.check-area.all .check-con {
+    margin-top: 0;
+}
+.check-con {
+    display: inline-block;
+}
+.check-con + .check-con {
+    margin-left: 1.2rem;
+}
+.check-con input[type="checkbox"] {
+    position:absolute;
+    width:1px;
+    height:1px;
+    margin:-1px;
+    padding:0;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    border:0;
+}
+.check-con input[type="checkbox"] + .txt {
+    display:block;
+    position: relative;
+    min-height: 1.2rem;
+    padding-left: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--gray1);
+    line-height: 1.4;
+}
+.check-con .txt {
+    display:block;
+    position: relative;
+    min-height: 1.2rem;
+    padding-left: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--gray1);
+    line-height: 1.4;
+}
+.check-con .txt::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0.1rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0.3rem;
+    border: 1px solid var(--gray9);
+    box-sizing: border-box;
+}
+.check-con input[type="checkbox"] + .txt::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0.1rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0.3rem;
+    border: 1px solid var(--gray9);
+    background-color: var(--white);
+    box-sizing: border-box;
+}
+.check-con input[type="checkbox"]:checked + .txt::before {
+    border-color: var(--blue2);
+    background-color: var(--blue2);
+}
+.check-con input[type="checkbox"]:checked + .txt::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0.35rem;
+    left: 0.45rem;
+    width: 0.4rem;
+    height: 0.2rem;
+    border-bottom: 3px solid var(--white);
+    border-left: 3px solid var(--white);
+    border-radius: 1.5px;
+    transform: rotate(-45deg) var(--y50);
+}
+.check-con input[type="checkbox"]:disabled + .txt::before {
+    border-color: #dfe2e5;
+    background-color: var(--gray10);
+}
+.check-con input[type="checkbox"]:checked:disabled + .txt::after {
+    border-color: var(--gray9);
+}
+.radio-wrap .radio-con + .radio-con {
+    margin-left: 3.1rem;
+}
+.radio-wrap .unit {
+    width: 100%;
+    margin-top: 0.3rem;
+    font-size: 0.7rem;
+}
+.radio-con {
+    display: inline-block;
+}
+.radio-con + .radio-con {
+    margin-left: 1.2rem;
+}
+.radio-con input[type="radio"] {
+    position:absolute;
+    width:1px;
+    height:1px;
+    margin:-1px;
+    padding:0;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    border:0;
+}
+.radio-con input[type="radio"] + .txt {
+    display:block;
+    position: relative;
+    min-height: 1.2rem;
+    padding-left: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--gray1);
+    line-height: 1.4;
+}
+.radio-con input[type="radio"] + .txt::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0.1rem;
+    left: 0;
+    width: 1rem;
+    height: 1rem;
+    border-radius: var(--w100);
+    border: 1px solid #dfe2e5;
+    background-color: var(--white);
+    box-sizing: border-box;
+}
+.radio-con input[type="radio"]:checked + .txt::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0.3rem;
+    left: 0.2rem;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: var(--w100);
+    background-color: var(--blue2);
+    box-sizing: border-box;
+}
+.radio-con input[type="radio"]:disabled + .txt::before {
+    background-color: var(--gray10);
+}
+.radio-con input[type="radio"]:checked:disabled + .txt::after {
+    background-color: #dfe2e5;
+}
 .form-area {
     display: flex;
     flex-wrap: wrap;
@@ -1031,6 +1288,21 @@ Common - Swiper
 .form-area .calender-area {
     flex: 1;
     position: relative;
+}
+.search-area {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0 1.2rem;
+}
+.search-area .form-area {
+    max-width: 31.25rem;
+    gap: 0.75rem;
+}
+.search-area .select {
+    flex: 0 0 7.5rem;
+}
+.search-area .btn {
+    min-width: 7.25rem;
 }
 .swiper.sports-slide.qr {
     flex: 1;

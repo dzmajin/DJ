@@ -17,138 +17,227 @@
             <script type="text/javascript" src="js/swiper-bundle.min.js"></script>
             
             <script type="text/javascript">
-                function fn_enter_key_in(e){
-                    if(e.keyCode == 13){
-                        $("#btnLogin").trigger("click");
+                $(document).ready(function () {
+                    const errorMsg = "";
+                    if (errorMsg) {
+                        alert('이미 회원이 존재합니다. ID : ' + errorMsgs);
+                        location.href = '/auth/loginUsr.do'
+                        return;
+                    }
+                });
+        
+                //에러 메시지 출력
+                function initPage() {
+                    
+        
+                }
+        
+                //아이디-패스워드 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
+                var idck = 0;
+                var pwck = 0;
+                // 파일 추가
+                function fnct_AddFiles(files) {
+                    filesTempArr = [];
+                    var filesArr = Array.prototype.slice.call(files);
+                    for (var i = 0; i < filesArr.length; i++) {
+                        filesTempArr.push(filesArr[i]);
                     }
                 }
-            $(document).ready(function(){
-                const errorMsg = ""
-                if(errorMsg) alert(errorMsg)
-            })
-            $(function(){
-                $('#btnLogin').click(function(){
         
-                    if (document.loginForm.id.value =="") {
-                        alert("아이디를 입력하세요");
-                        return;
-                    }
-                    if (document.loginForm.password.value =="") {
-                        alert("비밀번호를 입력하세요");
-                        return;
-                    }
-                    
-                    var formData = new FormData();
-                    var formSeriData = $("#loginForm").serializeArray();
+                // 회원가입
+                $(function () {
         
         
-                    ajaxRequest = $.each(formSeriData, function(i, val) {
-                        formData.append(val.name, val.value);
-                    });
-                    $.ajax({
-                        type : "POST",
-                        url : '/auth/actionLogin.do',
-                         data : formData,
-                        processData: false,
-                        contentType: false,				
-                        dataType : 'json',
-                        async:false,
-                        success : function(data) {
-                            if(data.msgCode == "200") {
-                                window.location.href = '/index.do';
-                            } else if(data.msgCode == "103") {  // 허용하지 않는 파일 확장자
-                                alert(data.message);
-                            } else if(data.msgCode == "104") {  // 파일용량이 큰 경우
-                                alert(data.message);
-                            } else {
-                                alert("로그인에 실패하였습니다.");
+                    $("#register").click(function () {
+        
+                        if ($("#id").val() == "") {
+                            alert("아이디를 입력해주세요.");
+                            $("#id").select().focus();
+                            return;
+                        } else if ($("#id").val() != "" && idck == 0) {
+                            alert("아이디 중복확인 버튼을 눌러주세요.");
+                            $("#idchk").select().focus();
+                            return;
+                        }
+                        if ($("#userPw").val().trim().length == 0) {
+                            alert("비밀번호 입력해주세요.");
+                            $("#userPw").select().focus();
+                            return;
+                        }
+                        if ($("#userPwChk").val().trim().length == 0) {
+                            alert("비밀번호 확인 입력해주세요.");
+                            $("#userPwChk").select().focus();
+                            return;
+                        }
+                        if (!pwck) {
+                            alert("비밀번호를 다시 확인해주세요.");
+                            return;
+                        }
+        
+                        if ($("#emailId").val().trim().length == 0) {
+                            alert("이메일 입력해주세요.");
+                            $("#emailId").select().focus();
+                            return;
+                        }
+                        if ($("#emailId").val().trim().length == 0) {
+                            alert("이메일 입력해주세요.");
+                            $("#emailId").select().focus();
+                            return;
+                        }
+                        if ($("#domain").val().trim().length == 0) {
+                            alert("이메일 도메인을 선택해주세요.");
+                            $("#domain").select().focus();
+                            return;
+                        }
+
+                        if (idck == 0) {
+                            alert("아이디 중복 확인");
+                            return;
+                        }
+                        if (pwck == 0) {
+                            alert("비밀번호 일치 확인");
+                            return;
+                        }
+                        if (!confirm("저장 하시겠습니까?")) {
+                            return;
+                        }
+        
+                        var formData = new FormData();
+                        var formSeriData = $("#frm").serializeArray();
+                        //
+                        $.each(formSeriData, function (i, val) {
+                            formData.append(val.name, val.value);
+                        });
+                        if ($('#noticeReceive').is(':checked')) {
+                            formData.append("eamil_send_at", "Y");
+                        } else {
+                            formData.append("eamil_send_at", "N");
+                        }
+                        for (var i = 0; i < filesTempArr.length; i++) {
+                            // 파일 사이즈 확인
+                            if (fncFileSizeCheck(filesTempArr[i]) == false) {
                                 return;
-                            }  		    		  
-                         },
-                         error : function(request, status, error) {
-                             alert(data.message);
+                            }
+                            formData.append("files", filesTempArr[i]);
+                        }
+        
+                        $.ajax({
+                            type: "POST",
+                            url: '/uss/umt/UI-FO-SJOIN-005.do',
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            dataType: 'json',
+                            async: false,
+                            success: function (data) {
+                                if (data.msgCode == "200") {
+                                    alert(data.message);
+                                    location.href = '/uss/umt/complate.do';
+                                } else if (data.msgCode == "103") {  // 허용하지 않는 파일 확장자
+                                    alert(data.message);
+                                } else if (data.msgCode == "104") {  // 파일용량이 큰 경우
+                                    alert(data.message);
+                                } else {
+                                    alert("파일 전송에 실패하였습니다.");
+                                }
+                            },
+                            error: function (request, status, error) {
+                                alert(request.responseJSON.message)
+                            }
+                        });
+                    });
+        
+                    // 메일 도메인 선택시
+                    $('#select').change(function () {
+                        if ($('#select').val() == 'directly') {
+                            $('#domain').val("");
+                            $('#domain').focus();
+                        } else {
+                            $('#domain').val($('#select').val());
                         }
                     });
+        
+                    //ID 중복체크
+                    $("#idchk").click(function () {
+        
+                        //아이디 입력값 trim적용
+                        var _id = $("#id").val().trim();
+                        $("#id").val(_id);
+        
+                        if (_id == "") {
+                            alert("아이디를 입력하세요.");
+                            $("#id").select().focus();
+                            return;
+                        }
+        
+                        $.ajax({
+                            async: true,
+                            type: 'POST',
+                            url: "/idcheck.do?id=" + _id,
+                            contentType: "application/json; charset=UTF-8",
+                            success: function (data) {
+                                if (data.msg == "available") {
+                                    alert("사용가능한 아이디입니다.");
+                                    idck = 1;
+                                } else {
+                                    alert("이미사용중인 아이디입니다.");
+                                    idck = 0;
+                                }
+                            },
+                            error: function (error) {
+                                alert("error : " + error);
+                            }
+                        });
+                    });
+        
+                    //Validation (비밀번호 확인 이벤트 아웃시 체크)
+                    const pwconfirm = document.getElementById("userPwChk");
+                    pwconfirm.addEventListener('blur', (e)=> {
+                        pwck = validatePassword();
+                       if (!pwck) {
+                           return;
+                       }
+                    });
                 });
-            });
-            
-            function actionCrtfctLogin() {
-                document.defaultForm.action="/uat/uia/actionCrtfctLogin.do";
-                document.defaultForm.submit();
-            }
         
-            function goFindId() {
-                location.href="/util/find/findId.do";
-                
-            }
-        
-            function goFindPw() {
-                location.href="/util/find/findPw.do";
-            }
-            
-            function goRegiUsr() {
-                location.href = "/uss/umt/TotalMembJoin.do"
-                //document.loginForm.action="/uss/umt/TotalMembJoin.do";
-                //document.loginForm.submit();
-            }
-        
-            function setCookie (name, value, expires) {
-                document.cookie = name + "=" + escape (value) + "; path=/; expires=" + expires.toGMTString();
-            }
-        
-            function getCookie(Name) {
-                var search = Name + "=";
-                if (document.cookie.length > 0) { // 쿠키가 설정되어 있다면
-                    offset = document.cookie.indexOf(search);
-                    if (offset != -1) { // 쿠키가 존재하면
-                        offset += search.length;
-                        // set index of beginning of value
-                        end = document.cookie.indexOf(";", offset);
-                        // 쿠키 값의 마지막 위치 인덱스 번호 설정
-                        if (end == -1)
-                            end = document.cookie.length;
-                        return unescape(document.cookie.substring(offset, end));
+                //아이디 한글입력 제한
+                function chkCharCode(e) {
+                    const regExp = /[^0-9a-zA-Z]/g;
+                    const ele = e.target;
+                    if (regExp.test(ele.value)) {
+                        ele.value = ele.value.replace(regExp, '');
                     }
                 }
-                return "";
-            }
         
-            function saveid(form) {
-                var expdate = new Date();
-                // 기본적으로 30일동안 기억하게 함. 일수를 조절하려면 * 30에서 숫자를 조절하면 됨
-                if (form.checkId.checked)
-                    expdate.setTime(expdate.getTime() + 1000 * 3600 * 24 * 30); // 30일
-                else
-                    expdate.setTime(expdate.getTime() - 1); // 쿠키 삭제조건
-                setCookie("saveid", form.id.value, expdate);
-            }
+                //비밀번호 validation
+                function validatePassword() {
+                    var newPassword = document.getElementById('userPw').value;
+                    var confirmPassword = document.getElementById('userPwChk').value;
         
-            function getid(form) {
-                form.checkId.checked = ((form.id.value = getCookie("saveid")) != "");
-            }
+                    var passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,16}$/;
         
-            function fnInit() {
-                
-                
-                getid(document.loginForm);
-        
-                
-                
-            }
+                    if (!passwordRegex.test(newPassword)) return 0;
+
+                    if (newPassword !== confirmPassword) {
+                        resultDiv.innerHTML = '비밀번호가 일치하지 않습니다.';
+                        resultDiv.style.color = 'red';
+                        return 0;
+                    }
+
+                    // 모든 조건이 통과된 경우
+                    resultDiv.innerHTML = '비밀번호가 일치하며 유효합니다.';
+                    resultDiv.style.color = 'green';
+                    return 1;
+
+                }
         
             </script>
 </head>
-<body onload="fnInit();" class="kbs-sports footer-visible vsc-initialized"></body>
+<body class="kbs-sports"></body>
 
 	<div class="wrap">
-		<!--==============================headerstart===========================-->
+<!--==============================headerstart===========================-->
 		
-
-
-
-
-
-
 <script type="text/javaScript" language="javascript">
 	function getCookie(cname) {
  	  var name = cname + "=";
@@ -262,7 +351,8 @@
 </script>
 
 <header id="header" class="header">
-    <div id="skip_nav"><a href="#content">본문 바로가기</a></div>
+    <!-- <div id="skip_nav"><a href="#content">본문 바로가기</a></div> -->
+
     <div class="top-wrap">
         <div class="flex-fs">
             <button type="button" class="all-menu"><span class="hidden">전체메뉴</span></button>
@@ -272,67 +362,78 @@
                 <div class="flex-sb">
                     <ul class="gnb-menu">
                         
-                        <li>
-                            <a href="test3.html" class="depth1 hover"><strong class="left_title_strong"><strong class="top_title_strong">취업정보</strong></strong></a>
-                            <ul class="sub-list" style="display: none;">
-                                
-                                    <li>
-                                        <a href="/spwd/intro/spwdIntroView.do" class="depth2"> 취업사이트</a>
-                                    </li>
-                                
-                                    <li>
-                                        <a href="/spwd/intro/spwdIntroView.do#training" class="depth2"> 취업로드맵</a>
-                                    </li>
-                                
-                            </ul>
-                        </li>
-        
-                    
-                        <li>
-                            <a href="/spwd/CourseInfo/getCntrCnts.do?fclt_code=SPWD&amp;cnts_clss=CNTS&amp;cnts_type=USED" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">연구정보</strong></strong></a>
-                            <ul class="sub-list" style="display: none;">
-                                
-                                    <li>
-                                        <a href="/spwd/CourseInfo/getCntrCnts.do?fclt_code=SPWD&amp;cnts_clss=CNTS&amp;cnts_type=USED" class="depth2"> 학회일정 </a>
-                                    </li>
-                                
-                                    <li>
-                                        <a href="/notice/noticeList.do" class="depth2"> 공모전일정 </a>
-                                    </li>
-                                
-                                    <li>
-                                        <a href="/spwd/CourseInfo/courseRegistrationView.do" class="depth2"> 주제공유 </a>
-                                    </li>
-                                
-                            </ul>
-                        </li>
-        
-                    
-                        <li>
-                            <a href="/smokp/CourseInfo/courseInfoView.do?fclt_code=SPWM&amp;cnts_clss=CNTS&amp;cnts_type=USED" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">커뮤니티</strong></strong></a>
-                            <ul class="sub-list" style="display: none;">
-                                
-                                    <li>
-                                        <a href="/smokp/CourseInfo/courseInfoView.do?fclt_code=SPWM&amp;cnts_clss=CNTS&amp;cnts_type=USED" class="depth2"> Q&A </a>
-                                    </li>
-                                
-                                    <li>
-                                        <a href="/smokp/CourseInfo/itemInfoView.do" class="depth2"> 공지사항 </a>
-                                    </li>
-                                
-                                    <li>
-                                        <a href="/smokp/noticeList.do" class="depth2"> 자료실 </a>
-                                    </li>
-                
-                            </ul>
-                        </li>
+                            <li>
+                                <a href="employment_info.html" class="depth1 hover"><strong class="left_title_strong"><strong class="top_title_strong">취업정보</strong></strong></a>
+                                <ul class="sub-list" style="display: none;">
+                                    
+                                        <li>
+                                            <a href="employment_info.html" class="depth2"> 취업사이트</a>
+                                        </li>
+                                    
+                                        <li>
+                                            <a href="careerMap.html" class="depth2"> 취업로드맵</a>
+                                        </li>
 
-                        <li>
-                            <a href="/notice/noticeList.do" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">상담</strong></strong></a>
-                            <ul class="sub-list" style="display: none;"></ul>
+                                        <li>
+                                            <a href="noticeList.do" class="depth2"> 취업지원 </a>
+                                        </li>
+                                </ul>
+                            </li>
             
-                        </li>
                         
+                            <li>
+                                <a href="/spwd/CourseInfo/getCntrCnts.do?fclt_code=SPWD&amp;cnts_clss=CNTS&amp;cnts_type=USED" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">연구정보</strong></strong></a>
+                                <ul class="sub-list" style="display: none;">
+                                    
+                                        <li>
+                                            <a href="/spwd/CourseInfo/getCntrCnts.do?fclt_code=SPWD&amp;cnts_clss=CNTS&amp;cnts_type=USED" class="depth2"> 학회일정 </a>
+                                        </li>
+                                    
+                                        <li>
+                                            <a href="/notice/noticeList.do" class="depth2"> 공모전일정 </a>
+                                        </li>
+                                    
+                                        <li>
+                                            <a href="/spwd/CourseInfo/courseRegistrationView.do" class="depth2"> 학술사이트 </a>
+                                        </li>
+                                </ul>
+                            </li>
+            
+                            <li>
+                                <a href="faq.html" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">커뮤니티</strong></strong></a>
+                                <ul class="sub-list" style="display: none;">
+                                   
+                                      <li>
+                                         <a href="faq.html" class="depth2"> FAQ </a>
+                                      </li>
+                                   
+                                      <li>
+                                         <a href="notice.html" class="depth2"> 공지사항 </a>
+                                      </li>
+                                   
+                                      <li>
+                                         <a href="document.html" class="depth2"> 자료실 </a>
+                                      </li>
+     
+                                                 <li>
+                                         <a href="share.html" class="depth2"> 주제공유 </a>
+                                      </li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="counsel.html" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">취업준비</strong></strong></a>
+                                <ul class="sub-list" style="display: none;">
+
+                                <li>
+                                    <a href="counsel.html" class="depth2"> 상담 </a>
+                                </li>
+
+                                <li>
+                                    <a href="test.html" class="depth2"> 검사 </a>
+                                </li>
+                                </ul>
+                            </li>
                     </ul>
                 </div>
             </nav>
@@ -345,7 +446,6 @@
                             <ul class="">
                                 <li><a href="/util/myPage/myInfoEdit.do" class="depth2">내정보 수정 </a></li>
                                 <li><a href="/util/myPage/currentSituation.do" class="depth2">목표리스트</a></li>
-                                <li><a href="/util/shopBasket/shopBasket.do" class="depth2">이력서 작성</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -354,15 +454,7 @@
             <ul class="util-menu">
                 <li class="mypage"><a href="/util/myPage/currentSituation.do" class="ico"><span class="hidden">마이페이지</span></a></li>
                 <li class="search"><a href="search.html" class="ico"><span class="hidden">검색</span></a></li>
-                
-                
                         <li class="login"><a href="login.html" class="btn sm">로그인</a></li>
-                
-
-
-
-
-
             </ul>
         </div>
     </div>
@@ -383,41 +475,55 @@
                 <section id="content" class="content">
                     <header class="tit-area">
                         <h1 class="tit-type1">회원가입</h1>
-                        <p class="tit-info">회원가입을 통해 홈페이지의 다양한 서비스를 이용하세요</p>
                     </header>
                     <section class="join-wrap">
                         <!-- 일반회원 -->
                         <h2 class="tit-type3">개인정보입력</h2>
-                        <p class="tit-sub">회원가입을 위해 아래의 양식에 내용을 입력해주세요(<span class="requisite">*</span> 필수입력)</p>
+                        <p class="tit-sub">회원가입을 위해 아래의 양식에 내용을 입력해주세요</p>
                         <dl class="join-form">
-                            <dt>이름(실명)<span class="requisite">*</span></dt>
+                            <dt>이름(실명)</dt>
                             <dd>
                                 <div class="form-area">
                                     <input type="text" class="input focused" title="이름 입력" value="" name="memb_name" >
                                 </div>
                             </dd>
+
+                            <dt>학력</dt>
+                            <dd>
+                                <div class="form-area">
+                                    <select class="select" title="학력 선택" id="grade-select" name="grade">
+                                        <option value="directly" selected="">선택</option>
+                                        <option value="1">1학년</option>
+                                        <option value="2">2학년</option>
+                                        <option value="3">3학년</option>
+                                        <option value="4">4학년</option>
+                                        <option value="대학원생">대학원생</option>
+                                    </select>
+
+                                </div>
+                            </dd>
                         
-                            <dt>아이디<span class="requisite">*</span></dt>
+                            <dt>아이디</dt>
                             <dd>
                                 <div class="form-area">
                                     <input type="text" class="input id-input" title="아이디 입력" placeholder="아이디 입력" name="id" id="id" autocomplete="new-password" onkeyup="chkCharCode(event);">
                                     <button type="button" class="btn info" id="idchk">중복확인</button>
                                 </div>
                             </dd>
-                            <dt>비밀번호<span class="requisite">*</span></dt>
+                            <dt>비밀번호</dt>
                             <dd>
                                 <div class="form-area">
                                     <input type="password" class="input" title="비밀번호 입력" placeholder="" name="pswd" id="userPw" autocomplete="new-password" aria-autocomplete="list">
                                 </div>
                             </dd>
-                            <dt>비밀번호 확인<span class="requisite">*</span></dt>
+                            <dt>비밀번호 확인</dt>
                             <dd>
                                 <div class="form-area">
                                     <input type="password" class="input" title="비밀번호 확인 입력" placeholder="" name="userPwChk" id="userPwChk" autocomplete="new-password">
                                 </div>
                             </dd>
-                            <span id="same" style="color: red;"></span>
-                            <dt>이메일<span class="requisite">*</span></dt>
+                            
+                            <dt>이메일</dt>
                             <dd>
                                 <div class="form-area email">
                                     <input type="text" class="input id" title="이메일 아이디 입력" id="emailId" name="email">
@@ -428,34 +534,7 @@
                                         <option value="daum.net">daum.net</option>
                                         <option value="gmail.com">gmail.com</option>
                                         <option value="nate.com">nate.com</option>
-                                        <option value="empas.com">empas.com</option>
-                                        <option value="korea.com">korea.com</option>
-                                        <option value="hanmir.com">hanmir.com</option>
                                     </select>
-                                </div>
-                                <div class="check-area">
-                                        <span class="check-con">
-                                            <input type="checkbox" name="email_send" id="noticeReceive">
-                                            <label for="noticeReceive" class="txt">뉴스레터나 공지를 수신받겠습니다.</label>
-                                        </span>
-                                </div>
-                            </dd>
-                            <dt>주소<span class="requisite">*</span></dt>
-                            <dd>
-                                <div class="form-area address">
-                                    <input type="hidden" class="input" title="우편번호 입력" id="zip_strm" name="zip_strm" readonly="">
-                                    <input type="text" class="input" title="메인 주소 입력" id="addr_strm" name="addr_strm" readonly="">
-                                    <button type="button" class="btn info" onclick="execDaumPostcode()">주소찾기</button>
-                                    <input type="text" class="input detail" title="상세 주소 입력" id="addr_strs" name="addr_strs" placeholder="상세주소입력">
-                                </div>
-                            </dd>
-                            <dt>본인사진등록</dt>
-                            <dd>
-                                <div class="form-area file">
-                                    <input type="text" readonly="" title="파일명" class="input file-name" name="img_file">
-                                    <label for="upload01" class="btn info file-label">사진업로드</label>
-                                    <input type="file" id="upload01" class="file-upload" multiple="multiple" name="upload01">
-                                    <p class="unit">본인 얼굴이 잘 나오는 사진으로 등록해주세요(수강 시 확인 하는 사진입니다.)</p>
                                 </div>
                             </dd>
                         </dl>
