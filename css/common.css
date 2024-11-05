@@ -1049,21 +1049,6 @@ a:-webkit-any-link {
 .img-c {
   text-align: center;
 }
-/* Icon */
-.ico-sun::before,
-.ico-moon::before,
-.ico-star::before,
-.ico-balloon::before {
-  content: '';
-  display: block;
-  width: 3rem;
-  height: 3rem;
-  margin: var(--margin--auto) 0.5rem;
-  background-position: 0 0;
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
-
 /* List */
 .layout-list {
   border-top: 2px solid var(--gray1);

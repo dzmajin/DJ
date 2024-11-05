@@ -48,25 +48,22 @@
                     $.ajax({
                         type : "POST",
                         url : '/auth/actionLogin.do',
-                         data : formData,
+                        data : formData,
                         processData: false,
                         contentType: false,				
                         dataType : 'json',
                         async:false,
-                        success : function(data) {
-                            if(data.msgCode == "200") {
-                                window.location.href = '/index.do';
-                            } else if(data.msgCode == "103") {  // 허용하지 않는 파일 확장자
-                                alert(data.message);
-                            } else if(data.msgCode == "104") {  // 파일용량이 큰 경우
-                                alert(data.message);
-                            } else {
-                                alert("로그인에 실패하였습니다.");
-                                return;
-                            }  		    		  
-                         },
-                         error : function(request, status, error) {
-                             alert(data.message);
+                        success: function(data) {
+                        if (data.msgCode === "200") {
+                            // 로그인 성공 시 로컬 스토리지에 로그인 상태 저장
+                            localStorage.setItem('isLoggedIn', 'true');
+                            window.location.href = '/index.do';
+                        } else {
+                            alert("로그인에 실패하였습니다.");
+                        }                     
+                    },
+                        error : function(request, status, error) {
+                             alert("서버 오류가 발생했습니다.");
                         }
                     });
                 });
@@ -77,14 +74,6 @@
                 document.defaultForm.submit();
             }
         
-            function goFindId() {
-                location.href="/util/find/findId.do";
-                
-            }
-        
-            function goFindPw() {
-                location.href="/util/find/findPw.do";
-            }
             
             function goRegiUsr() {
                 location.href = "/uss/umt/TotalMembJoin.do"
@@ -113,28 +102,6 @@
                 return "";
             }
         
-            function saveid(form) {
-                var expdate = new Date();
-                // 기본적으로 30일동안 기억하게 함. 일수를 조절하려면 * 30에서 숫자를 조절하면 됨
-                if (form.checkId.checked)
-                    expdate.setTime(expdate.getTime() + 1000 * 3600 * 24 * 30); // 30일
-                else
-                    expdate.setTime(expdate.getTime() - 1); // 쿠키 삭제조건
-                setCookie("saveid", form.id.value, expdate);
-            }
-        
-            function getid(form) {
-                form.checkId.checked = ((form.id.value = getCookie("saveid")) != "");
-            }
-        
-            function fnInit() {
-                
-                
-                getid(document.loginForm);
-        
-                
-                
-            }
         
             </script>
 </head>
@@ -389,19 +356,12 @@
 		                    <div class="form-area">
 		                        <input type="password" class="input" name="password" id="password" onkeypress="fn_enter_key_in(event)" title="비밀번호 입력" placeholder="비밀번호를 입력해주세요.">
 		                    </div>
-		                    <div class="check-area">
-		                        <span class="check-con">
-		                            <input type="checkbox" name="checkId" id="typeGender1" onclick="javascript:saveid(document.loginForm);">
-		                            <label for="typeGender1" class="txt">아이디저장</label>
-		                        </span>
-		                    </div>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
 	<!-- 	                    <button type="submit" class="btn" id="btnLogin">로그인</button> 로그인  -->
 		                    <input type="button" class="btn" id="btnLogin" value="로그인"><!-- 로그인  -->
-		                    
-		                    <div class="find-area">
-		                        <a href="javascript:goFindId();">아이디 찾기</a>
-		                        <a href="javascript:goFindPw();">비밀번호 찾기</a>
-		                    </div>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
 		                    <div class="join-area">
 		                        <p class="txt">아직 회원이 아니신가요?</p>
 		                        <a href="join.html" class="btn sm info">회원가입</a>	<!-- 회원가입  -->
@@ -415,24 +375,6 @@
 	    <!-- footer -->
 <!-- 	    <footer id="footer" class="footer"></footer> -->
 	    
-
-
-
-
-<script>
-	function fn_alert(){
-		alert("개발예정")
-	}
-	function fn_chatbot(){
-		const chatBotToggle = document.getElementById("chatbotWrap");
-		
-		if (chatBotToggle.style.display === "none" || chatBotToggle.style.display === "") {
-			chatBotToggle.style.display = "block"; // 보이게 처리
-        } else {
-        	chatBotToggle.style.display = "none"; // 숨김 처리
-        }
-	}
-</script>
 
 <footer id="footer" class="footer">
     <div class="util-wrap">
@@ -448,14 +390,6 @@
     
 	    <!-- //footer -->
 	</div>
-<script>
-	var urlPath = window.location.pathname;
-	var path = urlPath.replace("/kbss/","")
-	window.onload = function(){
-		// document.getElementById("url").value = path;
-		$('#id').focus();
-	}
-</script>
 
 </body>
 </html>
