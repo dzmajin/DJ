@@ -20,30 +20,30 @@
         <script type="text/javascript" src="js/main.js"></script>
     </head>
 
-    <body class="test">
+    <body class="academic">
         <div class="wrap">
-            <script type="text/javaScript" language="javascript">  
+            <script type="text/javaScript" language="javascript">
                 function getCookie(cname) {
-                var name = cname + "=";
-                var decodedCookie = decodeURIComponent(document.cookie);
-                var ca = decodedCookie.split(';');
-                for(var i = 0; i <ca.length; i++) {
-                    var c = ca[i];
-                    while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                    }
-                    if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                    }
-                }
-                return "";
-                }
-            
-                function pad(n, width) {
-                n = n + '';
-                return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
-                }
-            
+                   var name = cname + "=";
+                   var decodedCookie = decodeURIComponent(document.cookie);
+                   var ca = decodedCookie.split(';');
+                   for(var i = 0; i <ca.length; i++) {
+                     var c = ca[i];
+                     while (c.charAt(0) == ' ') {
+                       c = c.substring(1);
+                     }
+                     if (c.indexOf(name) == 0) {
+                       return c.substring(name.length, c.length);
+                     }
+                   }
+                   return "";
+                 }
+              
+                  function pad(n, width) {
+                    n = n + '';
+                    return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+                  }
+              
                 var objLeftTime;
                 var objClickInfo;
                 var latestTime;
@@ -54,7 +54,7 @@
                 var stateExpiredTime = false;
                 var logoutUrl = "/auth/actionLogout.do";
                 var timer;
-            
+              
                 function init() {
                     objLeftTime = document.getElementById("leftTimeInfo");
                     
@@ -62,7 +62,7 @@
                         return;
                     }
                     objClickInfo = document.getElementById("clickInfo");
-
+            
                     latestTime = getCookie("egovLatestServerTime");
                     expireTime = getCookie("egovExpireSessionTime");
                     
@@ -72,7 +72,7 @@
                     
                     timer = setInterval(showRemaining, timeInterval); // 1초 간격 호출
                 }
-
+            
                 function showRemaining() {
                     elapsedLocalTime = (new Date()).getTime() - firstLocalTime;
                     
@@ -85,10 +85,10 @@
                         alert('로그인 세션시간이 만료 되었습니다.');//로그인 세션시간이 만료 되었습니다.
                         // reload content main page
                         $("#sessionInfo").hide();
-
+            
                         parent.frames["_content"].location.href = logoutUrl;
                         //parent.frames["_content"].location.reload();
-
+            
                         return;
                     }
                     var timeHour = Math.floor(timeRemaining/1000/60 / 60); 
@@ -98,14 +98,14 @@
                     //objLeftTime.outerText = pad(timeHour,2) +":"+ pad(timeMin,2) +":"+ pad(timeSec,2);
                     objLeftTime.innerHTML = pad(timeHour,2) +":"+ pad(timeMin,2) +":"+ pad(timeSec,2);
                 }
-            
+              
                 function reqTimeAjax() {
-                    
-                    if (stateExpiredTime==true) {
-                        alert('시간을 연장할수 없습니다.');
-                        return;
-                    }
-                    
+                      
+                      if (stateExpiredTime==true) {
+                          alert('시간을 연장할수 없습니다.');
+                          return;
+                      }
+                      
                     $.ajax({
                         url:'/uat/uia/refreshSessionTimeout.do', //request 보낼 서버의 경로
                         type:'get', // 메소드(get, post, put 등)
@@ -181,18 +181,18 @@
                                         <li>
                                             <a href="notice.html" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">커뮤니티</strong></strong></a>
                                             <ul class="sub-list" style="display: none;">
-                                               
-                                                <li>
-                                                    <a href="notice.html" class="depth2"> 공지사항 </a>
-                                                </li>
-                                               
-                                                <li>
-                                                    <a href="document.html" class="depth2"> 자료실 </a>
-                                                </li>
-                 
-                                                <li>
-                                                    <a href="share.html" class="depth2"> 주제공유 </a>
-                                                </li>
+                                                
+                                                    <li>
+                                                        <a href="notice.html" class="depth2"> 공지사항 </a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="document.html" class="depth2"> 자료실 </a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a href="share.html" class="depth2"> 주제공유 </a>
+                                                    </li>
                                             </ul>
                                         </li>
 
@@ -234,60 +234,107 @@
             </header>
 
             <main id="container" class="container">
-                
                 <section id="content" class="content">
-                    <header class="tit-area">
-                        <h1 class="tit-type1">취업준비</h1>
-                    </header>
-
-                    <div class="swiper tab type1 swiper-initialized swiper-horizontal swiper-free-mode swiper-backface-hidden">
-                        <div class="swiper-wrapper">
-                            <a href="counsel.html" class="swiper-slide swiper-slide-active">
-                                <span class="txt">상담</span>
-                            </a>
-                            <a href="test.html" class="swiper-slide current swiper-slide-next">
-                                <span class="txt">검사</span>
-                            </a>
+                    <section class="sticky-con" id="training">
+                        <h2 class="tit-type1">학술사이트</h2>
+                        <br>
+                        <div class="tab-con on">
+                            <ul class="sports-list academic-list">
+                                <li>
+                                    <a href="https://dl.nanet.go.kr/index.do" class="plus center" target="_blank">
+                                        <figure class="img">
+                                            <img src="image/academic.png" alt="국회전자도서관">
+                                        </figure>
+                                        <div class="con">
+                                            <h2 class="tit">국회<br>전자 도서관</h2>
+                                            <p class="txt">#디지털 원문</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.nrf.re.kr/index" class="plus center" target="_blank">
+                                        <figure class="img">
+                                            <img src="image/academic.png" alt="한국연구재단">
+                                        </figure>
+                                        <div class="con">
+                                            <h2 class="tit">NRF<br>한국연구재단</h2>
+                                            <p class="txt">#국내 학술지정보</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://scholar.google.co.kr/schhp?hl=ko" class="plus center" target="_blank">
+                                        <figure class="img">
+                                            <img src="image/academic.png" alt="구글 학술 검색">
+                                        </figure>
+                                        <div class="con">
+                                            <h2 class="tit">Google<br>학술 검색</h2>
+                                            <p class="txt">#학술 검색 엔진</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.kssn.net/index.do" class="plus center" target="_blank">
+                                        <figure class="img">
+                                            <img src="image/academic.png" alt="한국표준 정보망">
+                                        </figure>
+                                        <div class="con">
+                                            <h2 class="tit">KSSN</h2>
+                                            <p class="txt">#한국 표준 정보망<br>#표준 정보 전문 플랫폼</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://kiss.kstudy.com/" class="plus center" target="_blank">
+                                        <figure class="img">
+                                            <img src="image/academic.png" alt="KISS">
+                                        </figure>
+                                        <div class="con">
+                                            <h2 class="tit">KISS</h2>
+                                            <p class="txt">#학술 논문 검색<br>#한국 학술 정보</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.dbpia.co.kr/" class="plus center" target="_blank">
+                                        <figure class="img">
+                                            <img src="image/academic.png" alt="DBpia">
+                                        </figure>
+                                        <div class="con">
+                                            <h2 class="tit">DBpia</h2>
+                                            <p class="txt">#국내 학술 저널<br>#한국 연구자 맞춤</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://scienceon.kisti.re.kr/main/mainForm.do" class="plus center" target="_blank">
+                                        <figure class="img">
+                                            <img src="image/academic.png" alt="SCIENCE ON">
+                                        </figure>
+                                        <div class="con">
+                                            <h2 class="tit">SCIENCE ON</h2>
+                                            <p class="txt">#한국 과학기술 정보<br>#과학기술 지식 인프라</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.riss.kr/index.do" class="plus center" target="_blank">
+                                        <figure class="img">
+                                            <img src="image/academic.png" alt="RISS">
+                                        </figure>
+                                        <div class="con">
+                                            <h2 class="tit">RISS</h2>
+                                            <p class="txt">#한국 교육 학술 정보원<br>#학술 연구 정보 서비스</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="swiper-button-next swiper-button-disabled swiper-button-lock"></div>
-                    </div>
-
-                    <br>
-                    <br>
-                    
-                    <ul class="quick_list">
-                        <li class="notxt">
-                            <strong class="dot_tit">🔹고용 24</strong>
-                            <p>직업 선호도 검사 S형,직업 선호도 검사 L형, 구직준비도 검사, 창업 적성 검사, 직업 가치관 검사</p>
-                            <a href="https://www.work.go.kr/consltJobCarpa/jobPsyExamNew/jobPsyExamAdultList.do" target="_blank">바로가기</a>
-                        </li>
-                        <li>
-                            <strong class="dot_tit">🔹커리어넷 진로 심리검사</strong>
-                            <p>직업 적 성검사, 진로 성숙도 검사, 직업 흥미 검사(K, H)</p>
-                            <a href="https://www.career.go.kr/cnet/front/examen/examenMain.do#none" target="_blank">바로가기</a>
-                        </li>
-                        <li>
-                            <strong class="dot_tit">🔹꿈날개</strong>
-                            <p>취업 가능성 진단, 직업 선호도 검사, 직업 역량 진단, 창업 적성 검사</p>
-                            <a href="https://www.dream.go.kr/dream/diagMogefCenter/diagMogefCenterGuide.do" target="_blank">바로가기</a>
-                        </li>
-                        <li>
-                            <strong class="dot_tit">🔹잡다</strong>
-                            <p>JOBDA 역량 검사</p>
-                            <a href="https://www.jobda.im/acca/test" target="_blank">바로가기</a>
-                        </li>
-                        <li>
-                            <strong class="dot_tit">🔹잡아바</strong>
-                            <p>AI 역량 검사(성향 파악/영상 면접)</p>
-                            <a href="https://www.jobaba.net/interview/mainList.do" target="_blank">바로가기</a>
-                        </li>
-                    </ul>
-
-
-
+                    </section>
                 </section>
             </main>
 
+            <script type="text/javaScript" scr="/resources/js/iotalk.js"></script>
 
             <footer id="footer" class="footer">
                 <div class="util-wrap">

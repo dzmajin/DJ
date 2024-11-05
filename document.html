@@ -170,7 +170,7 @@
                 <div class="top-wrap">
                     <div class="flex-fs">
                         <button type="button" class="all-menu"><span class="hidden">전체메뉴</span></button>
-                        <a href="file:///C:/Users/user/Desktop/%ED%95%99%EA%B5%90/%EC%A1%B8%EC%97%85%EC%9E%91%ED%92%88/%EC%9E%91%ED%92%88/main.html" class="home-logo">대진On지식</a>
+                        <a href="main.html" class="home-logo">대진 On 정보</a>
         
                         <nav class="gnb-wrap">
                             <div class="flex-sb">
@@ -195,30 +195,26 @@
                                         </li>
                         
                                         <li>
-                                            <a href="/spwd/CourseInfo/getCntrCnts.do?fclt_code=SPWD&amp;cnts_clss=CNTS&amp;cnts_type=USED" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">연구정보</strong></strong></a>
+                                            <a href="research_contest.html" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">연구정보</strong></strong></a>
                                             <ul class="sub-list" style="display: none;">
                                                 
                                                     <li>
-                                                        <a href="/spwd/CourseInfo/getCntrCnts.do?fclt_code=SPWD&amp;cnts_clss=CNTS&amp;cnts_type=USED" class="depth2"> 학회일정 </a>
+                                                        <a href="research_contest.html" class="depth2"> 학회일정 </a>
                                                     </li>
                                                 
                                                     <li>
-                                                        <a href="/notice/noticeList.do" class="depth2"> 공모전일정 </a>
+                                                        <a href="" class="depth2"> 공모전일정 </a>
                                                     </li>
-        
+                                                
                                                     <li>
-                                                        <a href="/notice/noticeList.do" class="depth2"> 학술사이트 </a>
+                                                        <a href="academic.html" class="depth2"> 학술사이트 </a>
                                                     </li>
                                             </ul>
                                         </li>
                         
                                         <li>
-                                            <a href="faq.html" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">커뮤니티</strong></strong></a>
+                                            <a href="notice.html" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">커뮤니티</strong></strong></a>
                                             <ul class="sub-list" style="display: none;">
-                                                
-                                                    <li>
-                                                        <a href="faq.html" class="depth2"> FAQ </a>
-                                                    </li>
                                                 
                                                     <li>
                                                         <a href="notice.html" class="depth2"> 공지사항 </a>
@@ -257,17 +253,15 @@
                                     <li>
                                         <a href="/util/myPage/currentSituation.do" class="depth1">마이페이지</a>
                                         <ul class="">
-                                            <li><a href="/util/myPage/myInfoEdit.do" class="depth2">내정보 수정 </a></li>
-                                            <li><a href="/util/myPage/currentSituation.do" class="depth2">목표리스트</a></li>
-                                            <li><a href="/util/shopBasket/shopBasket.do" class="depth2">이력서 작성</a></li>
+                                            <li><a href="/util/myPage/myInfoEdit.do" class="depth2">내 정보 수정 </a></li>
+                                            <li><a href="/util/myPage/currentSituation.do" class="depth2">학습 진척도</a></li>
                                         </ul>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         <ul class="util-menu">
-                            <li class="mypage"><a href="/util/myPage/currentSituation.do" class="ico"><span class="hidden">마이페이지</span></a></li>
-                                    <li class="login"><a href="login.html" class="btn sm">로그인</a></li>
+                            <li class="login"><a href="login.html" class="btn sm">로그인</a></li>
                         </ul>
                     </div>
                 </div>
@@ -275,7 +269,7 @@
 
             <main id="container" class="container">
         
-                <form method="post" action="/smokp/noticeList.do" id="form">
+                <form method="post" action="document.html" id="form">
                     <input type="hidden" name="pageIndex" id="index">
                     <input type="hidden" name="searchtype" id="type">
                     <input type="hidden" name="searchtxt" id="txt">
@@ -283,21 +277,42 @@
             
                 <section id="content" class="content">
                     <header class="tit-area">
-                        <h1 class="tit-type1">자료실</h1>
-                        <p class="tit-info">다양한 자료를 저장해놓은 자료실입니다.</p>
+                        <h1 class="tit-type1">커뮤니티</h1>
                     </header>
+
+                    <div class="swiper tab type1 swiper-initialized swiper-horizontal swiper-free-mode swiper-backface-hidden">
+                        <div class="swiper-wrapper">
+                            <a href="notice.html" class="swiper-slide swiper-slide-active">
+                                <span class="txt">공지사항</span>
+                            </a>
+                            <a href="document.html" class="swiper-slide current swiper-slide-next">
+                                <span class="txt">자료실</span>
+                            </a>
+                            <a href="share.html" class="swiper-slide swiper-slide">
+                                <span class="txt">주제공유</span>
+                            </a>
+                        </div>
+                        <div class="swiper-button-next swiper-button-disabled swiper-button-lock"></div>
+                    </div>
+
+                    <br>
+                    <br>
+
                     <div class="search-area">
                         <fieldset class="form-area">
                             <legend>자료실 검색어 입력</legend>
                             <select class="select" id="searchtype" name="searchtype">
-                                <option value="CONTENT_TILE" selected="selected">전체</option>
+                                <option value="CONTENT_TITLE" selected="selected">전체</option>
                                 <option value="TITLE">제목</option>
                                 <option value="CONTENT">내용</option>
                             </select>
-                            <input type="text" class="input" value="" id="searchtxt" name="searchtxt" placeholder="제목입력" onkeypress="press();">
+                            <input type="text" class="input" value="" id="searchtxt" name="searchtxt" placeholder="검색어 입력" onkeypress="if(event.key === 'Enter') { fnCSearch(); }">
                             <button type="button" class="btn" onclick="fncSearch();">검색</button>
                         </fieldset>
                     </div>
+
+                    <br>
+
                     <table class="board-list">
                         <caption>공지사항에 대한 번호, 제목, 등록일 안내 리스트입니다.</caption>
                         <thead>
@@ -309,16 +324,11 @@
                         </thead>
                         <tbody>
                             
-                            
-                            
-                            
                                 <tr>
                                     <td class="list-num">1</td>
-                                    <td class="list-tit"><a href="/smokp/noticeDetail.do?bbs_numb=B0000000000000000002&amp;post_numb=4">1</a></td>
+                                    <td class="list-tit"><a href="">1</a></td>
                                     <td class="list-date">2024-07-04</td>
                                 </tr>
-                            
-                            
                             
                             <!-- 데이터 없을 때 화면에 출력될 메세지 -->
                             

@@ -1,3 +1,5 @@
+let competitionSchedule = [];  // 전역 변수로 선언
+
 document.addEventListener("DOMContentLoaded", async () => {
     const date = new Date();
     let currYear = date.getFullYear();
@@ -9,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const prevNextIcons = document.querySelectorAll('.nav .material-icons');
 
     // 공모전 일정 데이터 가져오기
-    const competitionSchedule = await fetchCompetitionSchedule();
+    competitionSchedule = await fetchCompetitionSchedule(); // 전역 변수에 저장
 
     // 달력 렌더링 함수
     const renderCalendar = () => {
@@ -19,14 +21,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         let lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate();
         let lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay();
         let lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate();
-    
+
         let liTag = "";
-    
+
         // 이전 달의 날짜 추가
         for (let i = firstDayofMonth; i > 0; i--) {
             liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
         }
-    
+
         // 현재 달의 날짜 추가
         for (let i = 1; i <= lastDateofMonth; i++) {
             const isToday = 
@@ -35,38 +37,32 @@ document.addEventListener("DOMContentLoaded", async () => {
                 currYear === new Date().getFullYear() 
                 ? 'active' 
                 : '';
-    
-            // 현재 달력의 날짜 객체 생성
-            const currentDate = new Date(currYear, currMonth, i);
-    
-            // 현재 달의 날짜가 공모전 일정에 속하는지 확인
+
             const isCompetitionDay = competitionSchedule.some(event => {
                 const startDate = new Date(event.sdate);
                 const endDate = new Date(event.edate);
-    
-                // 공모전 일정의 시작일 또는 종료일이 현재 달에 있는지 확인
+
+                // 공모전 일정이 현재 달력의 날짜와 일치하는지 확인
                 return (
-                    startDate.getFullYear() === currYear &&
-                    startDate.getMonth() === currMonth &&
-                    startDate.getDate() === i
-                ) || (
-                    endDate.getFullYear() === currYear &&
-                    endDate.getMonth() === currMonth &&
-                    endDate.getDate() === i
+                    (startDate.getFullYear() === currYear && startDate.getMonth() === currMonth && startDate.getDate() === i) ||
+                    (endDate && endDate.getFullYear() === currYear && endDate.getMonth() === currMonth && endDate.getDate() === i)
                 );
             });
-    
+
             liTag += `<li class="${isToday} ${isCompetitionDay ? 'highlight' : ''}">${i}</li>`;
         }
-    
+
         // 다음 달의 날짜 추가
         for (let i = lastDayofMonth; i < 6; i++) {
             liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`;
         }
-    
+
         daysTag.innerHTML = liTag;
+
+        // 현재 달에 해당하는 공모전 일정 표시
+        displayContestSchedule(currYear, currMonth);
     };
-    
+
     // 이전/다음 버튼 클릭 이벤트
     prevNextIcons.forEach((icon) => {
         icon.addEventListener("click", () => {
@@ -87,7 +83,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     renderCalendar();
 });
-
 
 // 공모전 일정을 API에서 가져오는 함수
 async function fetchCompetitionSchedule(numOfRows = 10, pageNo = 1) {
@@ -140,5 +135,30 @@ async function fetchCompetitionSchedule(numOfRows = 10, pageNo = 1) {
     }
 }
 
+// 공모전 일정 데이터를 가져와서 테이블에 추가하는 함수
+function displayContestSchedule(currYear, currMonth) {
+    const contestTable = document.getElementById('contestTable').querySelector('tbody');
+    contestTable.innerHTML = ''; // 테이블 초기화
 
+    // 현재 달력에 표시된 년도와 월에 해당하는 일정만 필터링
+    const filteredSchedule = competitionSchedule.filter(event => {
+        const startDate = new Date(event.sdate);
+        const endDate = event.edate ? new Date(event.edate) : null;
 
+        return (
+            (startDate.getFullYear() === currYear && startDate.getMonth() === currMonth) ||
+            (endDate && endDate.getFullYear() === currYear && endDate.getMonth() === currMonth)
+        );
+    });
+
+    // 필터링된 일정만 테이블에 표시
+    filteredSchedule.forEach(event => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${event.contestName}</td>
+            <td>${event.sdate}</td>
+            <td>${event.edate || 'N/A'}</td>
+        `;
+        contestTable.appendChild(row);
+    });
+}

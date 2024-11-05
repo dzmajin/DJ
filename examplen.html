@@ -18,9 +18,41 @@
         <script type="text/javascript" src="js/swiper-bundle.min.js"></script>
         <script type="text/javascript" src="js/common.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javaScript" src="js/searchn.js"></script>
+        <script type="text/javascript">
+            function fnSearch(num) {
+                let searchtxt = $('#searchtxt').val();
+
+                if(num == null) {
+                    if(searchtxt == "" || searchtxt.length == 0) {
+                        alert("검색어를 입력해주세요.");
+                        return;
+                    }
+                    num = 1;
+                } else {
+                    if (num <= 0) {
+                        num = 1;
+                        return;
+                    }
+                }
+
+                $('#index').val(num);
+                $('#type').val($('#searchtype').val());
+                $('#txt').val(searchtxt);
+
+                $('#form').submit();
+
+            }
+
+            function press() {
+                if (event.keyCode==13) {
+                    fnSearch();
+                }
+            }
+        </script>
     </head>
 
-    <body class="test">
+    <body class="examplen">
         <div class="wrap">
             <script type="text/javaScript" language="javascript">  
                 function getCookie(cname) {
@@ -140,7 +172,7 @@
                     <div class="flex-fs">
                         <button type="button" class="all-menu"><span class="hidden">전체메뉴</span></button>
                         <a href="main.html" class="home-logo">대진 On 정보</a>
-
+        
                         <nav class="gnb-wrap">
                             <div class="flex-sb">
                                 <ul class="gnb-menu">
@@ -156,22 +188,22 @@
                                                     <li>
                                                         <a href="careerMap.html" class="depth2"> 취업로드맵</a>
                                                     </li>
-
+        
                                             </ul>
                                         </li>
                         
                                         <li>
-                                            <a href="research_contest.html" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">연구정보</strong></strong></a>
+                                            <a href="/spwd/CourseInfo/getCntrCnts.do?fclt_code=SPWD&amp;cnts_clss=CNTS&amp;cnts_type=USED" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">연구정보</strong></strong></a>
                                             <ul class="sub-list" style="display: none;">
                                                 
                                                     <li>
-                                                        <a href="research_contest.html" class="depth2"> 학회일정 </a>
+                                                        <a href="/spwd/CourseInfo/getCntrCnts.do?fclt_code=SPWD&amp;cnts_clss=CNTS&amp;cnts_type=USED" class="depth2"> 학회일정 </a>
                                                     </li>
                                                 
                                                     <li>
-                                                        <a href="" class="depth2"> 공모전일정 </a>
+                                                        <a href="/notice/noticeList.do" class="depth2"> 공모전일정 </a>
                                                     </li>
-                                                
+        
                                                     <li>
                                                         <a href="academic.html" class="depth2"> 학술사이트 </a>
                                                     </li>
@@ -181,29 +213,29 @@
                                         <li>
                                             <a href="notice.html" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">커뮤니티</strong></strong></a>
                                             <ul class="sub-list" style="display: none;">
-                                               
-                                                <li>
-                                                    <a href="notice.html" class="depth2"> 공지사항 </a>
-                                                </li>
-                                               
-                                                <li>
-                                                    <a href="document.html" class="depth2"> 자료실 </a>
-                                                </li>
-                 
-                                                <li>
-                                                    <a href="share.html" class="depth2"> 주제공유 </a>
-                                                </li>
+                                                
+                                                    <li>
+                                                        <a href="notice.html" class="depth2"> 공지사항 </a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="document.html" class="depth2"> 자료실 </a>
+                                                    </li>
+        
+                                                    <li>
+                                                        <a href="share.html" class="depth2"> 주제공유 </a>
+                                                    </li>
                                             </ul>
                                         </li>
-
+        
                                         <li>
                                             <a href="counsel.html" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">취업준비</strong></strong></a>
                                             <ul class="sub-list" style="display: none;">
-
+        
                                                 <li>
                                                     <a href="counsel.html" class="depth2"> 상담 </a>
                                                 </li>
-
+        
                                                 <li>
                                                     <a href="test.html" class="depth2"> 검사 </a>
                                                 </li>
@@ -214,7 +246,7 @@
                         </nav>
                         <div class="gnb-bg" style="display: none;">
                             <div class="flex-sb">
-                                <p class="txt-info"><strong class="stress2"> </strong></p>
+                                <p class="txt-info"><strong class="stress2"> </p>
                                 <ul class="mypage-menu">
                                     <li>
                                         <a href="/util/myPage/currentSituation.do" class="depth1">마이페이지</a>
@@ -234,60 +266,54 @@
             </header>
 
             <main id="container" class="container">
-                
+
+                <form id="epn" action="notice.html" method="post">
+                    <input type="hidden" name="pageIndex" value="0">
+                    <input type="hidden" name="searchtype" value>
+                    <input type="hidden" name="searchtxt" value>
+                </form>
+
                 <section id="content" class="content">
                     <header class="tit-area">
-                        <h1 class="tit-type1">취업준비</h1>
+                        <h1 class="tit-type1">공지사항</h1>
                     </header>
 
-                    <div class="swiper tab type1 swiper-initialized swiper-horizontal swiper-free-mode swiper-backface-hidden">
-                        <div class="swiper-wrapper">
-                            <a href="counsel.html" class="swiper-slide swiper-slide-active">
-                                <span class="txt">상담</span>
-                            </a>
-                            <a href="test.html" class="swiper-slide current swiper-slide-next">
-                                <span class="txt">검사</span>
-                            </a>
+                    <div class="board-view">
+                        <h2 class="hidden">공지사항 상세</h2>
+                        <div class="board-header">
+                            <h2 class="tit">대진 On 정보 이용 수칙</h2>
+                            <ul class="info">
+                                <li class="writer">
+                                    <em>관리자</em>
+                                </li>
+                                <li class="date-area">
+                                    <em class="tit">작성일 : </em>
+                                    <em>2024-11-04</em>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="swiper-button-next swiper-button-disabled swiper-button-lock"></div>
+                        <div class="board-con">
+                            <p>하이염</p>
+                        </div>
                     </div>
-
-                    <br>
-                    <br>
-                    
-                    <ul class="quick_list">
-                        <li class="notxt">
-                            <strong class="dot_tit">🔹고용 24</strong>
-                            <p>직업 선호도 검사 S형,직업 선호도 검사 L형, 구직준비도 검사, 창업 적성 검사, 직업 가치관 검사</p>
-                            <a href="https://www.work.go.kr/consltJobCarpa/jobPsyExamNew/jobPsyExamAdultList.do" target="_blank">바로가기</a>
+                    <div class="btn-area">
+                        <a href="notice.html" class="btn" onclick="listFn();">목록</a>
+                    </div>
+                    <ul class="prev-next">
+                        <li class="no-board">
+                            <h3 class="tit">이전 글</h3>
+                            <a>이전 게시물이 없습니다.</a>
                         </li>
-                        <li>
-                            <strong class="dot_tit">🔹커리어넷 진로 심리검사</strong>
-                            <p>직업 적 성검사, 진로 성숙도 검사, 직업 흥미 검사(K, H)</p>
-                            <a href="https://www.career.go.kr/cnet/front/examen/examenMain.do#none" target="_blank">바로가기</a>
-                        </li>
-                        <li>
-                            <strong class="dot_tit">🔹꿈날개</strong>
-                            <p>취업 가능성 진단, 직업 선호도 검사, 직업 역량 진단, 창업 적성 검사</p>
-                            <a href="https://www.dream.go.kr/dream/diagMogefCenter/diagMogefCenterGuide.do" target="_blank">바로가기</a>
-                        </li>
-                        <li>
-                            <strong class="dot_tit">🔹잡다</strong>
-                            <p>JOBDA 역량 검사</p>
-                            <a href="https://www.jobda.im/acca/test" target="_blank">바로가기</a>
-                        </li>
-                        <li>
-                            <strong class="dot_tit">🔹잡아바</strong>
-                            <p>AI 역량 검사(성향 파악/영상 면접)</p>
-                            <a href="https://www.jobaba.net/interview/mainList.do" target="_blank">바로가기</a>
+                        <li class="no-board">
+                            <h3 class="tit">다음 글</h3>
+                            <a>다음 게시물이 없습니다.</a>
                         </li>
                     </ul>
-
-
 
                 </section>
             </main>
 
+            <script type="text/javaScript" src="/resources/js/iotalk.js"></script>
 
             <footer id="footer" class="footer">
                 <div class="util-wrap">
