@@ -466,7 +466,7 @@ Common - 회원가입
     width: 4.5rem;
     height: 4.5rem;
     margin: var(--margin--auto) 1.6rem;
-    /* background: url(../images/common/ico_txt_check.svg) no-repeat 0 0 / 100%; */
+    background: url(../image//ico_txt_check.svg) no-repeat 0 0 / 100%; 
 }
 .join-form dt {
     margin: 1.5rem 0 0.4rem;

@@ -441,7 +441,7 @@ a:-webkit-any-link {
   position: relative;
 }
 .top-wrap .util-menu > li:last-child {
-  margin-left: 0.8rem;
+  margin-left: -6.3rem;
 }
 .top-wrap .ico {
   display: block;
@@ -504,7 +504,8 @@ a:-webkit-any-link {
 .gnb-bg .mypage-menu {
   position: relative;
   width: 15rem;
-  padding-left: 3rem;
+  padding-left: 8rem;
+  top: -1rem;
 }
 .gnb-bg .mypage-menu::before {
   content: '';
