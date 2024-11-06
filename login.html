@@ -3,375 +3,375 @@
 <head>
         <link rel="icon" type="image/x-icon" href="">
         <link rel="icon" type="image/svg+xml" href="">
-            <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <meta name="format-detection" content="telephone=no">
-            <title>대진 On 정보-로그인</title>
-            <link rel="stylesheet" type="text/css" href="css/common.css">
-            <link rel="stylesheet" type="text/css" href="css/reset.css">
-            <link rel="stylesheet" type="text/css" href="css/main_DJ.css">
-            <link rel="stylesheet" type="text/css" href="css/sub.css">
-            <link rel="stylesheet" type="text/css" href="css/swiper-bundle.min.css">
-            <script type="text/javascript" src="js/jquery.min.js"></script>
-            <script type="text/javascript" src="js/common.js"></script>
-            <script type="text/javascript" src="js/swiper-bundle.min.js"></script>
-            
-            <script>
-                function fn_enter_key_in(e){
-                    if(e.keyCode == 13){
-                        $("#btnLogin").trigger("click");
-                    }
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="format-detection" content="telephone=no">
+        <title>대진 On 정보-로그인</title>
+        <link rel="stylesheet" type="text/css" href="css/common.css">
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/main_DJ.css">
+        <link rel="stylesheet" type="text/css" href="css/sub.css">
+        <link rel="stylesheet" type="text/css" href="css/swiper-bundle.min.css">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/common.js"></script>
+        <script type="text/javascript" src="js/swiper-bundle.min.js"></script>
+        
+        <script>
+            function fn_enter_key_in(e){
+                if(e.keyCode == 13){
+                    $("#btnLogin").trigger("click");
                 }
-            $(document).ready(function(){
-                const errorMsg = ""
-                if(errorMsg) alert(errorMsg)
-            })
-            $(function(){
-                $('#btnLogin').click(function(){
-        
-                    if (document.loginForm.id.value =="") {
-                        alert("아이디를 입력하세요");
-                        return;
+            }
+        $(document).ready(function(){
+            const errorMsg = ""
+            if(errorMsg) alert(errorMsg)
+        })
+        $(function(){
+            $('#btnLogin').click(function(){
+    
+                if (document.loginForm.id.value =="") {
+                    alert("아이디를 입력하세요");
+                    return;
+                }
+                if (document.loginForm.password.value =="") {
+                    alert("비밀번호를 입력하세요");
+                    return;
+                }
+                
+                var formData = new FormData();
+                var formSeriData = $("#loginForm").serializeArray();
+    
+    
+                ajaxRequest = $.each(formSeriData, function(i, val) {
+                    formData.append(val.name, val.value);
+                });
+                $.ajax({
+                    type : "POST",
+                    url : '/auth/actionLogin.do',
+                    data : formData,
+                    processData: false,
+                    contentType: false,				
+                    dataType : 'json',
+                    async:false,
+                    success: function(data) {
+                    if (data.msgCode === "200") {
+                        // 로그인 성공 시 로컬 스토리지에 로그인 상태 저장
+                        localStorage.setItem('isLoggedIn', 'true');
+                        window.location.href = '/index.do';
+                    } else {
+                        alert("로그인에 실패하였습니다.");
+                    }                     
+                },
+                    error : function(request, status, error) {
+                            alert("서버 오류가 발생했습니다.");
                     }
-                    if (document.loginForm.password.value =="") {
-                        alert("비밀번호를 입력하세요");
-                        return;
-                    }
-                    
-                    var formData = new FormData();
-                    var formSeriData = $("#loginForm").serializeArray();
-        
-        
-                    ajaxRequest = $.each(formSeriData, function(i, val) {
-                        formData.append(val.name, val.value);
-                    });
-                    $.ajax({
-                        type : "POST",
-                        url : '/auth/actionLogin.do',
-                        data : formData,
-                        processData: false,
-                        contentType: false,				
-                        dataType : 'json',
-                        async:false,
-                        success: function(data) {
-                        if (data.msgCode === "200") {
-                            // 로그인 성공 시 로컬 스토리지에 로그인 상태 저장
-                            localStorage.setItem('isLoggedIn', 'true');
-                            window.location.href = '/index.do';
-                        } else {
-                            alert("로그인에 실패하였습니다.");
-                        }                     
-                    },
-                        error : function(request, status, error) {
-                             alert("서버 오류가 발생했습니다.");
-                        }
-                    });
                 });
             });
-            
-            function actionCrtfctLogin() {
-                document.defaultForm.action="/uat/uia/actionCrtfctLogin.do";
-                document.defaultForm.submit();
-            }
+        });
         
-            
-            function goRegiUsr() {
-                location.href = "/uss/umt/TotalMembJoin.do"
-                //document.loginForm.action="/uss/umt/TotalMembJoin.do";
-                //document.loginForm.submit();
-            }
+        function actionCrtfctLogin() {
+            document.defaultForm.action="/uat/uia/actionCrtfctLogin.do";
+            document.defaultForm.submit();
+        }
+    
         
-            function setCookie (name, value, expires) {
-                document.cookie = name + "=" + escape (value) + "; path=/; expires=" + expires.toGMTString();
-            }
-        
-            function getCookie(Name) {
-                var search = Name + "=";
-                if (document.cookie.length > 0) { // 쿠키가 설정되어 있다면
-                    offset = document.cookie.indexOf(search);
-                    if (offset != -1) { // 쿠키가 존재하면
-                        offset += search.length;
-                        // set index of beginning of value
-                        end = document.cookie.indexOf(";", offset);
-                        // 쿠키 값의 마지막 위치 인덱스 번호 설정
-                        if (end == -1)
-                            end = document.cookie.length;
-                        return unescape(document.cookie.substring(offset, end));
-                    }
+        function goRegiUsr() {
+            location.href = "/uss/umt/TotalMembJoin.do"
+            //document.loginForm.action="/uss/umt/TotalMembJoin.do";
+            //document.loginForm.submit();
+        }
+    
+        function setCookie (name, value, expires) {
+            document.cookie = name + "=" + escape (value) + "; path=/; expires=" + expires.toGMTString();
+        }
+    
+        function getCookie(Name) {
+            var search = Name + "=";
+            if (document.cookie.length > 0) { // 쿠키가 설정되어 있다면
+                offset = document.cookie.indexOf(search);
+                if (offset != -1) { // 쿠키가 존재하면
+                    offset += search.length;
+                    // set index of beginning of value
+                    end = document.cookie.indexOf(";", offset);
+                    // 쿠키 값의 마지막 위치 인덱스 번호 설정
+                    if (end == -1)
+                        end = document.cookie.length;
+                    return unescape(document.cookie.substring(offset, end));
                 }
-                return "";
             }
-        
-        
-            </script>
-</head>
-<body onload="fnInit();" class="login">
+            return "";
+        }
+    
+    
+        </script>
+    </head>
+    <body onload="fnInit();" class="login">
 
-	<div class="wrap">
-		
-<script type="text/javaScript" language="javascript">
-	function getCookie(cname) {
- 	  var name = cname + "=";
- 	  var decodedCookie = decodeURIComponent(document.cookie);
- 	  var ca = decodedCookie.split(';');
- 	  for(var i = 0; i <ca.length; i++) {
- 	    var c = ca[i];
- 	    while (c.charAt(0) == ' ') {
- 	      c = c.substring(1);
- 	    }
- 	    if (c.indexOf(name) == 0) {
- 	      return c.substring(name.length, c.length);
- 	    }
- 	  }
- 	  return "";
- 	}
-  
-  	function pad(n, width) {
-  	  n = n + '';
-  	  return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
-  	}
-  
-	var objLeftTime;
-	var objClickInfo;
-	var latestTime;
-	var expireTime;
-	var timeInterval = 1000; // 1초 간격 호출
-	var firstLocalTime = 0;
-	var elapsedLocalTime = 0;
-	var stateExpiredTime = false;
-	var logoutUrl = "/auth/actionLogout.do";
-	var timer;
-  
-	function init() {
-		objLeftTime = document.getElementById("leftTimeInfo");
-		
-		if (objLeftTime == null) {
-			return;
-		}
-		objClickInfo = document.getElementById("clickInfo");
-
-		latestTime = getCookie("egovLatestServerTime");
-		expireTime = getCookie("egovExpireSessionTime");
-		
-		elapsedTime = 0;
-		firstLocalTime = (new Date()).getTime();
-		showRemaining();
-		
-		timer = setInterval(showRemaining, timeInterval); // 1초 간격 호출
-	}
-
-	function showRemaining() {
-		elapsedLocalTime = (new Date()).getTime() - firstLocalTime;
-		
-		var timeRemaining = expireTime - latestTime - elapsedLocalTime;
-		if ( timeRemaining < timeInterval ) {
-			clearInterval(timer);
-			objLeftTime.innerHTML = "00:00:00";
-			objClickInfo.text = '시간만료'; //시간만료
-			stateExpiredTime = true;
-			alert('로그인 세션시간이 만료 되었습니다.');//로그인 세션시간이 만료 되었습니다.
-			// reload content main page
-			$("#sessionInfo").hide();
-
-			parent.frames["_content"].location.href = logoutUrl;
-			//parent.frames["_content"].location.reload();
-
-			return;
-		}
-		var timeHour = Math.floor(timeRemaining/1000/60 / 60); 
-		var timeMin = Math.floor((timeRemaining/1000/60) % 60);
-		var timeSec = Math.floor((timeRemaining/1000) % 60);
-		//objLeftTime.textContent = pad(timeHour,2) +":"+ pad(timeMin,2) +":"+ pad(timeSec,2);
-		//objLeftTime.outerText = pad(timeHour,2) +":"+ pad(timeMin,2) +":"+ pad(timeSec,2);
-		objLeftTime.innerHTML = pad(timeHour,2) +":"+ pad(timeMin,2) +":"+ pad(timeSec,2);
-	}
-  
-	function reqTimeAjax() {
-	  	
-	  	if (stateExpiredTime==true) {
-	  		alert('시간을 연장할수 없습니다.');
-	  		return;
-	  	}
-	  	
-		$.ajax({
-		    url:'/uat/uia/refreshSessionTimeout.do', //request 보낼 서버의 경로
-		    type:'get', // 메소드(get, post, put 등)
-		    data:{}, //보낼 데이터
-		    success: function(data) {
-		        //서버로부터 정상적으로 응답이 왔을 때 실행
-	        	latestTime = getCookie("egovLatestServerTime");
-	        	expireTime = getCookie("egovExpireSessionTime");
-	        	init();
-		        //alert("정상수신 , data = "+data);
-		    },
-		    error: function(err) {
-		    	alert("err : "+err);
-		        //서버로부터 응답이 정상적으로 처리되지 못햇을 때 실행
-		    	//alert("오류발생 , error="+err.state());
-		    }
-		});
-		return false;
-	}
-	
-	function logout() {
-	    if(!confirm("로그아웃을 진행 하시겠습니까?")) {
-	    	return;
-	    }
-		location.href = logoutUrl;
-	}
-</script>
-
-<!-- header 시작 -->
-<header id="header" class="header">
-
-    <div class="top-wrap">
-        <div class="flex-fs">
-            <button type="button" class="all-menu"><span class="hidden">전체메뉴</span></button>
-            <a href="main.html" class="home-logo">
-                <img src="image/DJ_logo.png" alt="대진On정보">
-            </a>
-
-            <nav class="gnb-wrap">
-                <div class="flex-sb">
-                    <ul class="gnb-menu">
-                        
-                            <li>
-                                <a href="employment_info.html" class="depth1 hover"><strong class="left_title_strong"><strong class="top_title_strong">취업정보</strong></strong></a>
-                                <ul class="sub-list" style="display: none;">
-                                    
-                                        <li>
-                                            <a href="employment_info.html" class="depth2"> 취업사이트</a>
-                                        </li>
-                                    
-                                        <li>
-                                            <a href="careerMap.html" class="depth2"> 취업로드맵</a>
-                                        </li>
-
-                                </ul>
-                            </li>
+        <div class="wrap">
             
-                        
-                            <li>
-                                <a href="research_contest.html" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">연구정보</strong></strong></a>
-                                <ul class="sub-list" style="display: none;">
-                                    
-                                        <li>
-                                            <a href="research_contest.html" class="depth2"> 공모전일정 </a>
-                                        </li>
-                                    
-                                        <li>
-                                            <a href="#" class="depth2"> 학회일정 </a>
-                                        </li>
-                                    
-                                        <li>
-                                            <a href="academic.html" class="depth2"> 학술사이트 </a>
-                                        </li>
-                                </ul>
-                            </li>
+    <script type="text/javaScript" language="javascript">
+        function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+        }
+    
+        function pad(n, width) {
+        n = n + '';
+        return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+        }
+    
+        var objLeftTime;
+        var objClickInfo;
+        var latestTime;
+        var expireTime;
+        var timeInterval = 1000; // 1초 간격 호출
+        var firstLocalTime = 0;
+        var elapsedLocalTime = 0;
+        var stateExpiredTime = false;
+        var logoutUrl = "/auth/actionLogout.do";
+        var timer;
+    
+        function init() {
+            objLeftTime = document.getElementById("leftTimeInfo");
             
-                            <li>
-                                <a href="notice.html" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">커뮤니티</strong></strong></a>
-                                <ul class="sub-list" style="display: none;">
-                                   
-                                    <li>
-                                        <a href="notice.html" class="depth2"> 공지사항 </a>
-                                    </li>
-                                   
-                                    <li>
-                                        <a href="document.html" class="depth2"> 자료실 </a>
-                                    </li>
-     
-                                    <li>
-                                        <a href="share.html" class="depth2"> 주제공유 </a>
-                                    </li>
-                                </ul>
-                            </li>
+            if (objLeftTime == null) {
+                return;
+            }
+            objClickInfo = document.getElementById("clickInfo");
 
-                            <li>
-                                <a href="counsel.html" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">취업준비</strong></strong></a>
-                                <ul class="sub-list" style="display: none;">
+            latestTime = getCookie("egovLatestServerTime");
+            expireTime = getCookie("egovExpireSessionTime");
+            
+            elapsedTime = 0;
+            firstLocalTime = (new Date()).getTime();
+            showRemaining();
+            
+            timer = setInterval(showRemaining, timeInterval); // 1초 간격 호출
+        }
 
+        function showRemaining() {
+            elapsedLocalTime = (new Date()).getTime() - firstLocalTime;
+            
+            var timeRemaining = expireTime - latestTime - elapsedLocalTime;
+            if ( timeRemaining < timeInterval ) {
+                clearInterval(timer);
+                objLeftTime.innerHTML = "00:00:00";
+                objClickInfo.text = '시간만료'; //시간만료
+                stateExpiredTime = true;
+                alert('로그인 세션시간이 만료 되었습니다.');//로그인 세션시간이 만료 되었습니다.
+                // reload content main page
+                $("#sessionInfo").hide();
+
+                parent.frames["_content"].location.href = logoutUrl;
+                //parent.frames["_content"].location.reload();
+
+                return;
+            }
+            var timeHour = Math.floor(timeRemaining/1000/60 / 60); 
+            var timeMin = Math.floor((timeRemaining/1000/60) % 60);
+            var timeSec = Math.floor((timeRemaining/1000) % 60);
+            //objLeftTime.textContent = pad(timeHour,2) +":"+ pad(timeMin,2) +":"+ pad(timeSec,2);
+            //objLeftTime.outerText = pad(timeHour,2) +":"+ pad(timeMin,2) +":"+ pad(timeSec,2);
+            objLeftTime.innerHTML = pad(timeHour,2) +":"+ pad(timeMin,2) +":"+ pad(timeSec,2);
+        }
+    
+        function reqTimeAjax() {
+            
+            if (stateExpiredTime==true) {
+                alert('시간을 연장할수 없습니다.');
+                return;
+            }
+            
+            $.ajax({
+                url:'/uat/uia/refreshSessionTimeout.do', //request 보낼 서버의 경로
+                type:'get', // 메소드(get, post, put 등)
+                data:{}, //보낼 데이터
+                success: function(data) {
+                    //서버로부터 정상적으로 응답이 왔을 때 실행
+                    latestTime = getCookie("egovLatestServerTime");
+                    expireTime = getCookie("egovExpireSessionTime");
+                    init();
+                    //alert("정상수신 , data = "+data);
+                },
+                error: function(err) {
+                    alert("err : "+err);
+                    //서버로부터 응답이 정상적으로 처리되지 못햇을 때 실행
+                    //alert("오류발생 , error="+err.state());
+                }
+            });
+            return false;
+        }
+        
+        function logout() {
+            if(!confirm("로그아웃을 진행 하시겠습니까?")) {
+                return;
+            }
+            location.href = logoutUrl;
+        }
+    </script>
+
+    <!-- header 시작 -->
+    <header id="header" class="header">
+
+        <div class="top-wrap">
+            <div class="flex-fs">
+                <button type="button" class="all-menu"><span class="hidden">전체메뉴</span></button>
+                <a href="main.html" class="home-logo">
+                    <img src="image/DJ_logo.png" alt="대진On정보">
+                </a>
+
+                <nav class="gnb-wrap">
+                    <div class="flex-sb">
+                        <ul class="gnb-menu">
+                            
                                 <li>
-                                    <a href="counsel.html" class="depth2"> 상담 </a>
+                                    <a href="employment_info.html" class="depth1 hover"><strong class="left_title_strong"><strong class="top_title_strong">취업정보</strong></strong></a>
+                                    <ul class="sub-list" style="display: none;">
+                                        
+                                            <li>
+                                                <a href="employment_info.html" class="depth2"> 취업사이트</a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="careerMap.html" class="depth2"> 취업로드맵</a>
+                                            </li>
+
+                                    </ul>
+                                </li>
+                
+                            
+                                <li>
+                                    <a href="research_contest.html" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">연구정보</strong></strong></a>
+                                    <ul class="sub-list" style="display: none;">
+                                        
+                                            <li>
+                                                <a href="research_contest.html" class="depth2"> 공모전일정 </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="#" class="depth2"> 학회일정 </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="academic.html" class="depth2"> 학술사이트 </a>
+                                            </li>
+                                    </ul>
+                                </li>
+                
+                                <li>
+                                    <a href="notice.html" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">커뮤니티</strong></strong></a>
+                                    <ul class="sub-list" style="display: none;">
+                                    
+                                        <li>
+                                            <a href="notice.html" class="depth2"> 공지사항 </a>
+                                        </li>
+                                    
+                                        <li>
+                                            <a href="document.html" class="depth2"> 자료실 </a>
+                                        </li>
+        
+                                        <li>
+                                            <a href="share.html" class="depth2"> 주제공유 </a>
+                                        </li>
+                                    </ul>
                                 </li>
 
                                 <li>
-                                    <a href="test.html" class="depth2"> 검사 </a>
+                                    <a href="counsel.html" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">취업준비</strong></strong></a>
+                                    <ul class="sub-list" style="display: none;">
+
+                                    <li>
+                                        <a href="counsel.html" class="depth2"> 상담 </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="test.html" class="depth2"> 검사 </a>
+                                    </li>
+                                    </ul>
                                 </li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="gnb-bg" style="display: none;">
+                    <div class="flex-sb">
+                        <p class="txt-info"><strong class="stress2"></strong></p>
+                        <ul class="mypage-menu">
+                            <li>
+                                <a href="mypage.html" class="depth1">마이페이지</a>
+                                <ul class="">
+                                    <li><a href="editProfile.html" class="depth2">내 정보 수정 </a></li>
+                                    <li><a href="#" class="depth2">학습 진척도</a></li>
                                 </ul>
                             </li>
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
-            </nav>
-            <div class="gnb-bg" style="display: none;">
-                <div class="flex-sb">
-                    <p class="txt-info"><strong class="stress2"></strong></p>
-                    <ul class="mypage-menu">
-                        <li>
-                            <a href="mypage.html" class="depth1">마이페이지</a>
-                            <ul class="">
-                                <li><a href="editProfile.html" class="depth2">내 정보 수정 </a></li>
-                                <li><a href="#" class="depth2">학습 진척도</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                <ul class="util-menu">
+                    <li class="login"><a href="login.html" class="btn sm">로그인</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!-- header 시작 -->
+
+    <!-- content 시작 -->
+            <main id="container" class="container">
+                <form name="loginForm" id="loginForm" action="/auth/actionLogin.do" method="post">
+                    <section id="content" class="content">
+                        <header class="tit-area">
+                            <h1 class="tit-type1">로그인</h1>
+                        </header>
+                        <section class="login-wrap">
+                            <fieldset>
+                                <legend>로그인 정보</legend>
+                                <div class="form-area">
+                                    <input type="text" class="input" name="id" id="id" title="아이디 입력" placeholder="아이디를 입력해주세요.">
+                                    <p class="error">입력값을 확인해주세요</p>
+                                </div>
+                                <div class="form-area">
+                                    <input type="password" class="input" name="password" id="password" onkeypress="fn_enter_key_in(event)" title="비밀번호 입력" placeholder="비밀번호를 입력해주세요.">
+                                </div>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <input type="button" class="btn" id="btnLogin" value="로그인"><!-- 로그인  -->
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <div class="join-area">
+                                    <p class="txt">아직 회원이 아니신가요?</p>
+                                    <a href="join.html" class="btn sm info">회원가입</a>	<!-- 회원가입  -->
+                                </div>
+                            </fieldset>
+                        </section>
+                    </section>
+                    </form>
+            </main>
+    <!-- content 끝 -->
+            
+    <!-- footer 시작 -->
+        <footer id="footer" class="footer">
+            <div class="util-wrap">
+                <div class="info-menu">
+                    <span class="txt">대한민국</span>
+                    <span class="txt">만든이: 김명진 이가은 최소현 최재원</span>
                 </div>
             </div>
-            <ul class="util-menu">
-                <li class="login"><a href="login.html" class="btn sm">로그인</a></li>
-            </ul>
+            <p class="copyright">
+                COPYRIGHTS 2024 K.L.C.C ALL RIGHTS RESERVED.
+            </p>
+        </footer>
+    <!-- footer 끝 -->
+    
         </div>
-    </div>
-</header>
-<!-- header 시작 -->
-
-<!-- content 시작 -->
-	    <main id="container" class="container">
-		    <form name="loginForm" id="loginForm" action="/auth/actionLogin.do" method="post">
-		        <section id="content" class="content">
-		            <header class="tit-area">
-		                <h1 class="tit-type1">로그인</h1>
-		            </header>
-		            <section class="login-wrap">
-		                <fieldset>
-		                    <legend>로그인 정보</legend>
-		                    <div class="form-area">
-		                        <input type="text" class="input" name="id" id="id" title="아이디 입력" placeholder="아이디를 입력해주세요.">
-		                        <p class="error">입력값을 확인해주세요</p>
-		                    </div>
-		                    <div class="form-area">
-		                        <input type="password" class="input" name="password" id="password" onkeypress="fn_enter_key_in(event)" title="비밀번호 입력" placeholder="비밀번호를 입력해주세요.">
-		                    </div>
-                            <p>&nbsp;</p>
-                            <p>&nbsp;</p>
-		                    <input type="button" class="btn" id="btnLogin" value="로그인"><!-- 로그인  -->
-                            <p>&nbsp;</p>
-                            <p>&nbsp;</p>
-		                    <div class="join-area">
-		                        <p class="txt">아직 회원이 아니신가요?</p>
-		                        <a href="join.html" class="btn sm info">회원가입</a>	<!-- 회원가입  -->
-		                    </div>
-		                </fieldset>
-		            </section>
-		        </section>
-		        </form>
-	    </main>
-<!-- content 끝 -->
-         
-<!-- footer 시작 -->
-<footer id="footer" class="footer">
-    <div class="util-wrap">
-        <div class="info-menu">
-            <span class="txt">대한민국</span>
-            <span class="txt">만든이: 김명진 이가은 최소현 최재원</span>
-        </div>
-    </div>
-    <p class="copyright">
-        COPYRIGHTS 2024 K.L.C.C ALL RIGHTS RESERVED.
-    </p>
-</footer>
-<!-- footer 끝 -->
-	</div>
-
-</body>
+    </body>
 </html>

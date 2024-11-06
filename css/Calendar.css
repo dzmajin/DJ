@@ -1,59 +1,55 @@
-	 /*#1 */
-     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
  
-     /*#2 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-     
-     /*#3 */
-    button {
-      /* button 요소에 기본적으로 설정되는 스타일 속성 초기화 */
-      border: none;
-      outline: none;
-      background-color: transparent;
-      padding: 0;
-      cursor: pointer;
-    }
- 
-    /*#5 */
-    .wrapper {
-      width: 450px;
-      background: #fff;
-      border-radius: 10px;
-      padding: 25px;
-      border: 2px solid #ddd; /* 테두리 추가 */
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 추가 (선택 사항) */
-  }
-  
    
-  /*#6*/
-  .wrapper .nav {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+     
+     
+button {
+    /* button 요소에 기본적으로 설정되는 스타일 속성 초기화 */
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+}
+ 
+
+.wrapper {
+    width: 450px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 25px;
+    border: 2px solid #ddd; /* 테두리 추가 */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 추가 (선택 사항) */
+    }
+
+.wrapper .nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 30px;
-  }
-  .wrapper .nav .current-date {
+    }
+.wrapper .nav .current-date {
     font-size: 24px;
     font-weight: 600;
-  }
-  .wrapper .nav button {
+    }
+.wrapper .nav button {
     width: 38px;
     height: 38px;
     font-size: 30px;
     color: #878787;
-  }
-  	/*#7*/
-    .calendar ul {
-      display: flex;
-      list-style: none;
-      flex-wrap: wrap;
-      text-align: center;
-  }
+}
+.calendar ul {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    text-align: center;
+}
   .calendar .weeks li {
       font-weight: 500;
   }

@@ -20,26 +20,24 @@
         <div class="wrap">
             <script type="text/javaScript" language="javascript">
                 function getCookie(cname) {
-                   var name = cname + "=";
-                   var decodedCookie = decodeURIComponent(document.cookie);
-                   var ca = decodedCookie.split(';');
-                   for(var i = 0; i <ca.length; i++) {
-                     var c = ca[i];
-                     while (c.charAt(0) == ' ') {
-                       c = c.substring(1);
-                     }
-                     if (c.indexOf(name) == 0) {
-                       return c.substring(name.length, c.length);
-                     }
-                   }
-                   return "";
-                 }
-              
-                  function pad(n, width) {
+                    var name = cname + "=";
+                    var decodedCookie = decodeURIComponent(document.cookie);
+                    var ca = decodedCookie.split(';');
+                    for(var i = 0; i <ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+                }
+                function pad(n, width) {
                     n = n + '';
                     return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
-                  }
-              
+                }
                 var objLeftTime;
                 var objClickInfo;
                 var latestTime;
@@ -50,7 +48,6 @@
                 var stateExpiredTime = false;
                 var logoutUrl = "/auth/actionLogout.do";
                 var timer;
-              
                 function init() {
                     objLeftTime = document.getElementById("leftTimeInfo");
                     
@@ -94,14 +91,11 @@
                     //objLeftTime.outerText = pad(timeHour,2) +":"+ pad(timeMin,2) +":"+ pad(timeSec,2);
                     objLeftTime.innerHTML = pad(timeHour,2) +":"+ pad(timeMin,2) +":"+ pad(timeSec,2);
                 }
-              
                 function reqTimeAjax() {
-                      
-                      if (stateExpiredTime==true) {
-                          alert('시간을 연장할수 없습니다.');
-                          return;
-                      }
-                      
+                    if (stateExpiredTime==true) {
+                        alert('시간을 연장할수 없습니다.');
+                        return;
+                    }
                     $.ajax({
                         url:'/uat/uia/refreshSessionTimeout.do', //request 보낼 서버의 경로
                         type:'get', // 메소드(get, post, put 등)
@@ -129,7 +123,8 @@
                     location.href = logoutUrl;
                 }
             </script>
-<!-- header 시작 -->
+            
+    <!-- header 시작 -->
             <header id="header" class="header">
 
                 <div class="top-wrap">
@@ -230,9 +225,9 @@
                     </div>
                 </div>
             </header>
-<!-- header 끝 -->
+    <!-- header 끝 -->
 
-<!-- content 시작 -->
+    <!-- content 시작 -->
             <main id="container" class="container">
                 <section id="content" class="content">
                     <header class="tit-area">
@@ -240,18 +235,17 @@
                     </header>
                     <div class="swiper tab type1 swiper-initialized swiper-horizontal swiper-free-mode swiper-backface-hidden">
                         <div class="swiper-wrapper">
-                          <a href="research_contest.html" class="swiper-slide"><span class="txt">공모전 일정</span></a>
-                          <a href="#" class="swiper-slide"><span class="txt">학회 일정</span></a>
-                          <a href="academic.html" class="swiper-slide current swiper-slide-active"><span class="txt">학술사이트</span></a>
+                        <a href="research_contest.html" class="swiper-slide"><span class="txt">공모전 일정</span></a>
+                        <a href="#" class="swiper-slide"><span class="txt">학회 일정</span></a>
+                        <a href="academic.html" class="swiper-slide current swiper-slide-active"><span class="txt">학술사이트</span></a>
                         </div>
                         <div class="swiper-button-next swiper-button-disabled swiper-button-lock"></div>
                         <p>&nbsp;</p>
                         <p>&nbsp;</p>
                         <p>&nbsp;</p>
-                    <section class="sticky-con" id="training">
-                        
+                    
                         <div class="tab-con on">
-                            <ul class="sports-list academic-list">
+                            <ul class="c-list academic-list">
                                 <li>
                                     <a href="https://dl.nanet.go.kr/index.do" class="plus center" target="_blank">
                                         <figure class="img">
@@ -342,12 +336,11 @@
                                 </li>
                             </ul>
                         </div>
-                    </section>
                 </section>
             </main>
-<!-- content 끝 -->
+    <!-- content 끝 -->
 
-<!-- footer 시작 -->
+    <!-- footer 시작 -->
             <footer id="footer" class="footer">
                 <div class="util-wrap">
                     <div class="info-menu">
@@ -359,7 +352,7 @@
                     COPYRIGHTS 2024 K.L.C.C ALL RIGHTS RESERVED.
                 </p>
             </footer>
-<!-- footer 끝 -->
+    <!-- footer 끝 -->
 
         </div>
     </body>
