@@ -5,7 +5,7 @@
         <link rel="icon" type="image/svg+xml" href="">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>지식On대진</title>
+        <title>대진 On 정보-주제공유</title>
         <link rel="stylesheet" type="text/css" href="css/common.css">
         <link rel="stylesheet" type="text/css" href="css/reset.css">
         <link rel="stylesheet" type="text/css" href="css/main_DJ.css">
@@ -165,12 +165,15 @@
                 }
             </script>
 
+<!-- header 시작 -->
             <header id="header" class="header">
 
                 <div class="top-wrap">
                     <div class="flex-fs">
                         <button type="button" class="all-menu"><span class="hidden">전체메뉴</span></button>
-                        <a href="main.html" class="home-logo">대진 On 정보</a>
+                        <a href="main.html" class="home-logo">
+                            <img src="image/DJ_logo.png" alt="대진On정보">
+                        </a>
         
                         <nav class="gnb-wrap">
                             <div class="flex-sb">
@@ -196,11 +199,11 @@
                                             <ul class="sub-list" style="display: none;">
                                                 
                                                     <li>
-                                                        <a href="research_contest.html" class="depth2"> 학회일정 </a>
+                                                        <a href="research_contest.html" class="depth2"> 공모전일정 </a>
                                                     </li>
                                                 
                                                     <li>
-                                                        <a href="" class="depth2"> 공모전일정 </a>
+                                                        <a href="#" class="depth2"> 학회일정 </a>
                                                     </li>
                                                 
                                                     <li>
@@ -248,10 +251,10 @@
                                 <p class="txt-info"><strong class="stress2"></strong> </p>
                                 <ul class="mypage-menu">
                                     <li>
-                                        <a href="/util/myPage/currentSituation.do" class="depth1">마이페이지</a>
+                                        <a href="mypage.html" class="depth1">마이페이지</a>
                                         <ul class="">
-                                            <li><a href="/util/myPage/myInfoEdit.do" class="depth2">내 정보 수정 </a></li>
-                                            <li><a href="/util/myPage/currentSituation.do" class="depth2">학습 진척도</a></li>
+                                            <li><a href="editProfile.html" class="depth2">내 정보 수정 </a></li>
+                                            <li><a href="#" class="depth2">학습 진척도</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -263,7 +266,9 @@
                     </div>
                 </div>
             </header>
-            <!-- content -->
+<!-- header 끝 -->
+
+<!-- content 시작-->
             <main id="container" class="container">
         
                 <form method="post" action="share.html" id="form">
@@ -335,7 +340,7 @@
                             <a href="#" onclick="fncSearch(1);" class="move first"><span class="hidden">처음</span></a>
                             <a href="#" onclick="fncSearch(-1);" class="move prev"><span class="hidden">이전</span></a>
                         </div>
-                        <div class="paging-con"><!-- D : pc는 최대 10개까지 모바일은 3개만 나옵니다. -->
+                        <div class="paging-con">
                             <ul>
                                 <strong class="page current"><span class="hidden">현재페이지</span><a onclick="return false;">1</a></strong>
         
@@ -354,7 +359,7 @@
 
                 </section>
             </main>
-
+<!-- content 끝 -->
 
             <footer id="footer" class="footer">
                 <div class="util-wrap">
