@@ -89,7 +89,7 @@
     width: 4.5rem;
     height: 4.5rem;
     margin: var(--margin--auto) 1.6rem;
-    background: url(../image//ico_txt_check.svg) no-repeat 0 0 / 100%; 
+    background: url(../image/ico_txt_check.svg) no-repeat 0 0 / 100%; 
 }
 .join-form dt {
     margin: 1.5rem 0 0.4rem;
@@ -394,10 +394,7 @@
     outline: 0;
     box-shadow: none;
 }
-.form-area .input.calendar {
-    background: url(../images/common/ico_calendar.svg) no-repeat right 0.25rem top 50% / 1.6rem;
-    background-color: var(--white);
-}
+
 .form-area .textarea {
     flex: 1;
     width: 100%;
@@ -446,17 +443,7 @@
 .form-area .textarea::-webkit-scrollbar-track {
     background-color: transparent;
 }
-.form-area .delete {
-    display: none;
-    position: absolute;
-    top: 50%;
-    right: 0.8rem;
-    width: 1rem;
-    height: 1rem;
-    background: url(../images/common/btn_input_delete.png) no-repeat 50% 50%;
-    background-size: var(--w100);
-    transform: var(--y50);
-}
+
 .form-area .select {
     flex: 1;
     padding: 0 0.6rem 0 0.8rem;

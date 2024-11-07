@@ -73,54 +73,43 @@
 			
 			// 정보수정
 			$(function() {
-				
-				$("#editInfo").click(function() {
-					
-					if(!confirm("저장 하시겠습니까?")) {
-						return;
-					}
-					const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{9,20}$/;
-					var id = $('#userPw').val();
-					if(password_input_flag){
-						if(passwordRegex.test(id)){
-							if(id !== $('#userPwChk').val()){
-								alert("비밀번호 일치 확인");
-								return;
-							}
-						}else{
-							alert("9~20자 이하의 영문+숫자+특수문자 조합이어야합니다.")
+					$("#editInfo").click(function() {
+						if (!confirm("저장 하시겠습니까?")) {
 							return;
 						}
-					}
-					
-		
-					$.ajax({
-						type : "POST",
-						url : '/uss/umt/editMyinfo.do',
-						data : formData,
-						processData: false,
-						contentType: false,				
-						dataType : 'json',
-						async:false,
 
+						// 비밀번호 일치 확인
+						if ($('#userPw').val() !== $('#userPwChk').val()) {
+							alert("비밀번호가 일치하지 않습니다.");
+							return;
+						}
+
+						// 비밀번호가 일치할 경우 저장 처리
+						alert("비밀번호가 일치합니다.");
+						// 여기에 저장 처리 로직 추가
+
+						// formData 객체 생성
+						var formData = new FormData();
+						// 필요한 데이터를 formData에 추가할 수 있습니다.
+
+						$.ajax({
+							type: "POST",
+							url: '/uss/umt/editMyinfo.do',
+							data: formData,
+							processData: false,
+							contentType: false,
+							dataType: 'json',
+							async: false,
+							success: function(response) {
+								// 성공 처리 로직 추가
+							},
+							error: function(request, status, error) {
+								// 오류 처리 로직 추가
+							}
+						});
 					});
 				});
-			});
-		
-			
-			function pswdChk(){
-				const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{9,20}$/;
-				var id = $('#userPw').val();
-				if(passwordRegex.test(id)){
-					$('#regex_check').css("display" ,"none");
-				}else{
-					$('#regex_check').css("display" ,"block");
-				}
-			}
-			
-			function onlyNumDot(input) { //숫자 제외 모두 입력가능 onkeyup에 호출해서 사용
-				input.value = input.value.replace(/[^0-9a-zA-Z.]/g, '');
-			}
+
 			
 			function fn_input_password(){
 				if(!password_input_flag){
@@ -423,8 +412,7 @@
 							<dt>신규 비밀번호 입력</dt>
 							<dd>
 								<div class="form-area">
-									<input type="password" class="input" title="신규 비밀번호 입력" name="pswd" id="userPw" onkeydown="pswdChk()" placeholder="9~20자 이하의 영문 + 숫자 + 특수문자 조합" autocomplete="new-password" disabled="">
-									<p id="regex_check" class="unit red">9~20자 이하의 영문+숫자+특수문자 조합으로 사용</p>
+									<input type="password" class="input" title="신규 비밀번호 입력" name="pswd" id="userPw" onkeydown="pswdChk()" placeholder="" autocomplete="new-password" disabled="">
 								</div>
 							</dd>
 							<dt>비밀번호 재확인</dt>
@@ -447,20 +435,20 @@
 		</main>
 	<!-- content 끝-->
 
-	<!-- footer 시작 -->
-		<footer id="footer" class="footer">
-			<div class="util-wrap">
-				<div class="info-menu">
-					<span class="txt">대한민국</span>
-					<span class="txt">만든이: 김명진 이가은 최소현 최재원</span>
-				</div>
+<!-- footer 시작 -->
+	<footer id="footer" class="footer">
+		<div class="util-wrap">
+			<div class="info-menu">
+				<img src="image/DJ_logo_clear.png" class="clearlogo" alt="footer 투명 로고">
+				<span class="txt">제작자</span>
+				<span class="txt">김명진 이가은 최소현 최재원</span>
 			</div>
-			<p class="copyright">
-				COPYRIGHTS 2024 K.L.C.C ALL RIGHTS RESERVED.
-			</p>
-		</footer>
-
-	<!-- footer 끝 -->
+		</div>
+		<p class="copyright">
+			COPYRIGHTS 2024 K.L.C.C ALL RIGHTS RESERVED.
+		</p>
+	</footer>
+<!-- footer 끝 -->	
 		</div>
 	</body>
 </html>
