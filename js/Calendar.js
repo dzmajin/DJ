@@ -1,4 +1,4 @@
-let competitionSchedule = [];  // 전역 변수로 선언
+let competitionSchedule = []; // 전역 변수로 선언
 
 document.addEventListener("DOMContentLoaded", async () => {
     const date = new Date();
@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const currentDate = document.querySelector('.current-date');
-    const daysTag = document.querySelector('.days');
+    const calendarBody = document.getElementById('calendar-body');
     const prevNextIcons = document.querySelectorAll('.nav .material-icons');
 
     // 공모전 일정 데이터 가져오기
@@ -22,11 +22,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         let lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay();
         let lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate();
 
-        let liTag = "";
+        let tableRows = "";
 
         // 이전 달의 날짜 추가
+        let row = "<tr>";
         for (let i = firstDayofMonth; i > 0; i--) {
-            liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
+            row += `<td class="inactive">${lastDateofLastMonth - i + 1}</td>`;
         }
 
         // 현재 달의 날짜 추가
@@ -35,7 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 i === date.getDate() &&
                 currMonth === new Date().getMonth() &&
                 currYear === new Date().getFullYear() 
-                ? 'active' 
+                ? 'today' 
                 : '';
 
             const isCompetitionDay = competitionSchedule.some(event => {
@@ -49,15 +50,21 @@ document.addEventListener("DOMContentLoaded", async () => {
                 );
             });
 
-            liTag += `<li class="${isToday} ${isCompetitionDay ? 'highlight' : ''}">${i}</li>`;
+            row += `<td class="${isToday} ${isCompetitionDay ? 'highlight' : ''}" onclick="showPopup(${i}, ${currMonth}, ${currYear})" style="cursor: pointer;">${i}</td>`;
+
+            if ((i + firstDayofMonth) % 7 === 0) { // 일주일이 끝날 때마다 줄 바꿈
+                tableRows += row + "</tr>";
+                row = "<tr>";
+            }
         }
 
         // 다음 달의 날짜 추가
-        for (let i = lastDayofMonth; i < 6; i++) {
-            liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`;
+        for (let i = lastDayofMonth + 1; i <= 6; i++) {
+            row += `<td class="inactive">${i - lastDayofMonth}</td>`;
         }
+        tableRows += row + "</tr>";
 
-        daysTag.innerHTML = liTag;
+        calendarBody.innerHTML = tableRows;
 
         // 현재 달에 해당하는 공모전 일정 표시
         displayContestSchedule(currYear, currMonth);
@@ -135,19 +142,46 @@ async function fetchCompetitionSchedule(numOfRows = 10, pageNo = 1) {
     }
 }
 
+// 팝업 창을 표시하는 함수
+function showPopup(day, month, year) {
+    const event = competitionSchedule.find(event => {
+        const startDate = new Date(event.sdate);
+        const endDate = new Date(event.edate);
+
+        return (
+            (startDate.getFullYear() === year && startDate.getMonth() === month && startDate.getDate() === day) ||
+            (endDate && endDate.getFullYear() === year && endDate.getMonth() === month && endDate.getDate() === day)
+        );
+    });
+
+    if (event) {
+        const popup = document.getElementById('popup');
+        const popupTitle = document.getElementById('popup-title');
+        const popupDetails = document.getElementById('popup-details');
+
+        popupTitle.textContent = event.contestName;
+        popupDetails.textContent = `${event.scheduleName}: ${event.sdate} - ${event.edate || 'N/A'}`;
+
+        popup.style.display = 'block';
+
+        // 닫기 버튼 클릭 이벤트
+        document.querySelector('.close-btn').addEventListener('click', () => {
+            popup.style.display = 'none';
+        });
+    }
+}
+
 // 공모전 일정 데이터를 가져와서 테이블에 추가하는 함수
 function displayContestSchedule(currYear, currMonth) {
     const contestTable = document.getElementById('contestTable').querySelector('tbody');
     contestTable.innerHTML = ''; // 테이블 초기화
 
-    // 현재 달력에 표시된 년도와 월에 해당하는 일정만 필터링
+    // "시작일"이 현재 달에 해당하는 일정만 필터링
     const filteredSchedule = competitionSchedule.filter(event => {
         const startDate = new Date(event.sdate);
-        const endDate = event.edate ? new Date(event.edate) : null;
 
         return (
-            (startDate.getFullYear() === currYear && startDate.getMonth() === currMonth) ||
-            (endDate && endDate.getFullYear() === currYear && endDate.getMonth() === currMonth)
+            startDate.getFullYear() === currYear && startDate.getMonth() === currMonth
         );
     });
 
@@ -162,3 +196,4 @@ function displayContestSchedule(currYear, currMonth) {
         contestTable.appendChild(row);
     });
 }
+

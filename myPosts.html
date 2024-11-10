@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 	<head>
+		<link rel="icon" type="image/x-icon" href="image/favi.png">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>대진 On 정보-나의기록</title>
@@ -128,8 +129,30 @@
 			}
 			location.href = logoutUrl;
 		}
-	</script>
-	
+
+		// 긴 텍스트를 잘라내고 '...'을 추가하는 함수
+		function truncateText(selector, maxLength) {
+		  const elements = document.querySelectorAll(selector);
+		  elements.forEach(element => {
+			if (element.textContent.length > maxLength) {
+			  element.textContent = element.textContent.substring(0, maxLength) + '...';
+			}
+		  });
+		}
+  
+		// 페이지가 로드된 후 실행
+		document.addEventListener("DOMContentLoaded", function() {
+		  // 모든 댓글 내용이 포함된 <th><a> 요소에 truncate 클래스 추가
+		  const commentLinks = document.querySelectorAll('th > a');
+		  commentLinks.forEach(link => {
+			link.classList.add('truncate');
+		  });
+  
+		  // 글자 수 제한 적용
+		  truncateText('.truncate', 60);
+		});
+	  </script>
+
 	<!-- header 시작 -->
 		<header id="header" class="header">
 
@@ -219,8 +242,9 @@
 								<li>
 									<a href="mypage.html" class="depth1">마이페이지</a>
 									<ul class="">
-										<li><a href="editProfile.html" class="depth2">내 정보 수정 </a></li>
 										<li><a href="#" class="depth2">학습 진척도</a></li>
+										<li><a href="myPosts.html" class="depth2">나의 기록</a></li>
+										<li><a href="editProfile.html" class="depth2">내 정보 수정</a></li>
 									</ul>
 								</li>
 							</ul>
@@ -254,9 +278,10 @@
 				<table class="tbl-view">
 					<thead>
 						<tr>
-							<th>번호</th>
+							<th>NO</th>
 							<th>제목</th>
-							<th>날짜</th>
+							<th>카테고리</th>
+							<th>등록일</th>
 							<th>수정/삭제</th>
 						</tr>
 					</thead>
@@ -264,7 +289,8 @@
 						<!-- 예시 행 -->
 						<tr class="banner_list">
 							<th>1</th>
-							<th><a href="#">게시물 제목 예시</a></th>
+							<th><a href="#">게시물 제목 예시ㅊㅊㅊㅊㅊㅊㅊㅊㅊㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌ</a></th>
+							<th>자유게시판</th>
 							<th>2024-11-06</th>
 							<th>
 								<a href="#" class="edit-link">수정</a> / 
@@ -275,6 +301,36 @@
 					</tbody>
 				</table>
 
+				<h2 class="tit-type2">나의 댓글</h2>
+
+				<!-- 나의 댓글 테이블 -->
+				<table class="tbl-view custom-class">
+					<thead>
+						<tr>
+						  <th>NO</th>
+						  <th>댓글 내용</th>
+						  <th>카테고리</th>
+						  <th>등록일</th>
+						</tr>
+					  </thead>
+					  
+					<tbody>
+						<!-- 예시 행 -->
+						<tr class="banner_list">
+							<th>1</th>
+							<th><a href="#">질문이 있는데 답변 부탁드립니다.</a></th>
+							<th>주제공유</th>
+							<th>2024-11-06</th>
+						  </tr>						  
+						<!-- 추가 게시물 행은 여기에 동적으로 생성될 수 있습니다. -->
+						<tr class="banner_list">
+							<th>2</th>
+							<th><a href="#">이것은 50자 이상의 텍스트를 포함하는 테스트 댓글입니다. 이제 정말 정확히 50자를 넘었습니다.질문이 있는데 답변 부탁드립니다.</a></th>
+							<th>자유게시판</th>
+							<th>2024-11-06</th>
+						  </tr>	
+					</tbody>
+				</table>
 			</section>
 		</main>
 		

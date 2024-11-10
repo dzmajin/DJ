@@ -1,40 +1,8 @@
 @charset "UTF-8";
-/*************************************************
-스포츠월드 - 메인
-**************************************************/
+/* 대진 On 정보 메인 */
 .container {
     padding-top: 5rem;
 }
-.main-sec .tit-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-}
-.main-sec .tit-wrap .link {
-    font-size: 1rem;
-    color: var(--black2);
-    text-decoration: underline;
-}
-.main-sec .more {
-    position: relative;
-    padding-right: 1.2rem;
-    font-size: 0.9rem;
-    color: var(--black2);
-}
-.main-sec .more::after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 50%;
-    right: 0;
-    width: 0.6rem;
-    height: 0.6rem;
-    /* background: url(../images/main/ico_more.svg) no-repeat 0 0 / 100%; */
-    transform: var(--y50);
-}
-
-
 
 /* 화면 너비가 960px 이상일 때 적용되는 .con01 스타일 */
 @media only screen and (min-width: 960px) {

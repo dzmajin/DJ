@@ -11,10 +11,8 @@
         <link rel="stylesheet" type="text/css" href="css/main_DJ.css">
         <link rel="stylesheet" type="text/css" href="css/sub.css">
         <link rel="stylesheet" type="text/css" href="css/swiper-bundle.min.css">
-        <link rel="stylesheet" type="text/css" href="css/slick.css">
 
         <script type="text/javascript" src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="js/slick.js"></script>
         <script type="text/javascript" src="js/swiper-bundle.min.js"></script>
         <script type="text/javascript" src="js/common.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
@@ -270,104 +268,72 @@
     <!-- Hearder 끝 -->
 
     <!-- content 시작 -->
-            <main id="container" class="container">
-        
-                <form method="post" action="notice.html" id="formn">
-                    <input type="hidden" name="pageIndex" id="index">
-                    <input type="hidden" name="searchtype" id="type">
-                    <input type="hidden" name="searchtxt" id="txt">
+    <main id="container" class="container">
+        <section id="content" class="content">
+          <header class="tit-area">
+            <h1 class="tit-type1">게시글</h1>
+          </header>
+      
+          <div class="board-view">
+            <h2 class="hidden">게시물 상세</h2>
+            <div class="board-header">
+              <h2 class="tit">게시물 제목 예시</h2>
+              <ul class="info">
+                <li class="writer">
+                  <em>작성자</em> 작성자 이름 예시
+                </li>
+                <li class="date-area">
+                  <em class="tit">작성일 :</em>
+                  <em>2024-11-10</em>
+                </li>
+              </ul>
+            </div>
+            <div class="board-con">
+              <p>게시물 내용 예시입니다. 이 부분에 게시물 내용을 입력합니다.</p>
+            </div>
+          </div>
+      
+          <div class="btn-area">
+            <a href="/share" class="btn">목록</a>
+          </div>
+      
+          <!-- 로그인 사용자 정보 확인 -->
+          <p>로그인 사용자 ID: username 예시 (타입: string)</p>
+      
+          <!-- 댓글 목록 -->
+          <div class="board-view">
+            <h3>댓글</h3>
+            <ul class="comment-list">
+              <!-- 예시 댓글 1 -->
+              <li class="comment-item">
+                <strong>댓글 작성자 1</strong>
+                <p>댓글 내용 1</p>
+                <small>2024-11-10</small>
+                <form action="/comment/1?_method=DELETE" method="POST" style="display:inline;">
+                  <button type="submit" class="delete-comment-btn">삭제</button>
                 </form>
-            
-                <section id="content" class="content">
-                    <header class="tit-area">
-                        <h1 class="tit-type1">커뮤니티</h1>
-                    </header>
-
-                    <div class="swiper tab type1 swiper-initialized swiper-horizontal swiper-free-mode swiper-backface-hidden">
-                        <div class="swiper-wrapper">
-                            <a href="notice.html" class="swiper-slide current swiper-slide-active">
-                                <span class="txt">공지사항</span>
-                            </a>
-                            <a href="document.html" class="swiper-slide swiper-slide-next">
-                                <span class="txt">자료실</span>
-                            </a>
-                            <a href="share.html" class="swiper-slide swiper-slide">
-                                <span class="txt">주제공유</span>
-                            </a>
-                        </div>
-                        <div class="swiper-button-next swiper-button-disabled swiper-button-lock"></div>
-                    </div>
-
-                    <br>
-                    <br>
-                    
-                    <div class="search-area">
-                        <fieldset class="form-area">
-                            <legend>공지사항 검색어 입력</legend>
-                            <select class="select" id="searchtype" name="searchtype">
-                                <option value="CONTENT_TITLE" selected="selected">전체</option>
-                                <option value="TITLE">제목</option>
-                                <option value="CONTENT">내용</option>
-                            </select>
-                            <input type="text" class="input" id="searchtxt" name="searchtxt" placeholder="검색어 입력" onkeypress="if(event.key === 'Enter') { fncSearch(); }">
-                            <button type="button" class="btn" onclick="fncSearch();">검색</button>
-                        </fieldset>
-                    </div>
-
-                    <br>
-
-                    <table class="board-list">
-                        <caption>자료실에 대한 번호, 제목, 등록일 안내 리스트입니다.</caption>
-                        <thead>
-                            <tr>
-                                <th class="list-num">NO</th>
-                                <th class="list-tit">제목</th>
-                                <th class="list-author">작성자</th> 
-                                <th class="list-date">등록일</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                                <tr>
-                                    <td class="list-num">2</td>
-                                    <td class="list-tit"><a href="#">자료실2</a></td>
-                                    <td class="list-author">관리자</td>
-                                    <td class="list-date">2024-11-10</td>
-                                </tr>
-                            
-                                <tr>
-                                    <td class="list-num">1</td>
-                                    <td class="list-tit"><a href="#">자료실1</a></td>
-                                    <td class="list-author">관리자</td>
-                                    <td class="list-date">2024-10-23</td>
-                                </tr>
-                            
-                            
-                            
-                            <!-- 데이터 없을 때 화면에 출력될 메세지 -->
-                            
-                        </tbody>
-                    </table>
-             
-                    <div class="paging-wrap">
-                        <div class="btn-con">
-                            <a href="#" onclick="fncSearch(1);" class="move first"><span class="hidden">처음</span></a>
-                            <a href="#" onclick="fncSearch(-1);" class="move prev"><span class="hidden">이전</span></a>
-                        </div>
-                        <div class="paging-con">
-                            <ul>
-                                <strong class="page current"><span class="hidden">현재페이지</span><a onclick="return false;">1</a></strong>
-        
-                            </ul>
-                        </div>
-                        
-                        <div class="btn-con">
-                            <a href="#" onclick="fncSearch(1);" class="move next"><span class="hidden">다음</span></a>
-                            <a href="#" onclick="fncSearch(1);" class="move last"><span class="hidden">마지막</span></a>
-                        </div>
-                    </div>
-                </section>
-            </main>
+              </li>
+      
+              <!-- 예시 댓글 2 -->
+              <li class="comment-item">
+                <strong>댓글 작성자 2</strong>
+                <p>댓글 내용 2</p>
+                <small>2024-11-09</small>
+                <!-- 댓글 작성자가 아니므로 삭제 버튼 없음 -->
+              </li>
+            </ul>
+          </div>
+      
+          <!-- 댓글 작성 폼 -->
+          <div class="comment-form">
+            <form action="/post/1/comment" method="POST">
+              <textarea name="content" placeholder="댓글을 작성하세요" required></textarea>
+              <button type="submit">댓글 작성</button>
+            </form>
+          </div>
+        </section>
+      </main>
+      
     <!-- content 끝 -->
 
     <!-- footer 시작 -->

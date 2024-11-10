@@ -242,7 +242,7 @@
     left: 0;
     z-index: 2;
     height: auto;
-    background-color: var(--blue1);
+    background-color: #1F4E9C;
 }
 .swiper.tab.type1 .swiper-slide.current .txt {
     z-index: 2;
