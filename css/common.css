@@ -934,8 +934,10 @@ a:-webkit-any-link {
   width: 7%;
 }
 .board-list thead .list-date,
-.board-list thead .list-author {
-  width: 10%;
+.board-list thead .list-author,
+.board-list thead .list-category,
+.board-list thead .list-action {
+  width: 10%; 
 }
 .board-list thead th {
   padding: 1rem 0;
