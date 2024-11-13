@@ -5,7 +5,7 @@
         <link rel="icon" type="image/svg+xml" href="">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>대진 On 정보-공지사항</title>
+        <title>대진 On 정보-게시글</title>
         <link rel="stylesheet" type="text/css" href="css/common.css">
         <link rel="stylesheet" type="text/css" href="css/reset.css">
         <link rel="stylesheet" type="text/css" href="css/main_DJ.css">
@@ -49,120 +49,8 @@
         </script>
     </head>
 
-    <body class="notice">
+    <body class="post">
         <div class="wrap">
-            <script type="text/javaScript" language="javascript">  
-                function getCookie(cname) {
-                var name = cname + "=";
-                var decodedCookie = decodeURIComponent(document.cookie);
-                var ca = decodedCookie.split(';');
-                for(var i = 0; i <ca.length; i++) {
-                    var c = ca[i];
-                    while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                    }
-                    if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                    }
-                }
-                return "";
-                }
-            
-                function pad(n, width) {
-                n = n + '';
-                return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
-                }
-            
-                var objLeftTime;
-                var objClickInfo;
-                var latestTime;
-                var expireTime;
-                var timeInterval = 1000; // 1초 간격 호출
-                var firstLocalTime = 0;
-                var elapsedLocalTime = 0;
-                var stateExpiredTime = false;
-                var logoutUrl = "/auth/actionLogout.do";
-                var timer;
-            
-                function init() {
-                    objLeftTime = document.getElementById("leftTimeInfo");
-                    
-                    if (objLeftTime == null) {
-                        return;
-                    }
-                    objClickInfo = document.getElementById("clickInfo");
-
-                    latestTime = getCookie("egovLatestServerTime");
-                    expireTime = getCookie("egovExpireSessionTime");
-                    
-                    elapsedTime = 0;
-                    firstLocalTime = (new Date()).getTime();
-                    showRemaining();
-                    
-                    timer = setInterval(showRemaining, timeInterval); // 1초 간격 호출
-                }
-
-                function showRemaining() {
-                    elapsedLocalTime = (new Date()).getTime() - firstLocalTime;
-                    
-                    var timeRemaining = expireTime - latestTime - elapsedLocalTime;
-                    if ( timeRemaining < timeInterval ) {
-                        clearInterval(timer);
-                        objLeftTime.innerHTML = "00:00:00";
-                        objClickInfo.text = '시간만료'; //시간만료
-                        stateExpiredTime = true;
-                        alert('로그인 세션시간이 만료 되었습니다.');//로그인 세션시간이 만료 되었습니다.
-                        // reload content main page
-                        $("#sessionInfo").hide();
-
-                        parent.frames["_content"].location.href = logoutUrl;
-                        //parent.frames["_content"].location.reload();
-
-                        return;
-                    }
-                    var timeHour = Math.floor(timeRemaining/1000/60 / 60); 
-                    var timeMin = Math.floor((timeRemaining/1000/60) % 60);
-                    var timeSec = Math.floor((timeRemaining/1000) % 60);
-                    //objLeftTime.textContent = pad(timeHour,2) +":"+ pad(timeMin,2) +":"+ pad(timeSec,2);
-                    //objLeftTime.outerText = pad(timeHour,2) +":"+ pad(timeMin,2) +":"+ pad(timeSec,2);
-                    objLeftTime.innerHTML = pad(timeHour,2) +":"+ pad(timeMin,2) +":"+ pad(timeSec,2);
-                }
-            
-                function reqTimeAjax() {
-                    
-                    if (stateExpiredTime==true) {
-                        alert('시간을 연장할수 없습니다.');
-                        return;
-                    }
-                    
-                    $.ajax({
-                        url:'/uat/uia/refreshSessionTimeout.do', //request 보낼 서버의 경로
-                        type:'get', // 메소드(get, post, put 등)
-                        data:{}, //보낼 데이터
-                        success: function(data) {
-                            //서버로부터 정상적으로 응답이 왔을 때 실행
-                            latestTime = getCookie("egovLatestServerTime");
-                            expireTime = getCookie("egovExpireSessionTime");
-                            init();
-                            //alert("정상수신 , data = "+data);
-                        },
-                        error: function(err) {
-                            alert("err : "+err);
-                            //서버로부터 응답이 정상적으로 처리되지 못햇을 때 실행
-                            //alert("오류발생 , error="+err.state());
-                        }
-                    });
-                    return false;
-                }
-                
-                function logout() {
-                    if(!confirm("로그아웃을 진행 하시겠습니까?")) {
-                        return;
-                    }
-                    location.href = logoutUrl;
-                }
-            </script>
-
     <!-- Hearder 시작 -->
             <header id="header" class="header">
 
@@ -201,29 +89,25 @@
                                                     </li>
                                                 
                                                     <li>
-                                                        <a href="" class="depth2"> 학회일정 </a>
-                                                    </li>
-                                                
-                                                    <li>
                                                         <a href="academic.html" class="depth2"> 학술사이트 </a>
                                                     </li>
                                             </ul>
                                         </li>
                         
                                         <li>
-                                            <a href="notice.html" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">커뮤니티</strong></strong></a>
+                                            <a href="document.html" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">커뮤니티</strong></strong></a>
                                             <ul class="sub-list" style="display: none;">
-                                                
-                                                <li>
-                                                    <a href="notice.html" class="depth2"> 공지사항 </a>
-                                                </li>
                                                 
                                                 <li>
                                                     <a href="document.html" class="depth2"> 자료실 </a>
                                                 </li>
-                
+                                                
                                                 <li>
                                                     <a href="share.html" class="depth2"> 주제공유 </a>
+                                                </li>
+                
+                                                <li>
+                                                    <a href="community.html" class="depth2"> 자유게시판 </a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -296,13 +180,13 @@
           <div class="btn-area">
             <a href="/share" class="btn">목록</a>
           </div>
-      
-          <!-- 로그인 사용자 정보 확인 -->
-          <p>로그인 사용자 ID: username 예시 (타입: string)</p>
+
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
       
           <!-- 댓글 목록 -->
           <div class="board-view">
-            <h3>댓글</h3>
+            <h3 class = "tit-type3">댓글</h3>
             <ul class="comment-list">
               <!-- 예시 댓글 1 -->
               <li class="comment-item">
@@ -310,7 +194,7 @@
                 <p>댓글 내용 1</p>
                 <small>2024-11-10</small>
                 <form action="/comment/1?_method=DELETE" method="POST" style="display:inline;">
-                  <button type="submit" class="delete-comment-btn">삭제</button>
+                    <button type="submit" class="pbtn">삭제</button>
                 </form>
               </li>
       
@@ -331,6 +215,9 @@
               <button type="submit">댓글 작성</button>
             </form>
           </div>
+
+          <!-- 로그인 사용자 정보 확인 -->
+          <p>로그인 사용자 ID: username 예시 (타입: string)</p>
         </section>
       </main>
       
