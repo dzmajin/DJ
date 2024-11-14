@@ -109,16 +109,6 @@ input,select,textarea{
     -moz-appearance:none;
     box-sizing:border-box
 }
-input[type=checkbox]{
-    appearance:none;
-    -webkit-appearance:none;
-    -moz-appearance:none
-}
-input[type=radio]{
-    appearance:radio;
-    -webkit-appearance:radio;
-    -moz-appearance:radio
-}
 select::-ms-expand{
     display:none
 }
@@ -135,12 +125,15 @@ button{
     appearance:none;
     -webkit-appearance:none;
     cursor:pointer;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.05);
 }
 a,a:active,a:focus,a:hover,a:link,a:visited{
     text-decoration:none;
     line-height: inherit;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.05);
+}
+/* 글쓰기 버튼 페이지네이션과 일직선상 위치 */
+.sharebutton a {
+    text-decoration: none;
+    line-height: 40px;
 }
 
 /* 테이블 안의 링크 색상 */
@@ -182,4 +175,11 @@ a,a:active,a:focus,a:hover,a:link,a:visited{
     width: 100%;
     outline:none;
     border:solid 3px #00ff00
+}
+.categorybtn {
+    height: 35px;
+    border: 1.5px rgb(68, 136, 244) solid;
+    border-radius: 5px;
+    width: 600px;
+    padding-left: 10px;
 }

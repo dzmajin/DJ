@@ -55,23 +55,8 @@
             <div class="container-fluid px-4">
             <h1 class="mt-4">자료실 관리</h1>
             <p>&nbsp;</p>
-            <div class="card mb-4">
-                <div class="card-header">
-                    글쓰기
-                </div>
-                <div class="card-body">
-                    <form action="/admin/posts/create" method="POST">
-                        <div class="mb-3">
-                            <label for="title" class="form-label">제목</label>
-                            <input type="text" class="form-control" id="title" name="title" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="content" class="form-label">내용</label>
-                            <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">글 작성</button>
-                    </form>
-                </div>
+            <div class="mb-4">
+                <a href="/admin/documents/write" class="btn btn-primary">글쓰기</a>
             </div>
             <p>&nbsp;</p>
             <div class="card mb-4">

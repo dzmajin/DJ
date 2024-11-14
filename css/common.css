@@ -79,7 +79,6 @@ p * {
 * {
   margin: 0;
   padding: 0;
-  -webkit-tap-highlight-color: transparent;
   box-sizing: border-box;
 }
 div {
@@ -1263,19 +1262,19 @@ body.scroll-lock {
 }
 .paging-wrap .move.first {
     margin-left: 0;
-    background-image: url(/image/ico_paging_first.svg);
+    background-image: url(../image/ico_paging_first.svg);
 }
 .paging-wrap .move.prev {
     margin-right: 1.2rem;
-    background-image: url(/image/ico_paging_prev.svg);
+    background-image: url(../image/ico_paging_prev.svg);
 }
 .paging-wrap .move.next {
     margin-left: 1.2rem;
-    background-image: url(/image/ico_paging_next.svg);
+    background-image: url(../image/ico_paging_next.svg);
 }
 .paging-wrap .move.last {
     margin-right: 0;
-    background-image: url(/image/ico_paging_last.svg);
+    background-image: url(../image/ico_paging_last.svg);
 } 
 .paging-wrap .page {
   width: 1.9rem;
@@ -1283,7 +1282,7 @@ body.scroll-lock {
   color: var(--black2);
 }
 .paging-wrap .page.current {
-  font-weight: 400;
+  font-weight: bold;
 }
 
 
@@ -1377,10 +1376,31 @@ ul.quick_list > li > a {
   line-height: 40px;
   padding: 0;
   color: white;
+  padding: 10px 15px 10px 15px;
 }
-
 .sb:active {
   background-color: #4b79ee;
+}
+
+/* 페이지네이션이랑 sharebutton */
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .button-container {
+      flex-direction: column; /*작은 화면에서는 수직 배치로 전환 */
+      align-items: center;
+  }
+
+  .sharebutton {
+      position: relative; /*화면이 작아지면 고정 위치에서 벗어남 */
+      bottom: auto;
+      right: auto;
+  }
 }
 
 /* 글 쓰기 부분*/
