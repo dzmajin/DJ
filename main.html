@@ -65,26 +65,25 @@
 				</li>
 				</ul>
 			</aside>
-	<!-- sidebar 끝 -->
+			<script>
+				function toggleContent() {
+				var items = document.querySelectorAll("#following-content ul li:not(.close)");
+				var button = document.getElementById("toggle-button");
 
-	<!-- Chatbot 시작 -->
-	<div id="chatbot-button">
-		<button onclick="toggleChatbot()">
-			<img src="image/cb.png" alt="Chatbot" />
-		</button>
-	</div>
-	<div id="chatbot-popup">
-		<div class="chatbot-header">
-			<h4>대진 On 정보 챗봇</h4>
-			<button class="cbclose" onclick="toggleChatbot()">✖</button>
-		</div>
-		<div id="chat-messages"></div>
-		<div class="chat-input-area">
-			<input type="text" id="chat-input" placeholder="메시지를 입력하세요">
-			<button onclick="sendMessage()">Send</button>
-		</div>
-	</div>
-	<!-- Chatbot 끝 -->
+				if (items[0].style.display === "none") {
+				items.forEach(function(item) {
+					item.style.display = "list-item";
+				});
+				button.textContent = "닫힘";
+				} else {
+				items.forEach(function(item) {
+					item.style.display = "none";
+				});
+				button.textContent = "열림";
+				}
+			}
+			</script>
+	<!-- sidebar 끝 -->
 	
 	<!-- header 시작 -->
 		<header id="header" class="header">
@@ -327,7 +326,7 @@
 							<a href="research_contest.html"> 
 								<span>
 									<span class="tt">일정</span>
-									<span class="text">학회, 공모전 일정</span>
+									<span class="text">최신 공모전 일정</span>
 								</span>
 							</a>
 						</li>

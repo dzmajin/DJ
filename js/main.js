@@ -36,44 +36,4 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 챗봇 열기/닫기 기능
-    function toggleChatbot() {
-        const popup = document.getElementById("chatbot-popup");
-        popup.style.display = popup.style.display === "flex" ? "none" : "flex";
-    }
-
-    document.getElementById("chatbot-button").addEventListener("click", toggleChatbot);
-    document.querySelector(".cbclose").addEventListener("click", toggleChatbot);
-
-    // 메시지 보내기 기능
-    function sendMessage() {
-        const input = document.getElementById("chat-input");
-        const message = input.value.trim();
-        if (message) {
-            addMessage("user", message);
-            input.value = "";
-
-            // Simulate AI Response
-            setTimeout(() => {
-                addMessage("bot", "안녕하세요 대진 On 정보 챗봇입니다.");
-            }, 500);
-        }
-    }
-
-    // 메시지 추가
-    function addMessage(sender, text) {
-        const messagesDiv = document.getElementById("chat-messages");
-        const messageDiv = document.createElement("div");
-        messageDiv.className = sender;
-        messageDiv.textContent = text;
-        messagesDiv.appendChild(messageDiv);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }
-
-    // 챗봇 초기화
-    const popup = document.getElementById("chatbot-popup");
-    popup.style.display = "none";
-    document.getElementById("chat-input").addEventListener("keypress", function (e) {
-        if (e.key === "Enter") sendMessage();
-    });
 });

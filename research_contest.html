@@ -23,6 +23,26 @@
 
     <body class="research_contest">
         <div class="wrap">
+
+        <!-- Chatbot 시작 -->
+		<div id="chatbot-button">
+			<button onclick="toggleChatbot()">
+				<img src="image/cb.png" alt="Chatbot" />
+			</button>
+		</div>
+		<div id="chatbot-popup">
+			<div class="chatbot-header">
+				<h4>대진 On 정보 챗봇</h4>
+				<button class="cbclose" onclick="toggleChatbot()">✖</button>
+			</div>
+			<div id="chat-messages"></div>
+			<div class="chat-input-area">
+				<input type="text" id="chat-input" placeholder="메시지를 입력하세요">
+				<button onclick="sendMessage()">Send</button>
+			</div>
+		</div>
+	<!-- Chatbot 끝 -->
+    
     <!-- Header 시작 -->
             <header id="header" class="header">
         
@@ -71,17 +91,17 @@
                                             <a href="document.html" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">커뮤니티</strong></strong></a>
                                             <ul class="sub-list" style="display: none;">
                                                 
-                                                <li>
-                                                    <a href="document.html" class="depth2"> 자료실 </a>
-                                                </li>
+                                                    <li>
+                                                        <a href="document.html" class="depth2"> 자료실 </a>
+                                                    </li>
                                                 
-                                                <li>
-                                                    <a href="share.html" class="depth2"> 주제공유 </a>
-                                                </li>
-                
-                                                <li>
-                                                    <a href="community.html" class="depth2"> 자유게시판 </a>
-                                                </li>
+                                                    <li>
+                                                        <a href="share.html" class="depth2"> 주제공유 </a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a href="community.html" class="depth2"> 자유게시판 </a>
+                                                    </li>
                                             </ul>
                                         </li>
         
@@ -125,81 +145,77 @@
     <!-- Header 끝 -->
 
 <!-- content 시작 -->
-<main id="container" class="container">
-    <section id="content" class="content">
-        <header class="tit-area">
-            <h1 class="tit-type1">연구정보</h1>
-        </header>
-        <div class="swiper tab type1 swiper-initialized swiper-horizontal swiper-free-mode swiper-backface-hidden">
-            <div class="swiper-wrapper">
-                <a href="research_contest.html" class="swiper-slide current swiper-slide-active"><span class="txt">공모전 일정</span></a>
-                <a href="academic.html" class="swiper-slide"><span class="txt">학술사이트</span></a>
-            </div>
-            <div class="swiper-button-next swiper-button-disabled swiper-button-lock"></div>
-        </div>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
+            <main id="container" class="container">
+                <section id="content" class="content">
+                    <header class="tit-area">
+                        <h1 class="tit-type1">연구정보</h1>
+                    </header>
+                    <div class="swiper tab type1 swiper-initialized swiper-horizontal swiper-free-mode swiper-backface-hidden">
+                        <div class="swiper-wrapper">
+                            <a href="research_contest.html" class="swiper-slide current swiper-slide-active"><span class="txt">공모전 일정</span></a>
+                            <a href="academic.html" class="swiper-slide"><span class="txt">학술사이트</span></a>
+                        </div>
+                        <div class="swiper-button-next swiper-button-disabled swiper-button-lock"></div>
+                    </div>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
 
-        <div class="wrapper">
-            <header>
-                <div class="nav">
-                    <button id="prev" class="material-icons"> chevron_left </button>
-                    <p class="current-date"></p>
-                    <button id="next" class="material-icons"> chevron_right </button>
-                </div>
-            </header>
-            <table>
-                <caption class="blind">달력</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">일</th>
-                        <th scope="col">월</th>
-                        <th scope="col">화</th>
-                        <th scope="col">수</th>
-                        <th scope="col">목</th>
-                        <th scope="col">금</th>
-                        <th scope="col">토</th>
-                    </tr>
-                </thead>
-                <tbody id="calendar-body">
-                    <!-- 자바스크립트로 날짜가 동적으로 생성됩니다. -->
-                </tbody>
-            </table>
-        </div>
+                    <div class="wrapper">
+                        <header>
+                            <div class="nav">
+                                <button id="prev" class="material-icons"> chevron_left </button>
+                                <p class="current-date"></p>
+                                <button id="next" class="material-icons"> chevron_right </button>
+                            </div>
+                        </header>
+                        <table>
+                            <caption class="blind">달력</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">일</th>
+                                    <th scope="col">월</th>
+                                    <th scope="col">화</th>
+                                    <th scope="col">수</th>
+                                    <th scope="col">목</th>
+                                    <th scope="col">금</th>
+                                    <th scope="col">토</th>
+                                </tr>
+                            </thead>
+                            <tbody id="calendar-body">
+                                <!-- 자바스크립트로 날짜가 동적으로 생성 -->
+                            </tbody>
+                        </table>
+                    </div>
 
-        <!-- 팝업 창 추가 -->
+                    <!-- 팝업 창 추가 -->
+                    <div id="popup" class="popup-overlay" style="display: none;">
+                        <div class="popup-content">
+                            <span class="close-btn">&times;</span>
+                            <h2 id="popup-title">공모전 정보</h2>
+                            <p id="popup-details">공모전 세부 정보가 여기에 표시됩니다.</p>
+                        </div>
+                    </div>
 
-        <div id="popup" class="popup-overlay" style="display: none;">
-            <div class="popup-content">
-                <span class="close-btn">&times;</span>
-                <h2 id="popup-title">공모전 정보</h2>
-                <p id="popup-details">공모전 세부 정보가 여기에 표시됩니다.</p>
-            </div>
-        </div>
+                    <!-- 공모전 일정 테이블 (필요에 따라 사용) -->
+                    <div class="contest-schedule-box">
+                        <h3>공모전 일정</h3>
+                        <table id="contestTable">
+                            <thead>
+                                <tr>
+                                    <th>공모전 이름</th>
+                                    <th>시작일</th>
+                                    <th>종료일</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- API로부터 데이터를 받아 여기에 추가할 예정 -->
+                            </tbody>
+                        </table>
+                    </div>
 
-
-
-        <!-- 공모전 일정 테이블 (필요에 따라 사용) -->
-        <div class="contest-schedule-box">
-            <h3>공모전 일정</h3>
-            <table id="contestTable">
-                <thead>
-                    <tr>
-                        <th>공모전 이름</th>
-                        <th>시작일</th>
-                        <th>종료일</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- API로부터 데이터를 받아 여기에 추가할 예정 -->
-                </tbody>
-            </table>
-        </div>
-
-    </section>
-</main>
-
+                </section>
+            </main>
     <!-- content 끝 -->
 
     <!-- footer 시작 -->
@@ -216,6 +232,61 @@
 			</p>
 		</footer>
 	<!-- footer 끝 -->
+
+    <script>
+        // Toggle Chatbot Visibility
+        function toggleChatbot() {
+            const popup = document.getElementById("chatbot-popup");
+
+            // 현재 상태를 토글
+            if (popup.style.display === "flex") {
+                popup.style.display = "none"; // 팝업 닫기
+            } else {
+                popup.style.display = "flex"; // 팝업 열기
+            }
+        }
+
+        // Send Message Functionality
+        function sendMessage() {
+            const input = document.getElementById("chat-input");
+            const message = input.value.trim();
+            if (message) {
+                addMessage("user", message); // 사용자 메시지 추가
+                input.value = ""; // 입력 필드 초기화
+
+                // Simulate AI Response
+                setTimeout(() => {
+                    addMessage("bot", "안녕하세요 대진 On 정보 챗봇입니다.");
+                }, 500);
+            }
+        }
+
+        // Add Messages to Chat Window
+        function addMessage(sender, text) {
+            const messagesDiv = document.getElementById("chat-messages");
+            const messageDiv = document.createElement("div");
+            messageDiv.className = sender;
+            messageDiv.textContent = text;
+            messagesDiv.appendChild(messageDiv);
+
+            // 메시지 추가 후 스크롤 하단으로 이동
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        // Handle Enter Key Press
+        document.getElementById("chat-input").addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                sendMessage(); // Enter 키 입력 시 메시지 전송
+                event.preventDefault(); // 기본 Enter 동작(줄바꿈) 방지
+            }
+        });
+
+        // 초기화
+        document.addEventListener("DOMContentLoaded", () => {
+            const popup = document.getElementById("chatbot-popup");
+            popup.style.display = "none"; // 초기 상태는 숨김
+        });
+    </script>
 
         </div>     
     </body>
