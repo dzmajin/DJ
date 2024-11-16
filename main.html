@@ -65,36 +65,33 @@
 				</li>
 				</ul>
 			</aside>
-
-			<script>
-				function toggleContent() {
-				var items = document.querySelectorAll("#following-content ul li:not(.close)");
-				var button = document.getElementById("toggle-button");
-
-				if (items[0].style.display === "none") {
-				items.forEach(function(item) {
-					item.style.display = "list-item";
-				});
-				button.textContent = "닫힘";
-				} else {
-				items.forEach(function(item) {
-					item.style.display = "none";
-				});
-				button.textContent = "열림";
-				}
-			}
-
-			</script>
-
 	<!-- sidebar 끝 -->
 
+	<!-- Chatbot 시작 -->
+	<div id="chatbot-button">
+		<button onclick="toggleChatbot()">
+			<img src="image/cb.png" alt="Chatbot" />
+		</button>
+	</div>
+	<div id="chatbot-popup">
+		<div class="chatbot-header">
+			<h4>대진 On 정보 챗봇</h4>
+			<button class="cbclose" onclick="toggleChatbot()">✖</button>
+		</div>
+		<div id="chat-messages"></div>
+		<div class="chat-input-area">
+			<input type="text" id="chat-input" placeholder="메시지를 입력하세요">
+			<button onclick="sendMessage()">Send</button>
+		</div>
+	</div>
+	<!-- Chatbot 끝 -->
 	
 	<!-- header 시작 -->
 		<header id="header" class="header">
 
 			<div class="top-wrap">
 				<div class="flex-fs">
-					<button type="button" class="all-menu"><span class="hidden">전체메뉴</span></button>
+					<button type="button"  id="menuToggle" class="all-menu"><span class="hidden">전체메뉴</span></button>
 					<a href="main.html" class="home-logo">
 						<img src="image/DJ_logo.png" alt="대진On정보">
 					</a>
@@ -117,7 +114,6 @@
 
 										</ul>
 									</li>
-					
 								
 									<li>
 										<a href="research_contest.html" class="depth1"><strong class="left_title_strong"><strong class="top_title_strong">연구정보</strong></strong></a>
@@ -190,6 +186,69 @@
 			</div>
 		</header>
 	<!-- header 끝 -->
+
+	<!-- mainside 태그 -->
+		<mainside id="mainsideContent" class="mo-lnb">
+			<nav class="list-area">
+				<ul class="lnb-list">
+					<li>
+						<a href="login.html" class="link">로그인</a>
+					</li>
+					<li>
+						<a class="link">취업정보</a>
+						<ul class="sub-list">
+							<li>
+								<a href="employment_info.html" class="depth2">취업사이트</a>
+							</li>
+							<li>
+								<a href="careerMap.html" class="depth2">커리어맵</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a class="link">연구정보</a>
+						<ul class="sub-list">
+							<li>
+								<a href="research_contest.html" class="depth2">공모전 일정</a>
+							</li>
+							<li>
+								<a href="academic.html" class="depth2">학술 사이트</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a class="link">커뮤니티</a>
+						<ul class="sub-list">
+							<li>
+								<a href="document.html" class="depth2">자료실</a>
+							</li>
+							<li>
+								<a href="share.html" class="depth2">정보공유</a>
+							</li>
+							<li>
+								<a href="community.html" class="depth2">자유게시판</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a class="link">취업준비</a>
+						<ul class="sub-list">
+							<li>
+								<a href="counsel.html" class="depth2">상담</a>
+							</li>
+							<li>
+								<a href="test.html" class="depth2">검사</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</mainside>
+
+		<!-- 슬라이드 메뉴 -->
+		<div id="slideMenu" class="slide-menu">
+			<button id="closeMenu" class="close-btn">닫기</button>
+		</div>
 			
 	<!-- content 시작 -->
 		<main id="container" class="container">
