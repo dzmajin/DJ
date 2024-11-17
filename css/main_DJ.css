@@ -36,9 +36,27 @@
     .search_area			{margin-top:10px}
     .search_area > p		{display:flex;align-items: center; position:relative}
     .search_area > p span	{font-size: 1.1rem ;color:#1F4E9C;margin-right: 15px;}
-    .search_area > p input	{height:66px; border:2px solid  #1F4E9C; background:#fff; border-radius:5px; padding:0 25px; font-size: 0.9rem; width:100%; color:#444}
-    .search_area > p a		{display: inline-block; background:  #1F4E9C url(../image/search_btn.png)no-repeat 50% 50%; width:65px; height:65px; transition: all 0.2s; font-size:0; position:absolute; right:0; top:0;  border-radius:0 5px 5px 0; }
-    .search_area > p a:hover {background-color: #1F4E9C}
+    .search_area > p input	{height:66px; border:2px solid  #1F4E9C; background:#fff; border-radius:5px; padding:0 25px; font-size: 0.9rem; width:100%; color:#444;outline: none;}
+    .search_area > p button {
+        display: inline-block;
+        background: #1F4E9C url(../image/search_btn.png) no-repeat center;
+        background-size: cover; /* 이미지 크기를 맞추기 위해 추가 */
+        width: 65px;
+        height: 65px;
+        transition: all 0.2s;
+        font-size: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        border: none;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+    }
+    
+    
+    .search_area > p button:hover {
+        background-color: #1F4E9C;
+    }
     
     .quick					{display:grid;grid-template-columns: repeat(3, 1fr); border-radius:15px; box-shadow: 0px 10px 20px 6px rgba(0,0,0,0.07);background: #fff;}
     .quick li a				{display:flex;font:400 18px/22px "Poppins", "Noto Sans KR", sans-serif;color:#111;width:100%;height:100%;position:relative;transition:all 0.2s;align-items: center;padding: 12% 5%;/* white-space: nowrap; */word-break: keep-all;}

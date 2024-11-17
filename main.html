@@ -111,6 +111,10 @@
 													<a href="careerMap.html" class="depth2"> 취업로드맵</a>
 												</li>
 
+												<li>
+													<a href="careerMap.html" class="depth2"> 취업로드맵</a>
+												</li>
+
 										</ul>
 									</li>
 								
@@ -169,7 +173,6 @@
 								<li>
 									<a href="mypage.html" class="depth1">마이페이지</a>
 									<ul class="">
-										<li><a href="#" class="depth2">학습 진척도</a></li>
 										<li><a href="myPosts.html" class="depth2">나의 기록</a></li>
 										<li><a href="editProfile.html" class="depth2">내 정보 수정</a></li>
 
@@ -271,6 +274,7 @@
 					</div>
 				</div>
 				
+					<!-- search_area -->
 					<div class="search_area">
 						<p>
 							<span>SEARCH</span>
@@ -280,6 +284,7 @@
 						</p>
 
 					</div><!-- //search_area -->
+
 					
 					<ul class="quick">
 						<li>
@@ -301,8 +306,8 @@
 						<li>
 							<a href="#">
 								<span>
-									<span class="tt">AI 학습플래너</span>
-									<span class="text">AI가 도와주는 학습계획</span>
+									<span class="tt">졸업자 현황</span>
+									<span class="text">졸업자 취업 현황</span>
 								</span>
 							</a>
 						</li>
@@ -351,5 +356,26 @@
 	<!-- footer 끝 -->
 	
 		</div>
+		<script>
+			function search() {
+				const searchKeyword = document.getElementById('searchKeyword').value;
+	
+				// AJAX 요청 보내기
+				fetch('/search', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ query: searchKeyword })
+				})
+				.then(response => response.json())
+				.then(data => {
+					console.log('검색 결과:', data);
+				})
+				.catch(error => {
+					console.error('에러:', error);
+				});
+			}
+		</script>
 	</body>
 </html>

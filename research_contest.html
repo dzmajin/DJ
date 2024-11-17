@@ -37,7 +37,7 @@
 			</div>
 			<div id="chat-messages"></div>
 			<div class="chat-input-area">
-				<input type="text" id="chat-input" placeholder="메시지를 입력하세요">
+				<input type="text" id="chat-input" placeholder="메시지를 입력하세요.">
 				<button onclick="sendMessage()">Send</button>
 			</div>
 		</div>
@@ -67,6 +67,10 @@
                                                 
                                                     <li>
                                                         <a href="careerMap.html" class="depth2"> 취업로드맵</a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a href="sbn.html" class="depth2"> 취업 현황</a>
                                                     </li>
         
                                             </ul>
@@ -203,9 +207,11 @@
                         <table id="contestTable">
                             <thead>
                                 <tr>
-                                    <th>공모전 이름</th>
-                                    <th>시작일</th>
-                                    <th>종료일</th>
+                                    <th>공모전 제목</th>
+                                    <th>주최 기관</th>
+                                    <th>접수기간</th>
+                                    <th>남은기간</th>
+                                    <th>상태</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -234,19 +240,94 @@
 	<!-- footer 끝 -->
 
     <script>
-        // Toggle Chatbot Visibility
+        // 챗봇 시작
         function toggleChatbot() {
             const popup = document.getElementById("chatbot-popup");
+            const messagesDiv = document.getElementById("chat-messages");
 
-            // 현재 상태를 토글
             if (popup.style.display === "flex") {
                 popup.style.display = "none"; // 팝업 닫기
+                messagesDiv.innerHTML = ""; // 메시지 기록 초기화
             } else {
                 popup.style.display = "flex"; // 팝업 열기
+                initializeChatbot(); // 챗봇 초기 메시지 표시
             }
         }
 
-        // Send Message Functionality
+        // 챗봇 메시지
+        function initializeChatbot() {
+            const welcomeMessage = `
+                안녕하세요 디온이 입니다.<br>
+                아래 버튼을 눌러 디온이를 이용해보세요!
+                <div class="buttons-container">
+                    <button class="choose-button" onclick="showGuide()">디온이 가이드</button>
+                    <button class="choose-button" onclick="showScheduleOptions()">공모전 일정 안내</button>
+                </div>
+            `;
+
+            addMessage("bot", welcomeMessage);
+        }
+
+        function showGuide() {
+            const guideMessage = `
+                디온이를 이용해 주셔서 감사합니다!<br>
+                1. 공모전 일정을 확인하려면 '공모전 일정 안내'를 클릭하세요.<br>
+                2. 원하는 공모전 분야를 선택하면 해당 정보를 제공받을 수 있습니다.<br>
+                디온이를 통해 유용한 정보를 얻어가세요!
+            `;
+            addMessage("bot", guideMessage);
+        }
+
+        function showScheduleOptions() {
+            const categories = ["AI", "빅데이터", "SW", "게임", "보안", "앱"];
+            let buttonsHTML = '<div class="buttons-container">';
+            categories.forEach((category) => {
+                buttonsHTML += `<button class="category-button" onclick="handleCategorySelection('${category}')">${category}</button>`;
+            });
+            buttonsHTML += "</div>";
+
+            const scheduleMessage = `
+                아래에서 관심 있는 공모전 분야를 선택하세요!
+                ${buttonsHTML}
+            `;
+            addMessage("bot", scheduleMessage);
+        }
+
+        function handleCategorySelection(category) {
+            addMessage("user", `공모전 분야: ${category}`);
+
+            setTimeout(() => {
+                const responseMessage = `
+                    '${category}' 분야의 공모전 일정은 다음과 같습니다:<br>
+                    - 공모전 1: 2024-01-15 ~ 2024-02-15<br>
+                    - 공모전 2: 2024-03-01 ~ 2024-04-01<br>
+                    더 자세한 정보는 디온이를 통해 확인해 보세요!
+                `;
+                addMessage("bot", responseMessage);
+            }, 500);
+        }
+
+
+        // 메시지 추가
+        function addMessage(sender, text) {
+            const messagesDiv = document.getElementById("chat-messages");
+            const messageDiv = document.createElement("div");
+            messageDiv.className = sender;
+
+            // 메시지 내용 렌더링 방식 결정
+            if (sender === "bot") {
+                messageDiv.innerHTML = text; // HTML 렌더링
+            } else {
+                messageDiv.textContent = text; // 일반 텍스트 렌더링
+            }
+
+            messagesDiv.appendChild(messageDiv);
+
+            // 메시지 추가 후 스크롤 하단으로 이동
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        // 대답 메시지
         function sendMessage() {
             const input = document.getElementById("chat-input");
             const message = input.value.trim();
@@ -254,26 +335,14 @@
                 addMessage("user", message); // 사용자 메시지 추가
                 input.value = ""; // 입력 필드 초기화
 
-                // Simulate AI Response
+                // 챗봇 대답
                 setTimeout(() => {
-                    addMessage("bot", "안녕하세요 대진 On 정보 챗봇입니다.");
+                    addMessage("bot", "안녕하세요 디온이 입니다.");
                 }, 500);
             }
         }
 
-        // Add Messages to Chat Window
-        function addMessage(sender, text) {
-            const messagesDiv = document.getElementById("chat-messages");
-            const messageDiv = document.createElement("div");
-            messageDiv.className = sender;
-            messageDiv.textContent = text;
-            messagesDiv.appendChild(messageDiv);
-
-            // 메시지 추가 후 스크롤 하단으로 이동
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
-        }
-
-        // Handle Enter Key Press
+        // 엔터키 누르면 보내기
         document.getElementById("chat-input").addEventListener("keydown", (event) => {
             if (event.key === "Enter") {
                 sendMessage(); // Enter 키 입력 시 메시지 전송
@@ -286,6 +355,7 @@
             const popup = document.getElementById("chatbot-popup");
             popup.style.display = "none"; // 초기 상태는 숨김
         });
+
     </script>
 
         </div>     
