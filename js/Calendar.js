@@ -172,20 +172,21 @@ function displayContestSchedule(currYear, currMonth) {
         // 남은 기간 계산
         const remainingDays = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24)); // 일 단위로 계산
 
-        // 상태 결정 및 색상 설정
-        let status = '';
-        let statusColor = '';
+        // D-DAY 색상 설정
+        let dDayText = '';
+        let dDayColor = '';
+
         if (remainingDays > 0) {
             if (remainingDays <= 7) {
-                status = '마감 임박';
-                statusColor = 'red'; // 마감 임박: 빨간색
+                dDayText = `D-${remainingDays}`;
+                dDayColor = 'red'; // 마감 임박: 빨간색
             } else {
-                status = '진행 중';
-                statusColor = '#1F4E9C'; // 진행 중: 교색
+                dDayText = `D-${remainingDays}`;
+                dDayColor = '#1F4E9C'; // 진행 중: 지정된 파란색
             }
         } else {
-            status = '마감 완료';
-            statusColor = 'black'; // 마감 완료: 검정색
+            dDayText = '마감';
+            dDayColor = 'black'; // 마감 완료: 검정색
         }
 
         // 테이블 행 생성
@@ -194,12 +195,12 @@ function displayContestSchedule(currYear, currMonth) {
             <td>${event.contestName}</td>
             <td>${event.organizer}</td>
             <td>${event.sdate} ~ ${event.edate || 'N/A'}</td>
-            <td>${remainingDays > 0 ? `D-${remainingDays}` : '마감'}</td>
-            <td style="color: ${statusColor}; font-weight: bold;">${status}</td>
+            <td style="color: ${dDayColor}; font-weight: bold;">${dDayText}</td>
         `;
         contestTable.appendChild(row);
     });
 }
+
 
 
 
