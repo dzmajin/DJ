@@ -116,7 +116,6 @@ td.highlight {
 }
 
 
-
 /* 팝업 닫기 버튼 */
 .close-btn {
     position: absolute;
@@ -128,14 +127,19 @@ td.highlight {
 }
 
 #popup-title {
-    font-size: 18px;
+    font-size: 25px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
 #popup-details {
-    font-size: 14px;
+    font-size: 15px;
     margin-bottom: 20px;
+}
+
+#popup-details p {
+    text-align: left;
+    margin: 5px 0; /* 각 행 간의 여백 */
 }
 
 

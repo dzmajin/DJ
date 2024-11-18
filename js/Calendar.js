@@ -104,7 +104,7 @@ async function fetchCompetitionSchedule() {
         const data = await response.json();
         console.log('불러온 공모전 데이터:', data); // 데이터 확인
 
-        // JSON 데이터를 그대로 반환
+        // JSON 데이터를 반환
         return data.map(event => ({
             contestName: event['공모전 제목'],
             organizer: event['주최자'],
@@ -117,7 +117,30 @@ async function fetchCompetitionSchedule() {
     }
 }
 
+// D-DAY 계산 및 색상 설정 함수
+function calculateDdayAndColor(sdate, edate) {
+    const today = new Date();
+    const endDate = new Date(edate);
 
+    const remainingDays = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24)); // 일 단위로 계산
+    let dDayText = '';
+    let dDayColor = '';
+
+    if (remainingDays > 0) {
+        if (remainingDays <= 7) {
+            dDayText = `D-${remainingDays}`;
+            dDayColor = 'red'; // 마감 임박: 빨간색
+        } else {
+            dDayText = `D-${remainingDays}`;
+            dDayColor = '#1F4E9C'; // 진행 중: 지정된 파란색
+        }
+    } else {
+        dDayText = '마감';
+        dDayColor = 'black'; // 마감 완료: 검정색
+    }
+
+    return { dDayText, dDayColor };
+}
 
 // 팝업 창을 표시하는 함수
 function showPopup(day, month, year) {
@@ -132,12 +155,20 @@ function showPopup(day, month, year) {
     });
 
     if (event) {
+        const { dDayText, dDayColor } = calculateDdayAndColor(event.sdate, event.edate);
+
+        // 팝업 요소 가져오기
         const popup = document.getElementById('popup');
         const popupTitle = document.getElementById('popup-title');
         const popupDetails = document.getElementById('popup-details');
 
+        // 팝업 내용 설정
         popupTitle.textContent = event.contestName;
-        popupDetails.textContent = `${event.organizer}: ${event.sdate} - ${event.edate || 'N/A'}`;
+        popupDetails.innerHTML = `
+            <p><strong>주최:</strong> ${event.organizer}</p>
+            <p><strong>접수 기간:</strong> ${event.sdate} - ${event.edate || 'N/A'}</p>
+            <p><strong>D-DAY:</strong> <span style="color: ${dDayColor}; font-weight: bold;">${dDayText}</span></p>
+        `;
 
         popup.style.display = 'block';
 
@@ -148,12 +179,10 @@ function showPopup(day, month, year) {
     }
 }
 
+// 공모전 일정을 테이블에 표시하는 함수
 function displayContestSchedule(currYear, currMonth) {
     const contestTable = document.getElementById('contestTable').querySelector('tbody');
     contestTable.innerHTML = ''; // 테이블 초기화
-
-    // 현재 날짜
-    const today = new Date();
 
     // "시작일"이 현재 달에 해당하는 일정만 필터링
     const filteredSchedule = competitionSchedule.filter(event => {
@@ -166,28 +195,7 @@ function displayContestSchedule(currYear, currMonth) {
 
     // 필터링된 일정만 테이블에 표시
     filteredSchedule.forEach(event => {
-        const startDate = new Date(event.sdate);
-        const endDate = new Date(event.edate);
-
-        // 남은 기간 계산
-        const remainingDays = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24)); // 일 단위로 계산
-
-        // D-DAY 색상 설정
-        let dDayText = '';
-        let dDayColor = '';
-
-        if (remainingDays > 0) {
-            if (remainingDays <= 7) {
-                dDayText = `D-${remainingDays}`;
-                dDayColor = 'red'; // 마감 임박: 빨간색
-            } else {
-                dDayText = `D-${remainingDays}`;
-                dDayColor = '#1F4E9C'; // 진행 중: 지정된 파란색
-            }
-        } else {
-            dDayText = '마감';
-            dDayColor = 'black'; // 마감 완료: 검정색
-        }
+        const { dDayText, dDayColor } = calculateDdayAndColor(event.sdate, event.edate);
 
         // 테이블 행 생성
         const row = document.createElement('tr');
@@ -200,6 +208,7 @@ function displayContestSchedule(currYear, currMonth) {
         contestTable.appendChild(row);
     });
 }
+
 
 
 
