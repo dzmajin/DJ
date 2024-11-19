@@ -98,8 +98,8 @@ function initializeKnowledgeMap() {
         .attr('height', height);
 
     const simulation = d3.forceSimulation(data.nodes)
-        .force('link', d3.forceLink(data.links).id(d => d.id).distance(150)) // 거리 감소
-        .force('charge', d3.forceManyBody().strength(-100)) // 노드 추가 후 밀어내는 힘 감소
+        .force('link', d3.forceLink(data.links).id(d => d.id).distance(100)) // 거리 감소
+        .force('charge', d3.forceManyBody().strength(-80)) // 노드 추가 후 밀어내는 힘 감소
         .force('center', d3.forceCenter(width / 2, height / 2))
         .on('tick', ticked); // tick 이벤트 연결
 
