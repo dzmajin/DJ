@@ -1,4 +1,4 @@
-let competitionSchedule = []; // 전역 변수로 선언
+let competitionSchedule = []; 
 
 document.addEventListener("DOMContentLoaded", async () => {
     const date = new Date();
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const prevNextIcons = document.querySelectorAll('.nav .material-icons');
 
     // 공모전 일정 데이터 가져오기
-    competitionSchedule = await fetchCompetitionSchedule(); // 전역 변수에 저장
+    competitionSchedule = await fetchCompetitionSchedule(); 
 
     // 달력 렌더링 함수
     const renderCalendar = () => {
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             row += `<td class="${isToday} ${isCompetitionDay ? 'highlight' : ''}" onclick="showPopup(${i}, ${currMonth}, ${currYear})" style="cursor: pointer;">${i}</td>`;
 
-            if ((i + firstDayofMonth) % 7 === 0) { // 일주일이 끝날 때마다 줄 바꿈
+            if ((i + firstDayofMonth) % 7 === 0) { // 일주일 끝날 때 마다 줄 바꿈
                 tableRows += row + "</tr>";
                 row = "<tr>";
             }
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         displayContestSchedule(currYear, currMonth);
     };
 
-    // 이전/다음 버튼 클릭 이벤트
+    // 달력 - 이전/다음 버튼 클릭시
     prevNextIcons.forEach((icon) => {
         icon.addEventListener("click", () => {
             currMonth = icon.id === "prev" ? currMonth - 1 : currMonth + 1;
@@ -117,12 +117,12 @@ async function fetchCompetitionSchedule() {
     }
 }
 
-// D-DAY 계산 및 색상 설정 함수
+// D-DAY 계산, 색상 
 function calculateDdayAndColor(sdate, edate) {
     const today = new Date();
     const endDate = new Date(edate);
 
-    const remainingDays = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24)); // 일 단위로 계산
+    const remainingDays = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24)); 
     let dDayText = '';
     let dDayColor = '';
 
@@ -132,7 +132,7 @@ function calculateDdayAndColor(sdate, edate) {
             dDayColor = 'red'; // 마감 임박: 빨간색
         } else {
             dDayText = `D-${remainingDays}`;
-            dDayColor = '#1F4E9C'; // 진행 중: 지정된 파란색
+            dDayColor = '#1F4E9C'; // 진행 중: 교색
         }
     } else {
         dDayText = '마감';
@@ -142,7 +142,7 @@ function calculateDdayAndColor(sdate, edate) {
     return { dDayText, dDayColor };
 }
 
-// 팝업 창을 표시하는 함수
+// 팝업창 표시 함수
 function showPopup(day, month, year) {
     const event = competitionSchedule.find(event => {
         const startDate = new Date(event.sdate);
@@ -157,12 +157,12 @@ function showPopup(day, month, year) {
     if (event) {
         const { dDayText, dDayColor } = calculateDdayAndColor(event.sdate, event.edate);
 
-        // 팝업 요소 가져오기
+        //팝업 제목
         const popup = document.getElementById('popup');
         const popupTitle = document.getElementById('popup-title');
         const popupDetails = document.getElementById('popup-details');
 
-        // 팝업 내용 설정
+        // 팝업 내용 
         popupTitle.textContent = event.contestName;
         popupDetails.innerHTML = `
             <p><strong>주최:</strong> ${event.organizer}</p>
@@ -172,17 +172,17 @@ function showPopup(day, month, year) {
 
         popup.style.display = 'block';
 
-        // 닫기 버튼 클릭 이벤트
+        // 닫기 버튼 클릭 
         document.querySelector('.close-btn').addEventListener('click', () => {
             popup.style.display = 'none';
         });
     }
 }
 
-// 공모전 일정을 테이블에 표시하는 함수
+// 공모전일정 테이블 표시 함수
 function displayContestSchedule(currYear, currMonth) {
     const contestTable = document.getElementById('contestTable').querySelector('tbody');
-    contestTable.innerHTML = ''; // 테이블 초기화
+    contestTable.innerHTML = ''; 
 
     // "시작일"이 현재 달에 해당하는 일정만 필터링
     const filteredSchedule = competitionSchedule.filter(event => {
@@ -190,10 +190,10 @@ function displayContestSchedule(currYear, currMonth) {
         return startDate.getFullYear() === currYear && startDate.getMonth() === currMonth;
     });
 
-    // 날짜 순으로 정렬 (sdate 기준)
+    // 날짜 순 정렬
     filteredSchedule.sort((a, b) => new Date(a.sdate) - new Date(b.sdate));
 
-    // 필터링된 일정만 테이블에 표시
+    // 필터링된 일정 테이블에 표시
     filteredSchedule.forEach(event => {
         const { dDayText, dDayColor } = calculateDdayAndColor(event.sdate, event.edate);
 
